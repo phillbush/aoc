@@ -1,0 +1,87 @@
+#!/usr/bin/awk -f
+
+function vertical(str,  n) {
+	n = substr(str, 2) + 0
+	if (str ~ /^U/)
+		return -n
+	if (str ~ /^D/)
+		return n
+	else
+		return 0
+}
+
+function horizontal(str,  n) {
+	n = substr(str, 2) + 0
+	if (str ~ /^L/)
+		return -n
+	if (str ~ /^R/)
+		return n
+	else
+		return 0
+}
+
+function abs(n) {
+	return n < 0 ? -n : n
+}
+
+function min(a, b) {
+	return a < b ? a : b
+}
+
+function max(a, b) {
+	return a > b ? a : b
+}
+
+BEGIN {
+	FS = ","
+	sol = 0
+}
+
+NR == 1 {
+	steps = NF
+	for (i = 1; i <= NF; i++) {
+		wire[i, "x"] = wire[(i - 1), "x"] + horizontal($i)
+		wire[i, "y"] = wire[(i - 1), "y"] + vertical($i)
+	}
+}
+
+NR == 2 {
+	for (i = 1; i <= NF; i++) {
+		h = horizontal($i)
+		v = vertical($i)
+		prevx = currx + 0
+		prevy = curry + 0
+		currx = prevx + h
+		curry = prevy + v
+
+		min2x = min(currx, prevx)
+		max2x = max(currx, prevx)
+		min2y = min(curry, prevy)
+		max2y = max(curry, prevy)
+
+		for (j = 1; j <= steps; j++) {
+			min1x = min(wire[(j - 1), "x"], wire[j, "x"])
+			max1x = max(wire[(j - 1), "x"], wire[j, "x"])
+			min1y = min(wire[(j - 1), "y"], wire[j, "y"])
+			max1y = max(wire[(j - 1), "y"], wire[j, "y"])
+
+			if (h && min1x == max1x &&
+			    min1y < curry && max1y > curry &&
+			    min1x > min2x && min1x < max2x) {
+				n = abs(curry) + abs(min1x)
+				if (!sol || n < sol)
+					sol = n
+			} else if (v && min1y == max1y &&
+			           min1x < currx && max1x > currx &&
+			           min1y > min2y && min1y < max2y) {
+				n = abs(currx) + abs(min1y)
+				if (!sol || n < sol)
+					sol = n
+			}
+		}
+	}
+}
+
+END {
+	print sol
+}

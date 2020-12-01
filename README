@@ -1,0 +1,39 @@
+                                  aoc:
+                        solutions for aoc in awk
+
+Each directory contains the daily solutions for the yearly aoc event.
+The solution for part 1 of day 01 puzzle from 2019 is {2019/day01a}.
+The solution for part 2 of day 03 puzzle from 2020 is {2020/day03b}.
+The input for day 05 puzzle from 2019 is {2019/day05.in}.
+And so on.
+
+Here are the expected output for each puzzle, when run via time(1) and
+given its respective input.
+
+	$ time 2019/day01a 2019/day01.in
+	3412496
+	    0m00.01s real     0m00.00s user     0m00.01s system
+
+	$ time 2019/day01b 2019/day01.in
+	5115845
+	    0m00.01s real     0m00.00s user     0m00.01s system
+
+	$ time 2019/day02a 2019/day02.in
+	3790645
+	    0m00.02s real     0m00.00s user     0m00.01s system
+
+	$ time 2019/day02b 2019/day02.in
+	6577
+	    0m09.49s real     0m07.80s user     0m00.02s system
+
+	$ time 2019/day03a 2019/day03.in
+	768
+	    0m02.86s real     0m02.33s user     0m00.01s system
+
+	$ time 2020/day01a 2020/day01.in
+	1019904
+	    0m00.10s real     0m00.09s user     0m00.01s system
+
+	$ time 2020/day01b 2020/day01.in
+	176647680
+	    0m08.30s real     0m06.73s user     0m00.04s system

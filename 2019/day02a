@@ -1,0 +1,82 @@
+#!/usr/bin/awk -f
+
+# try inputs
+function try(noun, verb) {
+	mem[1] = noun
+	mem[2] = verb
+}
+
+# instruction fetch stage
+function _if() {
+	pc = pc + pcinc
+	instruction = mem[pc]
+	pcinc = 4
+}
+
+# instruction decoding stage
+function _id() {
+	if (instruction == 1) {
+		operation = "ADD"
+		wren = 1
+	} else if (instruction == 2) {
+		operation = "MUL"
+		wren = 1
+	} else if (instruction == 99) {
+		operation = "END"
+		wren = 0
+	} else {
+		operation = instruction
+		wren = 0
+		error = 1
+	}
+	operand1 = mem[mem[pc + 1]]
+	operand2 = mem[mem[pc + 2]]
+	destination = mem[pc + 3]
+}
+
+# execution stage
+function _ex() {
+	if (operation == "ADD")
+		writeback = operand1 + operand2
+	else if (operation == "MUL")
+		writeback = operand1 * operand2
+}
+
+# write-back stage
+function _wb() {
+	if (wren) {
+		mem[destination] = writeback
+	}
+}
+
+# run program
+function run() {
+	while (operation != "END" && !error) {
+		_if()
+		_id()
+		_ex()
+		_wb()
+	}
+}
+
+# get program output
+function output() {
+	return mem[0]
+}
+
+BEGIN {
+	memsize = 0
+	RS = ","
+	OFS = "\t"
+}
+
+{
+	mem[memsize] = $1 + 0
+	memsize++
+}
+
+END {
+	try(12, 2)
+	run()
+	print output()
+}
