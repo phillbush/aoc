@@ -40,7 +40,7 @@ given its respective input.
 
 	$ time 2020/day02a 2020/day02.in
 	460
-	    0m00.25s real     0m00.23s user     0m00.01s system
+	    0m00.19s real     0m00.14s user     0m00.04s system
 
 	$ time 2020/day02b 2020/day02.in
 	251
