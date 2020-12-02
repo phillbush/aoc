@@ -1,0 +1,30 @@
+#!/usr/bin/awk -f
+
+function direction(santa, robot) {
+	(santa == "<") ? sx-- : (santa == ">") ? sx++ : (santa == "^") ? sy-- : sy++
+	(robot == "<") ? rx-- : (robot == ">") ? rx++ : (robot == "^") ? ry-- : ry++
+}
+
+BEGIN {
+	sx = sy = rx = ry = 0
+	sum = house[0, 0] = 1
+	FS = ""
+}
+
+{
+	for (i = 1; i <= NF; i+=2) {
+		direction($i, $(i + 1))
+		if (!house[sx, sy]) {
+			sum++
+			house[sx, sy] = 1
+		}
+		if (!house[rx, ry]) {
+			sum++
+			house[rx, ry] = 1
+		}
+	}
+}
+
+END {
+	print sum
+}

@@ -1,0 +1,25 @@
+#!/usr/bin/awk -f
+
+function minmid(a, b, c) {
+	if (a < b) {
+		if (a < c) {
+			mid = b < c ? b : c
+			min = a
+		} else {
+			mid = a < b ? a : b
+			min = c
+		}
+	} else {
+		if (b < c) {
+			mid = a < c ? a : c
+			min = b
+		} else {
+			mid = a < b ? a : b
+			min = c
+		}
+	}
+}
+
+BEGIN { FS = "x" }
+      { minmid($1, $2, $3); sum += 2 * (min + mid) + $1 * $2 * $3 }
+END   { print sum }

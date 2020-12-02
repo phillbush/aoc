@@ -1,0 +1,4 @@
+#!/usr/bin/awk -f
+
+BEGIN { FS = "" }
+      { for (i = 1; i <= NF; i++) if ((n = ($i ~ /\(/ ? n + 1 : n - 1)) < 0) { print i; next } }

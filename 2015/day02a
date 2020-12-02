@@ -1,0 +1,9 @@
+#!/usr/bin/awk -f
+
+function min(a, b, c) {
+	return a < b ? (a < c ? a : c) : (b < c ? b : c)
+}
+
+BEGIN { FS = "x" }
+      { sum += 2 * ((a = $1 * $2) + (b = $2 * $3) + (c = $3 * $1)); sum += min(a, b, c) }
+END   { print sum }

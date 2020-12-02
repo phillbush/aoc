@@ -1,0 +1,25 @@
+#!/usr/bin/awk -f
+
+function direction(dir) {
+	(dir == "<") ? x-- : (dir == ">") ? x++ : (dir == "^") ? y-- : y++
+}
+
+BEGIN {
+	x = y = 0
+	sum = house[0, 0] = 1
+	FS = ""
+}
+
+{
+	for (i = 1; i <= NF; i++) {
+		direction($i)
+		if (!house[x, y]) {
+			sum++
+			house[x, y] = 1
+		}
+	}
+}
+
+END {
+	print sum
+}

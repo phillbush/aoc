@@ -1,0 +1,4 @@
+#!/usr/bin/awk -f
+
+BEGIN { FS = "" }
+      { for (i = 1; i <= NF; i++) n = ($i ~ /\(/ ? n + 1 : n - 1); print n }
