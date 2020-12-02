@@ -10,6 +10,36 @@ And so on.
 Here are the expected output for each puzzle, when run via time(1) and
 given its respective input.
 
+
+§ 2015
+
+	$ time 2015/day01a 2015/day01.in
+	280
+	    0m00.03s real     0m00.02s user     0m00.01s system
+
+	$ time 2015/day01b 2015/day01.in
+	1797
+	    0m00.03s real     0m00.01s user     0m00.03s system
+
+	$ time 2015/day02a 2015/day02.in
+	1586300
+	    0m00.01s real     0m00.01s user     0m00.01s system
+
+	$ time 2015/day02b 2015/day02.in
+	3737498
+	    0m00.02s real     0m00.02s user     0m00.00s system
+
+	$ time 2015/day03a 2015/day03.in
+	2081
+	    0m00.08s real     0m00.07s user     0m00.01s system
+
+	$ time 2015/day03b 2015/day03.in
+	2341
+	    0m00.11s real     0m00.08s user     0m00.01s system
+
+
+§ 2019
+
 	$ time 2019/day01a 2019/day01.in
 	3412496
 	    0m00.01s real     0m00.00s user     0m00.01s system
@@ -29,6 +59,9 @@ given its respective input.
 	$ time 2019/day03a 2019/day03.in
 	768
 	    0m02.86s real     0m02.33s user     0m00.01s system
+
+
+§ 2020
 
 	$ time 2020/day01a 2020/day01.in
 	1019904
