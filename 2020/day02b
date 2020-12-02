@@ -1,0 +1,29 @@
+#!/usr/bin/awk -f
+
+function genregexpra(a, b, letter,  regexpr, i) {
+	regexpr = "^"
+	for (i = 1; i < a; i++)
+		regexpr = regexpr "."
+	regexpr = regexpr letter
+	for (i = 1; i < b; i++)
+		regexpr = regexpr "."
+	return regexpr "[^" letter "].*$"
+}
+
+function genregexprb(a, b, letter,  regexpr, i) {
+	regexpr = "^"
+	for (i = 1; i < a; i++)
+		regexpr = regexpr "."
+	regexpr = regexpr "[^" letter "]"
+	for (i = 1; i < b; i++)
+		regexpr = regexpr "."
+	return regexpr letter ".*$"
+}
+
+BEGIN { FS = "[- :]+" }
+      { b = $2 - $1
+        matcha = $4 ~ genregexpra($1, b, $3)
+        matchb = $4 ~ genregexprb($1, b, $3)
+        if ((matcha || matchb) && !(matcha && matchb)) n++
+      }
+END   { print n }
