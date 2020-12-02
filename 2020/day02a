@@ -1,14 +1,14 @@
 #!/usr/bin/awk -f
 
-function genregexpr(obl, opt, letter,  regexpr, i) {
-	regexpr = "^[^" letter "]*"
+function genregexp(obl, opt, letter,  regexp, i) {
+	regexp = "^[^" letter "]*"
 	for (i = 0; i < obl; i++)
-		regexpr = regexpr letter "[^" letter "]*"
+		regexp = regexp letter "[^" letter "]*"
 	for (i = 0; i < opt; i++)
-		regexpr = regexpr letter "?[^" letter "]*"
-	return regexpr "$"
+		regexp = regexp letter "?[^" letter "]*"
+	return regexp "$"
 }
 
-BEGIN                            { FS = "[- :]+" }
-$4 ~ genregexpr($1, $2 - $1, $3) { n++ }
-END                              { print n }
+BEGIN                           { FS = "[- :]+" }
+$4 ~ genregexp($1, $2 - $1, $3) { n++ }
+END                             { print n }
