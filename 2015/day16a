@@ -1,0 +1,20 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	FS = "[ :,]+"
+	mfcsam["children"] = 3;
+	mfcsam["cats"] = 7;
+	mfcsam["samoyeds"] = 2;
+	mfcsam["pomeranians"] = 3;
+	mfcsam["akitas"] = 0;
+	mfcsam["vizslas"] = 0;
+	mfcsam["goldfish"] = 5;
+	mfcsam["trees"] = 3;
+	mfcsam["cars"] = 2;
+	mfcsam["perfumes"] = 1;
+}
+
+{
+	if (mfcsam[$3] == $4 && mfcsam[$5] == $6 && mfcsam[$7] == $8)
+		print $2
+}

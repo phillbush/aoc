@@ -101,6 +101,14 @@ given its respective input.
 	1059
 	    0m00.28s real     0m00.19s user     0m00.01s system
 
+	$ time 2015/day16a 2015/day16.in
+	103
+	    0m00.01s real     0m00.01s user     0m00.00s system
+
+	$ time 2015/day16b 2015/day16.in
+	405
+	    0m00.01s real     0m00.01s user     0m00.00s system
+
 
 § 2019
 
