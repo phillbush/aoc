@@ -77,6 +77,14 @@ given its respective input.
 	2085
 	    0m00.02s real     0m00.02s user     0m00.01s system
 
+	$ time 2015/day10a 2015/day10.in
+	492982
+	   31m39.71s real     5m22.03s user    13m24.15s system
+
+	$ time 2015/day12a 2015/day12.in
+	111754
+	    0m00.02s real     0m00.00s user     0m00.03s system
+
 
 § 2019
 
