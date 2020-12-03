@@ -1,0 +1,16 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	FS = ""
+	i = 1
+}
+
+{
+	if ($i == "#")
+		n++
+	i = ((i + 2) % NF) + 1
+}
+
+END {
+	print n
+}

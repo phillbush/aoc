@@ -1,0 +1,28 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	FS = ""
+	ai = bi = ci = di = ei = 1
+}
+
+{
+	if ($ai == "#")
+		an++
+	if ($bi == "#")
+		bn++
+	if ($ci == "#")
+		cn++
+	if ($di == "#")
+		dn++
+	if ($ei == "#" && NR % 2)
+		en++
+	ai = ((ai + 0) % NF) + 1
+	bi = ((bi + 2) % NF) + 1
+	ci = ((ci + 4) % NF) + 1
+	di = ((di + 6) % NF) + 1
+	ei = (NR % 2) ? ((ei + 0) % NF) + 1 : ei
+}
+
+END {
+	print an * bn * cn * dn * en
+}
