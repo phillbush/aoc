@@ -1,15 +1,4 @@
 #!/usr/bin/awk -f
 
-BEGIN {
-	RS = "{"
-	FS = "[^-0-9]+"
-}
-
-{
-	n = split($0, a, "}")
-	for (i
-
-	for (i = 1; i <= NF; i++)
-		n += $i
-	print n + 0
-}
+BEGIN { FS = "[^-0-9]+" }
+      { for (i = 1; i <= NF; i++) n += $i; print n + 0 }
