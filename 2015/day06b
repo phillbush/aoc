@@ -1,0 +1,7 @@
+#!/usr/bin/awk -f
+
+BEGIN          { FS = "[ ,]+" }
+$2 == "on"     { for (x = $3; x <= $6; x++) for (y = $4; y <= $7; y++) light[x, y]++ ; next }
+$2 == "off"    { for (x = $3; x <= $6; x++) for (y = $4; y <= $7; y++) if (light[x, y] > 0) light[x, y]-- ; next }
+$1 == "toggle" { for (x = $2; x <= $5; x++) for (y = $3; y <= $6; y++) light[x, y] += 2 ; next }
+END            { for (l in light) n += light[l]; print n }

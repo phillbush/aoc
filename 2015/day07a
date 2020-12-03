@@ -1,0 +1,26 @@
+#!/usr/bin/awk -f
+
+function value(w,   a) {
+	if (w ~ /[0-9]/)
+		return int(w)
+	if (signal[w])
+		return signal[w]
+	split(wire[w], a)
+	if (a[1] == "ASSIGN")
+		return signal[w] = value(a[2])
+	if (a[1] == "NOT")
+		return signal[w] = compl(value(a[2]))
+	if (a[1] == "AND")
+		return signal[w] = and(value(a[2]), value(a[3]))
+	if (a[1] == "OR")
+		return signal[w] = or(value(a[2]), value(a[3]))
+	if (a[1] == "LSHIFT")
+		return signal[w] = lshift(value(a[2]), value(a[3]))
+	if (a[1] == "RSHIFT")
+		return signal[w] = rshift(value(a[2]), value(a[3]))
+}
+
+$2 == "->" { wire[$3] = "ASSIGN " $1 }
+$3 == "->" { wire[$4] = "NOT " $2 }
+$4 == "->" { wire[$5] = $2 " " $1 " " $3 }
+END        { print value("a") }
