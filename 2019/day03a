@@ -32,6 +32,11 @@ function max(a, b) {
 	return a > b ? a : b
 }
 
+function updatesol(n) {
+	if (!sol || n < sol)
+		sol = n
+}
+
 BEGIN {
 	FS = ","
 	sol = 0
@@ -68,15 +73,11 @@ NR == 2 {
 			if (h && min1x == max1x &&
 			    min1y < curry && max1y > curry &&
 			    min1x > min2x && min1x < max2x) {
-				n = abs(curry) + abs(min1x)
-				if (!sol || n < sol)
-					sol = n
+				updatesol(abs(curry) + abs(min1x))
 			} else if (v && min1y == max1y &&
 			           min1x < currx && max1x > currx &&
 			           min1y > min2y && min1y < max2y) {
-				n = abs(currx) + abs(min1y)
-				if (!sol || n < sol)
-					sol = n
+				updatesol(abs(currx) + abs(min1y))
 			}
 		}
 	}
