@@ -1,0 +1,20 @@
+#!/usr/bin/awk -f
+
+{
+	speed[NR] = $4
+	cycle[NR] = $14 + $7
+	fly[NR] = $7
+}
+
+END {
+	for (i = 1; i <= NR; i++) {
+		for (j = 1; j <= 2503; j++) {
+			if (((j - 1) % cycle[i]) + 1 <= fly[i]) {
+				distance[i] += speed[i]
+				if (max < distance[i])
+					max = distance[i]
+			}
+		}
+	}
+	print max
+}

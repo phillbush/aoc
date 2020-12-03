@@ -93,6 +93,14 @@ given its respective input.
 	111754
 	    0m00.02s real     0m00.00s user     0m00.03s system
 
+	$ time 2015/day14a 2015/day14.in
+	2655
+	    0m00.10s real     0m00.10s user     0m00.00s system
+
+	$ time 2015/day14b 2015/day14.in
+	1059
+	    0m00.28s real     0m00.19s user     0m00.01s system
+
 
 § 2019
 
