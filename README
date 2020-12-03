@@ -109,6 +109,14 @@ given its respective input.
 	405
 	    0m00.01s real     0m00.01s user     0m00.00s system
 
+	$ time 2015/day17a 2015/day17.in
+	1304
+	    0m07.88s real     0m05.96s user     0m00.05s system
+
+	$ time 2015/day17b 2015/day17.in
+	18
+	    0m00.14s real     0m00.07s user     0m00.03s system
+
 
 § 2019
 

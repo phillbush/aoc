@@ -1,0 +1,28 @@
+#!/usr/bin/awk -f
+# copied from https://github.com/kAworu/adventofcode-2015
+
+function fill(liters, i, n,  l) {
+	while (++i <= NR) {
+		l = liters - cont[i];
+		if (n + 1 == solution["nused"]) {
+			solution["count"] += (l == 0);
+		} else if (n + 1 < solution["nused"]) {
+			if (l == 0) {
+				solution["nused"] = n + 1;
+				solution["count"] = 1;
+			} else if (l > 0) {
+				fill(l, i, n + 1);
+			}
+		}
+	}
+}
+
+{
+	cont[NR] = $0 + 0
+}
+
+END {
+	solution["nused"] = NR + 1;
+	fill(150);
+	print solution["count"];
+}

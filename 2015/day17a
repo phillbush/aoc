@@ -1,0 +1,20 @@
+#!/usr/bin/awk -f
+
+function fill(liters, i,   l, n) {
+	while (++i <= NR) {
+		l = liters - cont[i]
+		if (l == 0)
+			n++
+		else
+			n += fill(l, i)
+	}
+	return n
+}
+
+{
+	cont[NR] = $0 + 0
+}
+
+END {
+	print fill(150)
+}
