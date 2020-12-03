@@ -1,0 +1,26 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	FS = ""
+}
+
+{
+	n = 2
+	code += NF
+	for (i = 1; i <= NF; i++) {
+		if ($i == "\\") {
+			i++
+			if ($i == "x") {
+				i += 2
+				n += 3
+			} else {
+				n += 1
+			}
+		}
+	}
+	mem += NF - n
+}
+
+END {
+	print code - mem
+}

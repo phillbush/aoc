@@ -65,6 +65,18 @@ given its respective input.
 	956
 	    0m00.04s real     0m00.01s user     0m00.01s system
 
+	$ time 2015/day07b 2015/day07.in
+	40149
+	    0m00.05s real     0m00.03s user     0m00.01s system
+
+	$ time 2015/day08a 2015/day08.in
+	1350
+	    0m00.02s real     0m00.02s user     0m00.00s system
+
+	$ time 2015/day08b 2015/day08.in
+	2085
+	    0m00.02s real     0m00.02s user     0m00.01s system
+
 
 § 2019
 

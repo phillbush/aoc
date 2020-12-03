@@ -1,0 +1,20 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	FS = ""
+}
+
+{
+	n = 2
+	code += NF
+	for (i = 1; i <= NF; i++) {
+		if ($i == "\"" || $i == "\\") {
+			n++
+		}
+	}
+	new += NF + n
+}
+
+END {
+	print new - code
+}
