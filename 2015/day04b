@@ -1,0 +1,6 @@
+#!/usr/bin/awk -f
+
+# see https://kaworu.ch/blog/2017/05/23/implementing-md5-in-AWK/
+# for an actual solution
+
+BEGIN { print "Nope." }

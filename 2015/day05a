@@ -1,0 +1,17 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	FS = ""
+}
+
+/[aeiou].*[aeiou].*[aeiou]/ && $0 !~ /ab|cd|pq|xy/ {
+	for (i = 1; i < NF; i++) {
+		if ($i == $(i + 1)) {
+			n++; next
+		}
+	}
+}
+
+END {
+	print n
+}

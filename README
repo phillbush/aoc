@@ -37,6 +37,22 @@ given its respective input.
 	2341
 	    0m00.11s real     0m00.08s user     0m00.01s system
 
+	$ time 2015/day04a 2015/day04.in
+	Nope.
+	    0m00.01s real     0m00.01s user     0m00.00s system
+
+	$ time 2015/day04b 2015/day04.in
+	Nope.
+	    0m00.01s real     0m00.01s user     0m00.00s system
+
+	$ time 2015/day05a 2015/day05.in
+	238
+	    0m00.02s real     0m00.02s user     0m00.01s system
+
+	$ time 2015/day05b 2015/day05.in
+	69
+	    0m00.53s real     0m00.48s user     0m00.04s system
+
 
 § 2019
 
