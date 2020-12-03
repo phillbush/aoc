@@ -85,6 +85,10 @@ given its respective input.
 	492982
 	    0m08.69s real     0m05.78s user     0m00.92s system
 
+	$ time 2015/day10b 2015/day10.in        # GNU awk
+	6989950
+	    2m40.08s real     1m25.13s user     0m11.73s system
+
 	$ time 2015/day12a 2015/day12.in
 	111754
 	    0m00.02s real     0m00.00s user     0m00.03s system
