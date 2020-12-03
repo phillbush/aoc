@@ -118,3 +118,11 @@ given its respective input.
 	$ time 2020/day02b 2020/day02.in
 	251
 	    0m00.04s real     0m00.03s user     0m00.00s system
+
+	$ time 2020/day03a 2020/day03.in
+	240
+	    0m00.03s real     0m00.01s user     0m00.03s system
+
+	$ time 2020/day03b 2020/day03.in
+	2832009600
+	    0m00.03s real     0m00.01s user     0m00.01s system
