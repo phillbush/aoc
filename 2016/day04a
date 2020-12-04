@@ -1,0 +1,43 @@
+#!/usr/bin/awk -f
+
+function valid(name, chsum, i, a, s, m1, m2, m3, m4, m5, s1, s2, s3, s4, s5) {
+	chsum = $(NF - 1)
+	for (i = 1; i <= NF - 3; i++)
+		name = name (i == 1 ? "" : " ") $i
+	n = split(name, a, "")
+	for (i = 1; i <= n; i++) {
+		if (a[i] != " ")
+			s[a[i]]++
+	}
+	for (i = 0; i < 123; i++) {
+		l = sprintf("%c", 97 + i)
+		if (!s[l])
+			continue
+		if (s[l] > m1) {
+			m5 = m4;        s5 = s4;
+			m4 = m3;        s4 = s3;
+			m3 = m2;        s3 = s2;
+			m2 = m1;        s2 = s1;
+			m1 = s[l];      s1 = l;
+		} else if (s[l] > m2) {
+			m5 = m4;        s5 = s4;
+			m4 = m3;        s4 = s3;
+			m3 = m2;        s3 = s2;
+			m2 = s[l];      s2 = l;
+		} else if (s[l] > m3) {
+			m5 = m4;        s5 = s4;
+			m4 = m3;        s4 = s3;
+			m3 = s[l];      s3 = l;
+		} else if (s[l] > m4) {
+			m5 = m4;        s5 = s4;
+			m4 = s[l];      s4 = l;
+		} else if (s[l] > m5) {
+			m5 = s[l];      s5 = l;
+		}
+	}
+	return (s1 s2 s3 s4 s5 == chsum)
+}
+
+BEGIN   { FS = "[-\\[\\]]" }
+valid() { count += $(NF - 2) }
+END     { print count }
