@@ -7,8 +7,10 @@ The solution for part 2 of day 03 puzzle from 2020 is {2020/day03b}.
 The input for day 05 puzzle from 2019 is {2019/day05.in}.
 And so on.
 
-Here are the expected output for each puzzle, when run via time(1) and
-given its respective input.
+The following are the expected output for each puzzle, when run via
+time(1) and given its respective input.  Most solutions were run on
+OpenBSD awk(1); but some of them, for performance reasons, were run
+on GNU gawk(1).
 
 
 § 2015
@@ -81,11 +83,11 @@ given its respective input.
 	492982
 	   31m39.71s real     5m22.03s user    13m24.15s system
 
-	$ time 2015/day10a 2015/day10.in        # GNU awk
+	$ time 2015/day10a 2015/day10.in        # GNU gawk
 	492982
 	    0m08.69s real     0m05.78s user     0m00.92s system
 
-	$ time 2015/day10b 2015/day10.in        # GNU awk
+	$ time 2015/day10b 2015/day10.in        # GNU gawk
 	6989950
 	    2m40.08s real     1m25.13s user     0m11.73s system
 
@@ -116,6 +118,14 @@ given its respective input.
 	$ time 2015/day17b 2015/day17.in
 	18
 	    0m00.14s real     0m00.07s user     0m00.03s system
+
+	$ time 2015/day18a 2015/day18.in
+	1061
+	    0m52.80s real     0m43.16s user     0m00.05s system
+
+	$ time 2015/day18b 2015/day18.in
+	1006
+	    0m53.94s real     0m43.03s user     0m00.06s system
 
 
 § 2019

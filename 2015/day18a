@@ -1,0 +1,46 @@
+#!/usr/bin/awk -f
+
+function state(grid, row, col,   n) {
+	n = grid[row - 1, col - 1] \
+	  + grid[row - 1, col]     \
+	  + grid[row - 1, col + 1] \
+	  + grid[row, col - 1]     \
+	  + grid[row, col + 1]     \
+	  + grid[row + 1, col - 1] \
+	  + grid[row + 1, col]     \
+	  + grid[row + 1, col + 1]
+	return grid[row, col] ? (n == 2 || n == 3) : (n == 3)
+}
+
+function step(from, to) {
+	for (row = 1; row <= nrow; row++)
+		for (col = 1; col <= ncol; col++)
+			to[row, col] = state(from, row, col)
+}
+
+function sum(grid,   n) {
+	for (row = 1; row <= nrow; row++)
+		for (col = 1; col <= ncol; col++)
+			if (grid[row, col])
+				n++
+	return n
+}
+
+BEGIN {
+	FS = ""
+}
+
+{
+	nrow = NR
+	ncol = NF
+	for (i = 1; i <= ncol; i++)
+		grid0[NR, i] = ($i == "#" ? 1 : 0)
+}
+
+END {
+	for (t = 1; t <= 100; t += 2) {
+		step(grid0, grid1)
+		step(grid1, grid0)
+	}
+	print sum(grid0)
+}
