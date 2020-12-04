@@ -1,0 +1,32 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	FS = ""
+}
+
+NR == 1 {
+	nf = NF
+}
+
+{
+	for (i = 1; i <= NF; i++) {
+		msg[i, $i]++
+	}
+}
+
+END {
+	for (i = 1; i <= nf; i++) {
+		for (j = 0; j < 26; j++) {
+			l = sprintf("%c", 97 + j)
+			if (!msg[i, l])
+				continue
+			if (msg[i, l] > occ[i]) {
+				occ[i] = msg[i, l]
+				let[i] = l
+			}
+		}
+	}
+	for (i = 1; i <= nf; i++)
+		printf "%c", let[i]
+	print ""
+}

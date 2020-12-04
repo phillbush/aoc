@@ -180,6 +180,14 @@ of Code, check [1] and [2].
 	Nope.
 	    0m00.01s real     0m00.01s user     0m00.01s system
 
+	$ time 2016/day06a 2016/day06.in
+	nabgqlcw
+	    0m00.03s real     0m00.03s user     0m00.00s system
+
+	$ time 2016/day06b 2016/day06.in
+	ovtrjcjh
+	    0m00.03s real     0m00.03s user     0m00.01s system
+
 
 § 2019
 
