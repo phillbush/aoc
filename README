@@ -1,5 +1,5 @@
-                                  aoc:
-                        solutions for aoc in awk
+                                aoc:
+                      solutions for aoc in awk
 
 Each directory contains the daily solutions for the yearly aoc event.
 The solution for part 1 of day 01 puzzle from 2019 is {2019/day01a}.
@@ -12,6 +12,12 @@ time(1) and given its respective input.  Most solutions were run on
 OpenBSD awk(1); but some of them, for performance reasons, were run
 on GNU gawk(1).
 
+Problems involving md5 (2015/day04* and 2016/day05*) are ignored.
+If you want md5 implemented in awk for the purposes of the Advent
+of Code, check [1] and [2].
+
+[1]: https://kaworu.ch/blog/2017/05/23/implementing-md5-in-AWK/
+[2]: https://github.com/kAworu/adventofcode-2015
 
 § 2015
 
@@ -165,6 +171,14 @@ on GNU gawk(1).
 	$ time 2016/day04b 2016/day04.in
 	267
 	    0m00.95s real     0m00.83s user     0m00.02s system
+
+	$ time 2016/day05a 2016/day05.in
+	Nope.
+	    0m00.01s real     0m00.01s user     0m00.01s system
+
+	$ time 2016/day05b 2016/day05.in
+	Nope.
+	    0m00.01s real     0m00.01s user     0m00.01s system
 
 
 § 2019
