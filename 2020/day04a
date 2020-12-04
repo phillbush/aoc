@@ -1,11 +1,5 @@
 #!/usr/bin/awk -f
 
-function valid(a, n, i) {
-	for (i = 1; i < NF; i += 2)
-		a[$i] = 1
-	return a["byr"] && a["iyr"] && a["eyr"] && a["hgt"] && a["hcl"] && a["ecl"] && a["pid"]
-}
-
-BEGIN   { FS = "[: \n]"; RS = "" }
-valid() { n++ }
-END     { print n }
+BEGIN { RS = "" }
+/byr:/ && /iyr:/ && /eyr:/ && /hgt:/ && /hcl:/ && /ecl:/ && /pid:/ { n++ }
+END { print n }
