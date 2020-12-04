@@ -160,11 +160,11 @@ on GNU gawk(1).
 
 	$ time 2016/day04a 2016/day04.in
 	278221
-	    0m01.44s real     0m01.19s user     0m00.02s system
+	    0m00.60s real     0m00.59s user     0m00.01s system
 
 	$ time 2016/day04b 2016/day04.in
 	267
-	    0m01.74s real     0m01.58s user     0m00.00s system
+	    0m00.95s real     0m00.83s user     0m00.02s system
 
 
 § 2019

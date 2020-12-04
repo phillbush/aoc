@@ -9,7 +9,7 @@ function valid(name, chsum, i, a, s, m1, m2, m3, m4, m5, s1, s2, s3, s4, s5) {
 		if (a[i] != " ")
 			s[a[i]]++
 	}
-	for (i = 0; i < 123; i++) {
+	for (i = 0; i < 26; i++) {
 		l = sprintf("%c", 97 + i)
 		if (!s[l])
 			continue
