@@ -184,3 +184,7 @@ on GNU gawk(1).
 	$ time 2020/day04a 2020/day04.in
 	170
 	    0m00.01s real     0m00.01s user     0m00.00s system
+
+	$ time 2020/day04b 2020/day04.in
+	103
+	    0m00.03s real     0m00.02s user     0m00.01s system

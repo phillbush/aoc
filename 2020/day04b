@@ -1,0 +1,18 @@
+#!/usr/bin/awk -f
+
+function valid(a, n, i, h) {
+	for (i = 1; i < NF; i += 2)
+		a[$i] = $(i + 1)
+	h = substr(a["hgt"], 1, length(a["hgt"]) - 2)
+	return (1920 <= a["byr"] && a["byr"] <= 2002) && \
+	       (2010 <= a["iyr"] && a["iyr"] <= 2020) && \
+	       (2020 <= a["eyr"] && a["eyr"] <= 2030) && \
+	       (a["hgt"] ~ /cm$/ ? 150 <= h && h <= 193 : 59 <= h && h <= 76) && \
+	       (a["hcl"] ~ /^#[0-9a-f]{6}$/) && \
+	       (a["ecl"] ~ /^(amb|blu|brn|gry|grn|hzl|oth)$/) && \
+	       (a["pid"] ~ /^[0-9]{9}$/)
+}
+
+BEGIN   { FS = "[: \n]"; RS = "" }
+valid() { n++ }
+END     { print n }
