@@ -1,0 +1,88 @@
+#!/usr/bin/awk -f
+
+function abs(n) {
+	return (n < 0) ? -n : n
+}
+
+function setx(a, b) {
+	if (a > b) {
+		maxx = a
+		minx = b
+	} else {
+		maxx = b
+		minx = a
+	}
+}
+
+function sety(a, b) {
+	if (a > b) {
+		maxy = a
+		miny = b
+	} else {
+		maxy = b
+		miny = a
+	}
+}
+
+BEGIN {
+	RS = ","
+	dir = "N"
+}
+
+{
+	turn = substr($1, 1, 1)
+	step = substr($1, 2)
+	horiz = vert = 0
+	if (turn == "R") {
+		if (dir == "N") {
+			dir = "E"
+			horiz += step
+		} else if (dir == "E") {
+			dir = "S"
+			vert += step
+		} else if (dir == "S") {
+			dir = "W"
+			horiz -= step
+		} else {
+			dir = "N"
+			vert -= step
+		}
+	} else {
+		if (dir == "N") {
+			dir = "W"
+			horiz -= step
+		} else if (dir == "W") {
+			dir = "S"
+			vert += step
+		} else if (dir == "S") {
+			dir = "E"
+			horiz += step
+		} else {
+			dir = "N"
+			vert -= step
+		}
+	}
+	prevx = pos[NR - 1, "x"] + 0
+	prevy = pos[NR - 1, "y"] + 0
+	currx = prevx + horiz
+	curry = prevy + vert
+	for (i = 0; i < NR; i++) {
+		setx(pos[i, "x"], pos[i - 1, "x"])
+		sety(pos[i, "y"], pos[i - 1, "y"])
+		if (vert && miny == maxy &&
+		    currx > minx && currx < maxx &&
+		    ((prevy < miny && curry > miny) ||
+		     (prevy > miny && curry < miny))) {
+			print abs(currx) + abs(miny)
+			exit
+		} else if (horiz && minx == maxx &&
+		         curry > miny && curry < maxy &&
+		         ((prevx < minx && currx > minx) ||
+		          (prevx > minx && currx < minx))) {
+			print abs(curry) + abs(minx)
+			exit
+		}
+	}
+	pos[NR, "x"] = currx
+	pos[NR, "y"] = curry
+}

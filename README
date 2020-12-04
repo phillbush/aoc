@@ -132,6 +132,17 @@ on GNU gawk(1).
 	    0m00.04s real     0m00.02s user     0m00.02s system
 
 
+§ 2016
+
+	$ time 2016/day01a 2016/day01.in
+	287
+	    0m00.02s real     0m00.00s user     0m00.00s system
+
+	$ time 2016/day01b 2016/day01.in
+	133
+	    0m00.04s real     0m00.02s user     0m00.03s system
+
+
 § 2019
 
 	$ time 2019/day01a 2019/day01.in

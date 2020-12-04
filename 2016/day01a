@@ -1,0 +1,49 @@
+#!/usr/bin/awk -f
+
+function abs(n) {
+	return (n < 0) ? -n : n
+}
+
+BEGIN {
+	RS = ","
+	dir = "N"
+}
+
+{
+	turn = substr($1, 1, 1)
+	step = substr($1, 2)
+	if (turn == "R") {
+		if (dir == "N") {
+			dir = "E"
+			horiz += step
+		} else if (dir == "E") {
+			dir = "S"
+			vert += step
+		} else if (dir == "S") {
+			dir = "W"
+			horiz -= step
+		} else {
+			dir = "N"
+			vert -= step
+		}
+	} else {
+		if (dir == "N") {
+			dir = "W"
+			horiz -= step
+		} else if (dir == "W") {
+			dir = "S"
+			vert += step
+		} else if (dir == "S") {
+			dir = "E"
+			horiz += step
+		} else {
+			dir = "N"
+			vert -= step
+		}
+	}
+
+}
+
+END {
+	print abs(horiz) + abs(vert)
+}
