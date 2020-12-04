@@ -127,6 +127,10 @@ on GNU gawk(1).
 	1006
 	    0m53.94s real     0m43.03s user     0m00.06s system
 
+	$ time 2015/day19a 2015/day19.in
+	518
+	    0m00.04s real     0m00.02s user     0m00.02s system
+
 
 § 2019
 
