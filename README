@@ -150,6 +150,14 @@ on GNU gawk(1).
 	D65C3
 	    0m00.03s real     0m00.03s user     0m00.00s system
 
+	$ time 2016/day03a 2016/day03.in
+	1050
+	    0m00.03s real     0m00.01s user     0m00.02s system
+
+	$ time 2016/day03b 2016/day03.in
+	1921
+	    0m00.03s real     0m00.02s user     0m00.01s system
+
 
 § 2019
 
