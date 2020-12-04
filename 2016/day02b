@@ -1,0 +1,33 @@
+#!/usr/bin/awk -f
+
+function abs(n) {
+	return (n < 0) ? -n : n
+}
+
+function step(c) {
+	if (c == "U" && abs(row - 1) + abs(col) <= 2)
+		row--
+	else if (c == "D" && abs(row + 1) + abs(col) <= 2)
+		row++
+	else if (c == "L" && abs(col - 1) + abs(row) <= 2)
+		col--
+	else if (c == "R" && abs(col + 1) + abs(row) <= 2)
+		col++
+}
+
+BEGIN {
+	FS = ""
+	                                 a[-2, 0] = "1"
+	                a[-1, -1] = "2"; a[-1, 0] = "3"; a[-1, 1] = "4"
+	a[0, -2] = "5"; a[0, -1] = "6";  a[0, 0] = "7";  a[0, 1] = "8"; a[0, 2] = "9"
+	                a[1, -1] = "A";  a[1, 0] = "B";  a[1, 1] = "C"
+	                                 a[2, 0] = "D"
+	row = 0
+	col = -2
+}
+
+{
+	for (i = 1; i <= NF; i++)
+		step($i)
+	printf "%s", a[row, col]
+}
