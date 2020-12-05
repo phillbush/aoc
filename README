@@ -188,6 +188,14 @@ of Code, check [1] and [2].
 	ovtrjcjh
 	    0m00.03s real     0m00.03s user     0m00.01s system
 
+	$ time 2016/day07a 2016/day07.in
+	105
+	    0m02.35s real     0m01.93s user     0m00.01s system
+
+	$ time 2016/day07b 2016/day07.in
+	258
+	    0m02.08s real     0m01.62s user     0m00.05s system
+
 
 § 2019
 
