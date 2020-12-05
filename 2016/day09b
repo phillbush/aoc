@@ -1,0 +1,25 @@
+#!/usr/bin/awk -f
+
+function len(a, b,    n, let, rep) {
+	while (a <= b) {
+		let = rep = 0
+		if ($a == "(") {
+			a++
+			while ($a ~ /[0-9]/)
+				let = let $(a++)
+			a++
+			while ($a ~ /[0-9]/)
+				rep = rep $(a++)
+			a++
+			n += len(a, a + let - 1) * rep
+			a += let
+		} else {
+			n++
+			a++
+		}
+	}
+	return n
+}
+
+BEGIN { FS = "" }
+      { print len(1, NF) }

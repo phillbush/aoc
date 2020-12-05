@@ -208,6 +208,10 @@ of Code, check [1] and [2].
 	70186
 	    0m00.03s real     0m00.02s user     0m00.01s system
 
+	$ time 2016/day09b 2016/day09.in
+	10915059201
+	    0m00.05s real     0m00.04s user     0m00.01s system
+
 
 § 2019
 
