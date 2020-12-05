@@ -11,5 +11,5 @@ function btod(i, d, p) {
 }
 
 BEGIN { FS = "" }
-      { d = btod(); if (d > max) max = d }
+      { if ((d = btod()) > max) max = d }
 END   { print max }
