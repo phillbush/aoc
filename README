@@ -272,4 +272,4 @@ of Code, check [1] and [2].
 
 	$ time 2020/day05b 2020/day05.in
 	607
-	    0m02.48s real     0m02.12s user     0m00.00s system
+	    0m00.15s real     0m00.14s user     0m00.01s system
