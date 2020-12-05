@@ -212,6 +212,14 @@ of Code, check [1] and [2].
 	10915059201
 	    0m00.05s real     0m00.04s user     0m00.01s system
 
+	$ time 2016/day10a 2016/day10.in
+	93
+	    0m00.02s real     0m00.00s user     0m00.02s system
+
+	$ time 2016/day10b 2016/day10.in
+	47101
+	    0m00.02s real     0m00.01s user     0m00.01s system
+
 
 § 2019
 

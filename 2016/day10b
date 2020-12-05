@@ -1,0 +1,63 @@
+#!/usr/bin/awk -f
+
+function give(bot,     low, high, n, dest) {
+	if (hand[bot, 1] < hand[bot, 2]) {
+		low = hand[bot, 1]
+		high = hand[bot, 2]
+	} else {
+		high = hand[bot, 1]
+		low = hand[bot, 2]
+	}
+	dest = inst[bot, "low", "dest"]
+	if (inst[bot, "low", "type"] == "bot") {
+		n = ++nchips[dest]
+		hand[dest, n] = low
+		if (n == 2)
+			give(dest)
+	} else {
+		output[dest] = low
+		if (dest == 0)
+			output0 = 1
+		else if (dest == 1)
+			output1 = 1
+		else if (dest == 2)
+			output2 = 1
+	}
+	dest = inst[bot, "high", "dest"]
+	if (inst[bot, "high", "type"] == "bot") {
+		n = ++nchips[dest]
+		hand[dest, n] = high
+		if (n == 2)
+			give(dest)
+	} else {
+		output[dest] = high
+		if (dest == 0)
+			output0 = 1
+		else if (dest == 1)
+			output1 = 1
+		else if (dest == 2)
+			output2 = 1
+	}
+	if (output0 && output1 && output2) {
+		print output[0] * output[1] * output[2]
+		exit
+	}
+}
+
+$1 == "value" {
+	i = ++nchips[$NF]
+	hand[$NF, i] = $2
+	if (i == 2)
+		initbot = $NF
+}
+
+$1 == "bot" {
+	inst[$2, "low", "type"] = $6
+	inst[$2, "low", "dest"] = $7
+	inst[$2, "high", "type"] = $11
+	inst[$2, "high", "dest"] = $12
+}
+
+END {
+	give(initbot)
+}
