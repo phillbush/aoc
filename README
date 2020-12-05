@@ -204,6 +204,10 @@ of Code, check [1] and [2].
 	UPOJFLBCEZ
 	    0m00.27s real     0m00.22s user     0m00.02s system
 
+	$ time 2016/day09a 2016/day09.in
+	70186
+	    0m00.03s real     0m00.02s user     0m00.01s system
+
 
 § 2019
 
@@ -261,3 +265,11 @@ of Code, check [1] and [2].
 	$ time 2020/day04b 2020/day04.in
 	103
 	    0m00.03s real     0m00.02s user     0m00.01s system
+
+	$ time 2020/day05a 2020/day05.in
+	980
+	    0m00.03s real     0m00.02s user     0m00.02s system
+
+	$ time 2020/day05b 2020/day05.in
+	607
+	    0m02.48s real     0m02.12s user     0m00.00s system

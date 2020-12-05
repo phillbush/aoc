@@ -1,0 +1,39 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	FS = ""
+	nrows = 128
+	ncols = 8
+	steps = 7
+}
+
+{
+	row = 0
+	rowhi = nrows
+	col = 0
+	colhi = ncols
+	for (i = 1; i <= steps; i++) {
+		if ($i == "F")
+			rowhi = row + (rowhi - row) / 2
+		else
+			row = row + (rowhi - row) / 2
+	}
+	for (; i <= NF; i++) {
+		if ($i == "L")
+			colhi = col + (colhi - col) / 2
+		else
+			col = col + (colhi - col) / 2
+	}
+	seat[row * 8 + col] = 1
+}
+
+END {
+	for (i in seat) {
+		for (j in seat) {
+			if (i == j + 2 && !seat[j + 1]) {
+				print j + 1
+				exit
+			}
+		}
+	}
+}
