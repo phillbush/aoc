@@ -1,0 +1,41 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	FS = "[ xy=]+"
+	ncols = 50
+	nrows = 6
+}
+
+$1 == "rect" {
+	for (col = 0; col < $2; col++) {
+		for (row = 0; row < $3; row++) {
+			screen[col, row] = 1
+		}
+	}
+}
+
+$2 == "column" {
+	for (i = 0; i < $5; i++) {
+		n = screen[$3, nrows - 1]
+		for (row = nrows - 1; row >= 0; row--)
+			screen[$3, row] = screen[$3, row - 1]
+		screen[$3, 0] = n
+	}
+}
+
+$2 == "row" {
+	for (i = 0; i < $5; i++) {
+		n = screen[ncols - 1, $3]
+		for (col = ncols - 1; col >= 0; col--)
+			screen[col, $3] = screen[col - 1, $3]
+		screen[0, $3] = n
+	}
+}
+
+END {
+	for (row = 0; row < nrows; row++)
+		for (col = 0; col < ncols; col++)
+			if (screen[col, row])
+				n++
+	print n + 0
+}
