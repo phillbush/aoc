@@ -20,12 +20,8 @@ function qsort(A, left, right,   i, last) {
 	swap(A, left, left+int((right-left+1)*rand()))
 	last = left
 	for (i = left+1; i <= right; i++)
-	{
 		if (A[i] < A[left])
-		{
 			swap(A, ++last, i)
-		}
-	}
 	swap(A, left, last)
 	qsort(A, left, last-1)
 	qsort(A, last+1, right)
