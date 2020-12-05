@@ -1,12 +1,8 @@
 #!/usr/bin/awk -f
 
-function btod(i, d, p) {
-	p = 1
-	for (i = NF; i > 0; i--) {
-		if ($i ~ /[BR]/)
-			d += p
-		p *= 2
-	}
+function btod(    i, d) {
+	for (i = 1; i <= NF; i++)
+		d = d * 2 + ($i ~ /[BR]/ ? 1 : 0)
 	return d
 }
 
