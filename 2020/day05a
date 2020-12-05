@@ -1,34 +1,30 @@
 #!/usr/bin/awk -f
 
+function btod(b,    a, n, d, p) {
+	n = split(b, a, "")
+	p = 1
+	for (i = 1; i <= n; i++) {
+		if (a[n - i + 1] + 0) {
+			d += p
+		}
+		p *= 2
+	}
+	return d
+}
+
 BEGIN {
 	FS = ""
-	nrows = 128
-	ncols = 8
-	steps = 7
+	max = ""
 }
 
 {
-	row = 0
-	rowhi = nrows
-	col = 0
-	colhi = ncols
-	for (i = 1; i <= steps; i++) {
-		if ($i == "F")
-			rowhi = row + (rowhi - row) / 2
-		else
-			row = row + (rowhi - row) / 2
-	}
-	for (; i <= NF; i++) {
-		if ($i == "L")
-			colhi = col + (colhi - col) / 2
-		else
-			col = col + (colhi - col) / 2
-	}
-	n = row * 8 + col
-	if (n > max)
-		max = n
+	b = ""
+	for (i = 1; i <= NF; i++)
+		b = b ($i ~ /[BR]/ ? "1" : "0")
+	if (b > max)
+		max = b
 }
 
 END {
-	print max
+	print btod(max)
 }
