@@ -1,0 +1,16 @@
+#!/usr/bin/awk -f
+
+function count(a, b, m) {
+	for (i = 1; i <= NF; i++) {
+		m = split($i, a, "")
+		for (j = 1; j <= m; j++) {
+			if (++b[a[j]] == NF) {
+				n++
+			}
+		}
+	}
+}
+
+BEGIN { RS = ""; FS = "\n" }
+      { count() }
+END   { print n }

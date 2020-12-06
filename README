@@ -293,3 +293,11 @@ of Code, check [1] and [2].
 	$ time 2020/day05b 2020/day05.in
 	607
 	    0m00.04s real     0m00.03s user     0m00.02s system
+
+	$ time 2020/day06a 2020/day06.in
+	6273
+	    0m00.15s real     0m00.14s user     0m00.01s system
+
+	$ time 2020/day06b 2020/day06.in
+	3254
+	    0m00.13s real     0m00.13s user     0m00.00s system
