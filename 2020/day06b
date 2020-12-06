@@ -1,6 +1,6 @@
 #!/usr/bin/awk -f
 
-function count(a, b, j) {
+function count(a, b, i, j) {
 	for (i = 1; i <= NF; i++) {
 		split($i, a, "")
 		for (j in a) {
