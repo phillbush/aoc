@@ -1,9 +1,9 @@
 #!/usr/bin/awk -f
 
-function count(a, b, m) {
+function count(a, b, j) {
 	for (i = 1; i <= NF; i++) {
-		m = split($i, a, "")
-		for (j = 1; j <= m; j++) {
+		split($i, a, "")
+		for (j in a) {
 			if (++b[a[j]] == NF) {
 				n++
 			}
