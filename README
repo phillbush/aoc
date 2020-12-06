@@ -220,6 +220,14 @@ of Code, check [1] and [2].
 	47101
 	    0m00.02s real     0m00.01s user     0m00.01s system
 
+	$ time 2016/day12a 2016/day12.in
+	318083
+	    0m31.09s real     0m22.97s user     0m00.04s system
+
+	$ time 2016/day12b 2016/day12.in
+	9227737
+	   16m06.73s real    11m17.32s user     0m01.99s system
+
 
 § 2019
 

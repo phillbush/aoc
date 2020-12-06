@@ -1,0 +1,61 @@
+#!/usr/bin/awk -f
+
+# instruction fetch stage
+function _if() {
+	pc = pc + pcinc
+	instruction = mem[pc]
+	pcinc = 1
+}
+
+# instruction decoding stage
+function _id(    a) {
+	split(instruction, a)
+	opcode = a[1]
+	if (opcode == "cpy") {
+		src = (a[2] ~ /[0-9]/ ? a[2] : reg[a[2]])
+		dest = a[3]
+		wren = 1
+	} else if (opcode == "inc") {
+		dest = a[2]
+		wren = 1
+	} else if (opcode == "dec") {
+		dest = a[2]
+		wren = 1
+	} else if (opcode == "jnz") {
+		src = (a[2] ~ /[0-9]/ ? a[2] : reg[a[2]])
+		offs = a[3]
+		wren = 0
+	}
+}
+
+# execution stage
+function _ex() {
+	if (opcode == "cpy")
+		writeback = src
+	else if (opcode == "inc")
+		writeback = reg[dest] + 1
+	else if (opcode == "dec")
+		writeback = reg[dest] - 1
+	else if (opcode == "jnz" && src != 0)
+		pcinc = offs
+}
+
+# write-back stage
+function _wb() {
+	if (wren)
+		reg[dest] = writeback
+}
+
+# run program
+function run() {
+	while (pc <= NR) {
+		_if()
+		_id()
+		_ex()
+		_wb()
+	}
+}
+
+BEGIN { pc = 1 }
+      { mem[NR] = $0 }
+END   { run(); print reg["a"] }
