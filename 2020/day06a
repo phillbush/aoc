@@ -11,6 +11,6 @@ function count(a, b, m) {
 	}
 }
 
-BEGIN { RS = ""; FS = "\n" }
+BEGIN { RS = "" }
       { count() }
 END   { print n }
