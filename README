@@ -248,6 +248,10 @@ of Code, check [1] and [2].
 	1982
 	    0m00.09s real     0m00.09s user     0m00.00s system
 
+	$ time 2016/day18b 2016/day18.in
+	20005203
+	   16m58.15s real    10m52.55s user     0m02.03s system
+
 
 § 2019
 
