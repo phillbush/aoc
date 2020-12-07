@@ -1,0 +1,142 @@
+#!/usr/local/bin/gawk -f
+#
+# check https://old.reddit.com/r/adventofcode/comments/5ititq
+
+function _and(s, r,    n, a, b, res) {
+	n = split(s, a)
+	split(r, b)
+	for (i = 1; i <= n; i++)
+		res = res (a[i] == "1" && b[i] == "1" ? "1" : "0")
+	return res
+}
+
+function _xor(s, r,    n, a, b, res) {
+	n = split(s, a)
+	split(r, b)
+	for (i = 1; i <= n; i++)
+		res = res (a[i] != b[i] ? "1" : "0")
+	return res
+}
+
+function _lshift(s, shamt,    i, res) {
+	for (i = 1; i <= shamt; i++)
+		res = res "0"
+	res = substr(s, shamt + 1) res
+	return res
+}
+
+function _rshift(s, shamt,    i, res) {
+	for (i = 1; i <= shamt; i++)
+		res = res "0"
+	res = res substr(s, 1, length(s) - shamt)
+	return res
+}
+
+# fill string with leading zeros
+function fill(s) {
+	while (length(s) < 64)
+		s = "0" s
+	return s
+}
+
+# string of bits to decimal
+function btod(b,    i, n, a, d) {
+	n = split(b, a)
+	for (i = 1; i <= n; i++)
+		d = d * 2 + (a[i] == "1" ? "1" : "0")
+	return d
+}
+
+# decimal to string of bits
+function dtob(d,    b) {
+	while (d) {
+		b = (d%2 ? "1" : "0") b
+		d = int(d/2)
+	}
+	b = fill(b)
+	return b
+}
+
+# find lowest significant 1 bit
+function ls1(s,    n, i, a, found, ret) {
+	n = split(s, a)
+	for (i = n; i >= 1; i--) {
+		if (!found && a[i] == "1") {
+			ret = "1" ret
+			found = 1
+		} else {
+			ret = "0" ret
+		}
+	}
+	return ret
+}
+
+# find number of 1 bits in s
+function popcount(s,    n, a, i, ret) {
+	split(s, a)
+	for (i in a)
+		if (a[i] == "1")
+			n++
+	ret = dtob(n)
+	return ret
+}
+
+# returns parity of dragon curve of length s
+function dragonpar(s,    gray, cnt, xorgc) {
+	gray = _xor(s, _rshift(s, 1))
+	cnt = popcount(_and(s, gray))
+	return _and(_xor(gray, cnt), dtob(1))
+}
+
+# load the input and its reversed complement
+# the value is shifted left by 1 to simplify handling the
+# (remainder == 0) case later on
+function getparity(     i, j, par) {
+	i = 0
+	j = NF * 2
+	par = dtob(0)
+	while (i < j) {
+		par = _xor(par, _lshift(dtob($(i + 1) == "1" ? 1 : 0), (i + 1)))
+		par = _xor(par, _lshift(dtob($(i + 1) == "0" ? 1 : 0), j))
+		i++
+		j--
+	}
+	# compute the parity of all prefixes of the input
+	for (i = 1; i < 64; i *= 2) {
+		par = _xor(par, _lshift(par, i))
+	}
+	return par
+}
+
+# compute the checksum
+function solve(inputpar, inputlen, size,   inc, prev, len, dragons, inputcycles, inputremainder, p, res) {
+	inc = btod(ls1(dtob(size)))
+	prev = "0"
+	for (len = inc; len <= size; len += inc) {
+		p = dtob(0)
+		# number of dragon bits
+		dragons = int(len / (inputlen + 1))
+
+		# number of complete cycles (forward and reverse) of the input
+		inputcycles = dtob(int((len - dragons) / (inputlen * 2)))
+
+		# remainder of input bits
+		inputremainder = (len - dragons) % (inputlen * 2)
+
+		# parity of the dragon bits
+		p = dragonpar(dtob(dragons))
+		p = _xor(p, _and(inputcycles, dtob(inputlen)))  # plus parity of all complete input cycles
+		p = _xor(p, _rshift(inputpar, inputremainder))  # plus parity of the remainder
+		p = substr(p, 64)                               # only need the least significant bit
+
+		# checksum digit is the inverted parity bit,
+		# XOR with the previous parity calculation
+		res = res (p != prev ? "0" : "1")
+
+		prev = p
+	}
+	return res
+}
+
+BEGIN { FS = "" }
+      { print solve(getparity(), NF, 35651584) }

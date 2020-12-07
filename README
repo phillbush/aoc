@@ -228,6 +228,22 @@ of Code, check [1] and [2].
 	9227737
 	   16m06.73s real    11m17.32s user     0m01.99s system
 
+	$ time 2016/day15a 2016/day15.in
+	203660
+	    0m00.01s real     0m00.00s user     0m00.01s system
+
+	$ time 2016/day15b 2016/day15.in
+	2408135
+	    0m00.02s real     0m00.00s user     0m00.01s system
+
+	$ time 2016/day16a 2016/day16.in
+	11101010111100010
+	    0m00.02s real     0m00.01s user     0m00.02s system
+
+	$ time 2016/day16b 2016/day16.in
+	01001101001000101
+	    0m00.13s real     0m00.07s user     0m00.02s system
+
 
 § 2019
 
