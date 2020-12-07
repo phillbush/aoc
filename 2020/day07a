@@ -1,0 +1,32 @@
+#!/usr/bin/awk -f
+
+function shine(bag,    a) {
+	split(bags[bag], a)
+	for (i in a)
+		if (a[i] == shiny)
+			return 1
+	for (i in a)
+		if (shine(a[i]))
+			return 1
+}
+
+function count(    i, n) {
+	for (i in bags)
+		if (shine(i))
+			n++
+	return n
+}
+
+BEGIN {
+	shiny = "shiny" "gold"
+}
+
+$0 !~ /no other bags/ {
+	for (i = 6; i <= NF; i += 4) {
+		bags[$1 $2] = bags[$1 $2] (i == 6 ? "" : " ") $i $(i + 1)
+	}
+}
+
+END {
+	print count()
+}

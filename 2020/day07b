@@ -1,0 +1,24 @@
+#!/usr/local/bin/gawk -f
+
+function count(bag,    a, i, n) {
+	split(bags[bag], a)
+	for (i in a) {
+		n += num[bag, a[i]] * (count(a[i]) + 1)
+	}
+	return n
+}
+
+BEGIN {
+	shiny = "shiny" "gold"
+}
+
+$0 !~ /no other bags/ {
+	for (i = 5; i <= NF; i += 4) {
+		bags[$1 $2] = bags[$1 $2] (i == 5 ? "" : " ") $(i + 1) $(i + 2)
+		num[$1 $2, $(i + 1) $(i + 2)] = $i
+	}
+}
+
+END {
+	print count(shiny)
+}
