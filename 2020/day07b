@@ -2,14 +2,9 @@
 
 function count(bag,    a, i, n) {
 	split(bags[bag], a)
-	for (i in a) {
+	for (i in a)
 		n += num[bag, a[i]] * (count(a[i]) + 1)
-	}
 	return n
-}
-
-BEGIN {
-	shiny = "shiny" "gold"
 }
 
 $0 !~ /no other bags/ {
@@ -20,5 +15,5 @@ $0 !~ /no other bags/ {
 }
 
 END {
-	print count(shiny)
+	print count("shiny" "gold")
 }
