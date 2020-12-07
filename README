@@ -244,6 +244,10 @@ of Code, check [1] and [2].
 	01001101001000101
 	    0m00.13s real     0m00.07s user     0m00.02s system
 
+	$ time 2016/day18a 2016/day18.in
+	1982
+	    0m00.09s real     0m00.09s user     0m00.00s system
+
 
 § 2019
 

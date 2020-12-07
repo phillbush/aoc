@@ -1,0 +1,28 @@
+#!/usr/bin/awk -f
+
+function istrap(left, right) {
+	return (left == "^") != (right == "^")
+}
+
+function nextrow(arr, size,    i, s) {
+	for (i = 1; i <= size; i++)
+		s = s (istrap(arr[i - 1], arr[i + 1]) ? "^" : ".")
+	return s
+}
+
+function counttrap(row, width, nrows,    n, a, i, j) {
+	for (i = 1; i <= nrows; i++) {
+		split(row, a)
+		for (j in a) {
+			if (a[j] == ".") {
+				n++
+			}
+		}
+		row = nextrow(a, width)
+	}
+	return n
+}
+
+BEGIN { FS = "" }
+      { row = $0; width = NF }
+END   { print counttrap(row, width, 40) }
