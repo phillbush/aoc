@@ -252,6 +252,14 @@ of Code, check [1] and [2].
 	20005203
 	   16m58.15s real    10m52.55s user     0m02.03s system
 
+	$ time 2016/day19a 2016/day19.in
+	1815603
+	    0m00.01s real     0m00.01s user     0m00.02s system
+
+	$ time 2016/day19b 2016/day19.in
+	1410630
+	    0m00.01s real     0m00.00s user     0m00.01s system
+
 
 § 2019
 

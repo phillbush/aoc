@@ -1,0 +1,26 @@
+#!/usr/bin/awk -f
+# check https://www.youtube.com/watch?v=uCsD3ZGzMgE
+
+function btod(b,    i, n, a, d) {
+	n = split(b, a, "")
+	for (i = 1; i <= n; i++) {
+		d = d * 2 + (a[i] == "1" ? 1 : 0)
+	}
+	return d
+}
+
+function dtob(d,    b) {
+	while (d) {
+		b = (d%2 ? "1" : "0") b
+		d = int(d/2)
+	}
+	return b
+}
+
+function solve(d,    b) {
+	b = dtob(d)
+	b = substr(b, 2, length(b) - 1) substr(b, 1, 1)
+	return btod(b)
+}
+
+{ print solve($0) }

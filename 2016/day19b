@@ -1,0 +1,15 @@
+#!/usr/bin/awk -f
+# check https://old.reddit.com/r/adventofcode/comments/5j4lp1/2016_day_19_solutions/dbdihvu/
+
+function solve(n,    p, b) {
+	b = 1
+	for (p = int(log(n) / log(3)); p > 0; p--)
+		b *= 3
+	if (n == b)
+		return n
+	if (n - b <= b)
+		return n - b
+	return 2 * n - 3 * b
+}
+
+{ print solve($0) }
