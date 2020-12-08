@@ -1,22 +1,22 @@
                           Advent of Code 2019
 
-	$ time 2019/day01a 2019/day01.in
+	$ time day01a day01.in
 	3412496
 	    0m00.01s real     0m00.00s user     0m00.01s system
 
-	$ time 2019/day01b 2019/day01.in
+	$ time day01b day01.in
 	5115845
 	    0m00.01s real     0m00.00s user     0m00.01s system
 
-	$ time 2019/day02a 2019/day02.in
+	$ time day02a day02.in
 	3790645
 	    0m00.02s real     0m00.00s user     0m00.01s system
 
-	$ time 2019/day02b 2019/day02.in
+	$ time day02b day02.in
 	6577
 	    0m09.49s real     0m07.80s user     0m00.02s system
 
-	$ time 2019/day03a 2019/day03.in
+	$ time day03a day03.in
 	768
 	    0m02.86s real     0m02.33s user     0m00.01s system
 
