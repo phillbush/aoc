@@ -3,7 +3,7 @@
 # instruction fetch stage
 function _if() {
 	instruction = mem[pc]
-	reach[pc] = 1
+	visited[pc] = 1
 	pcinc = 1
 }
 
@@ -38,7 +38,7 @@ function _wb() {
 
 # run program
 function run() {
-	while (!reach[pc += pcinc]) {
+	while (!visited[pc += pcinc]) {
 		_if()
 		_id()
 		_ex()

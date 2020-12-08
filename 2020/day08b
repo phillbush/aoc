@@ -4,8 +4,8 @@
 function _if() {
 	pc += pcinc
 	restored = 0
-	if (reach[pc] || savedreach[pc]) {
-		delete savedreach
+	if (visited[pc] || savedvisited[pc]) {
+		delete savedvisited
 		pc = savepc
 		acc = saveacc
 		saved = 0
@@ -13,9 +13,9 @@ function _if() {
 	}
 	instruction = mem[pc]
 	if (saved)
-		savedreach[pc] = 1
+		savedvisited[pc] = 1
 	else
-		reach[pc] = 1
+		visited[pc] = 1
 	pcinc = 1
 }
 
