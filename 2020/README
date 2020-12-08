@@ -1,0 +1,156 @@
+                          Advent of Code 2020
+
+The theme for the 2020 event is the vacation of the programmer in a
+tropical island that has its own currency called “star”. To save his
+vacation, the programmer must collect stars by solving puzzles.
+
+§ Day 01: Report Repair
+
+The puzzle requires finding entries that sum to 2020 and then multiply
+those two numbers together.  The input is a series of entries separated
+by newline.
+• 1st part: Find two entries.
+• 2nd part: Find three entries.
+
+	$ time 2020/day01a 2020/day01.in
+	1019904
+	    0m00.10s real     0m00.09s user     0m00.01s system
+
+	$ time 2020/day01b 2020/day01.in
+	176647680
+	    0m08.30s real     0m06.73s user     0m00.04s system
+
+
+§ Day 02: Password Philosophy
+
+The puzzle requires finding the number of passwords that are valid.
+Each line of the input contains a password policy (two numbers separated
+by a hyphen, then a letter and a colon), and a password (a string of
+characters).
+• 1st part: The password policy indicates the lowest and highest number
+            of times the character must appear in the password for it to
+            be valid.  For example, the entry “1-3 a: abcde” is valid.
+• 2nd part: The password policy describes two positions in the password,
+            where 1 means the first character, 2 means the second one, and
+            so on.   Exactly one of these positions must contain the given
+            letter; other occurrences of the letter are irrelevant.  For
+            example, the entry “1-3 a: abcde” is valid.
+
+	$ time 2020/day02a 2020/day02.in
+	460
+	    0m00.19s real     0m00.14s user     0m00.04s system
+
+	$ time 2020/day02b 2020/day02.in
+	251
+	    0m00.04s real     0m00.03s user     0m00.00s system
+
+
+§ Day 03: Toboggan Trajectory
+
+The puzzle requires finding the trajectory traveled by a toboggan
+in a grid containing trees, from the the top-left position of the
+grid to any column of the last row.  The input is the grid to be
+traveled; positions with a tree are marked with “#”, and positions
+without a tree are marked with “.”.  Each line of the input is a row
+in the grid; the columns repeat when reaching the rightmost column;
+the toboggan begins on the first column of the first row.
+• 1st part: The toboggan travels 3 columns right and 1 row down.  It is
+            required to find how many trees are encountered in the path.
+• 2nd part: The toboggan can travels 1/1, 3/1, 5/1, 7/1 or 1/2 columns
+            right/rows down.  It is required to multiply together the
+            number of trees encountered on each of the listed travels.
+
+	$ time 2020/day03a 2020/day03.in
+	240
+	    0m00.03s real     0m00.01s user     0m00.03s system
+
+	$ time 2020/day03b 2020/day03.in
+	2832009600
+	    0m00.03s real     0m00.01s user     0m00.01s system
+
+
+§ Day 04: Passport Processing
+
+The puzzle requires finding the number of valid passports.   Each
+paragraph (block of text separated by blank line) of the input is
+a passport and contains a series of whitespace-delimited fields;
+each field is a name-value pair delimited by colon.
+• 1st part: Find the number of passports containing all required fields.
+• 2nd part: Find the number of passports containing all required fields
+            with valid values.
+
+	$ time 2020/day04a 2020/day04.in
+	170
+	    0m00.01s real     0m00.01s user     0m00.00s system
+
+	$ time 2020/day04b 2020/day04.in
+	103
+	    0m00.03s real     0m00.02s user     0m00.01s system
+
+
+§ Day 05: Binary Boarding
+
+The puzzle requires finding the ID of a seat.  Each input line specifies
+a seat using binary space partitioning.  A seat might be specified like
+FBFBBFFRLR, where F means "front", B means "back", L means "left", and R
+means "right". The first 7 characters (either F or B) specify exactly one
+of the 128 rows on the plane (numbered 0 through 127). Starting with the
+whole list of rows; the first letter indicates whether the seat is in the
+front (0~63) or the back (64~127); the next letter indicates which half
+of that region the seat is in, and so on until one row is left.  The
+last three characters (either L or R) specify exactly one of the 8
+columns of seats on the plane (numbered 0 through 7). The same process
+as above proceeds again, this time with only three steps. L means to
+keep the lower half, while R means to keep the upper half.  So, decoding
+FBFBBFFRLR reveals that it is the seat at row 44, column 5.  Every seat
+also has a unique seat ID: multiply the row by 8, then add the column.
+In this example, the seat has ID 44 * 8 + 5 = 357.
+• 1st part: Find the highest seat ID.
+• 2nd part: Find the seat ID that is missing, knowing that the seats at
+            the very front and back don't exist.
+
+	$ time 2020/day05a 2020/day05.in
+	980
+	    0m00.03s real     0m00.02s user     0m00.02s system
+
+	$ time 2020/day05b 2020/day05.in
+	607
+	    0m00.04s real     0m00.03s user     0m00.02s system
+
+
+§ Day 06: Custom Customs
+
+The puzzle requires counting letters.  Each paragraph of the input
+specifies a group; and each line is a string of lowercase characters.
+• 1st part: Find the sum of the number of different letters that appears
+            on each group.
+• 2nd part: Find the sum of the number of different letters that appears
+            on every line of each group.
+
+	$ time 2020/day06a 2020/day06.in
+	6273
+	    0m00.15s real     0m00.14s user     0m00.01s system
+
+	$ time 2020/day06b 2020/day06.in
+	3254
+	    0m00.13s real     0m00.13s user     0m00.00s system
+
+
+§ Day 07: Handy Haversacks
+
+The puzzle requires finding a number of bags that can fit inside other
+bags.  Each input line is a specification of the number of different
+bags a bag can contain; for example “dark orange bags contain 3 bright
+white bags, 4 muted yellow bags”.
+• 1st part: Find the number of bag colors that can contain at least one
+            shiny gold bag (directly or indirectly).
+• 2nd part: Find the number of individual bags are required inside a
+            single shiny gold bag.
+
+	$ time 2020/day07a 2020/day07.in
+	233
+	    0m07.08s real     0m06.09s user     0m00.02s system
+
+	$ time 2020/day07b 2020/day07.in
+	421550
+	    0m00.04s real     0m00.02s user     0m00.03s system

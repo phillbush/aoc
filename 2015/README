@@ -1,0 +1,117 @@
+                          Advent of Code 2015
+
+	$ time 2015/day01a 2015/day01.in
+	280
+	    0m00.03s real     0m00.02s user     0m00.01s system
+
+	$ time 2015/day01b 2015/day01.in
+	1797
+	    0m00.03s real     0m00.01s user     0m00.03s system
+
+	$ time 2015/day02a 2015/day02.in
+	1586300
+	    0m00.01s real     0m00.01s user     0m00.01s system
+
+	$ time 2015/day02b 2015/day02.in
+	3737498
+	    0m00.02s real     0m00.02s user     0m00.00s system
+
+	$ time 2015/day03a 2015/day03.in
+	2081
+	    0m00.08s real     0m00.07s user     0m00.01s system
+
+	$ time 2015/day03b 2015/day03.in
+	2341
+	    0m00.11s real     0m00.08s user     0m00.01s system
+
+	$ time 2015/day04a 2015/day04.in
+	Nope.
+	    0m00.01s real     0m00.01s user     0m00.00s system
+
+	$ time 2015/day04b 2015/day04.in
+	Nope.
+	    0m00.01s real     0m00.01s user     0m00.00s system
+
+	$ time 2015/day05a 2015/day05.in
+	238
+	    0m00.02s real     0m00.02s user     0m00.01s system
+
+	$ time 2015/day05b 2015/day05.in
+	69
+	    0m00.53s real     0m00.48s user     0m00.04s system
+
+	$ time 2015/day06a 2015/day06.in
+	377891
+	    2m11.09s real     1m44.93s user     0m01.01s system
+
+	$ time 2015/day06b 2015/day06.in
+	14110788
+	    2m17.14s real     1m35.65s user     0m01.19s system
+
+	$ time 2015/day07a 2015/day07.in
+	956
+	    0m00.04s real     0m00.01s user     0m00.01s system
+
+	$ time 2015/day07b 2015/day07.in
+	40149
+	    0m00.05s real     0m00.03s user     0m00.01s system
+
+	$ time 2015/day08a 2015/day08.in
+	1350
+	    0m00.02s real     0m00.02s user     0m00.00s system
+
+	$ time 2015/day08b 2015/day08.in
+	2085
+	    0m00.02s real     0m00.02s user     0m00.01s system
+
+	$ time 2015/day10a 2015/day10.in        # OpenBSD awk
+	492982
+	   31m39.71s real     5m22.03s user    13m24.15s system
+
+	$ time 2015/day10a 2015/day10.in        # GNU gawk
+	492982
+	    0m08.69s real     0m05.78s user     0m00.92s system
+
+	$ time 2015/day10b 2015/day10.in        # GNU gawk
+	6989950
+	    2m40.08s real     1m25.13s user     0m11.73s system
+
+	$ time 2015/day12a 2015/day12.in
+	111754
+	    0m00.02s real     0m00.00s user     0m00.03s system
+
+	$ time 2015/day14a 2015/day14.in
+	2655
+	    0m00.10s real     0m00.10s user     0m00.00s system
+
+	$ time 2015/day14b 2015/day14.in
+	1059
+	    0m00.28s real     0m00.19s user     0m00.01s system
+
+	$ time 2015/day16a 2015/day16.in
+	103
+	    0m00.01s real     0m00.01s user     0m00.00s system
+
+	$ time 2015/day16b 2015/day16.in
+	405
+	    0m00.01s real     0m00.01s user     0m00.00s system
+
+	$ time 2015/day17a 2015/day17.in
+	1304
+	    0m07.88s real     0m05.96s user     0m00.05s system
+
+	$ time 2015/day17b 2015/day17.in
+	18
+	    0m00.14s real     0m00.07s user     0m00.03s system
+
+	$ time 2015/day18a 2015/day18.in
+	1061
+	    0m52.80s real     0m43.16s user     0m00.05s system
+
+	$ time 2015/day18b 2015/day18.in
+	1006
+	    0m53.94s real     0m43.03s user     0m00.06s system
+
+	$ time 2015/day19a 2015/day19.in
+	518
+	    0m00.04s real     0m00.02s user     0m00.02s system

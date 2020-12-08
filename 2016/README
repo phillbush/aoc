@@ -1,0 +1,383 @@
+                          Advent of Code 2016
+
+The theme for the 2016 event is the theft of the stars by the Easter Bunny.
+To save Christmas, the programmer must invade Easter Bunny Headquarters and
+retrieve the stars by solving puzzles.
+
+
+§ Day 01: No Time for a Taxicab
+
+The puzzle requires computing the distance, in taxicab geometry*, between
+two points in the path travelled by following the instructions in the input.
+The input is a series of instructions of the form "R3" and "L5", which mean
+respectivelly to "turn right and walk 3 units" and "turn left and walk five
+units".
+• 1st part: Compute distance between the origin and the final location.
+• 2nd part: Compute distance between the origin and the location visited twice.
+
+* https://en.wikipedia.org/wiki/Taxicab_geometry
+
+	$ time day01a day01.in
+	287
+	    0m00.02s real     0m00.00s user     0m00.00s system
+
+	$ time day01b day01.in
+	133
+	    0m00.04s real     0m00.02s user     0m00.03s system
+
+
+§ Day 02: Bathroom Security
+
+The puzzle requires finding the buttons to be pressed in a keypad.
+Each line of the input is a instruction of how to find a burton to be pressed
+by starting on the previous button (or, for the first line, the "5" button"),
+and moving to adjacent buttons on the kepad until reach the button to be pressed.
+U moves up, D moves down, L moves left, and R moves right.
+• 1st part: The keypad has a square format and 9 buttons (see below).
+• 2nd part: The keypad has a diamond format format and 13 buttons (see below).
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                                                                     │
+│                                                          1          │
+│      1 2 3                                             2 3 4        │
+│      4 5 6                                           5 6 7 8 9      │
+│      7 8 9                                             A B C        │
+│                                                          D          │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+	$ time day02a day02.in
+	84452
+	    0m00.03s real     0m00.02s user     0m00.01s system
+
+	$ time day02b day02.in
+	D65C3
+	    0m00.03s real     0m00.03s user     0m00.00s system
+
+
+§ Day 03: Squares With Three Sides
+
+The puzzle requires computing the number of possible triangles.
+The input contains groups of tree numbers describing the size of each side
+of a triangle.
+• 1st part: Each line of the input contains the three sides of a triangle.
+• 2nd part: Triangles are specified in groups of three vertically.
+
+	$ time day03a day03.in
+	1050
+	    0m00.03s real     0m00.01s user     0m00.02s system
+
+	$ time day03b day03.in
+	1921
+	    0m00.03s real     0m00.02s user     0m00.01s system
+
+
+§ Day 04: Security Through Obscurity
+
+The puzzle requires identifying the ID of room names in the input that
+matches their checksum.  The input consists of one line per room; each
+room consists of an encrypted name (lowercase letters separated by dashes)
+followed by a dash, a sector ID, and a checksum in square brackets.
+A room is real (not fake) if the checksum is the five most common letters
+in the encrypted name, in order, with ties broken by alphabetization.
+The room names are encrypted by a Caesar cipher* right shifted a number
+of times equal to the room's sector ID.
+• 1st part: Find the sum of the sector IDs of the real rooms.
+• 2nd part: Find the sector ID of the “northpole object storage” room.
+
+* https://en.wikipedia.org/wiki/Caesar_cipher
+
+	$ time day04a day04.in
+	278221
+	    0m00.60s real     0m00.59s user     0m00.01s system
+
+	$ time day04b day04.in
+	267
+	    0m00.95s real     0m00.83s user     0m00.02s system
+
+
+§ Day 05: How About a Nice Game of Chess?
+
+Nope.
+
+	$ time day05a day05.in
+	Nope.
+	    0m00.01s real     0m00.01s user     0m00.01s system
+
+	$ time day05b day05.in
+	Nope.
+	    0m00.01s real     0m00.01s user     0m00.01s system
+
+
+§ Day 06: Signals and Noise
+
+The puzzle requires finding a the error-corrected message from the input.
+The input contains a message sent repeatedly but with errors*.
+• 1st part: The signal is formed by the most common character in each column.
+• 2nd part: The signal is formed by the least common character in each column.
+
+* https://en.wikipedia.org/wiki/Repetition_code
+
+	$ time day06a day06.in
+	nabgqlcw
+	    0m00.03s real     0m00.03s user     0m00.00s system
+
+	$ time day06b day06.in
+	ovtrjcjh
+	    0m00.03s real     0m00.03s user     0m00.01s system
+
+
+§ Day 07: Internet Protocol Version 7
+
+The puzzle requires finding the number of valid input lines.
+Each input line contains letters, some of them grouped inside square brackets.
+• 1st part: A input line is valid if it has an ABBA only outside square
+            brackets (if it has an ABBa inside square brackets, it is invalid).
+            An ABBA is any four-character sequence which consists of a pair
+            of two different characters followed by the reverse of that pair,
+            such as xyyx or abba.
+• 2nd part: A input line is valid if it has an ABA outside square brackets,
+            and a corresponding BAB anywhere inside square brackets.  An ABA
+            is any three-character sequence which consists of the same character
+            twice with a different character between them, such as xyx or aba.
+            A corresponding BAB is the same characters but in reversed positions:
+            yxy and bab, respectively.
+
+	$ time day07a day07.in
+	105
+	    0m02.35s real     0m01.93s user     0m00.01s system
+
+	$ time day07b day07.in
+	258
+	    0m02.08s real     0m01.62s user     0m00.05s system
+
+
+§ Day 08: Two-Factor Authentication
+
+The puzzle requires follow the instructions to fill a 50x6 screen of pixels
+on or off.  The input contains instructions such as “rect AxB” (turn on all
+the pixels in a rectangle at the top-left of the screen wich is A wide and B
+tall); “rotate row y= A by B” (rotate all of the pixels in row A right by B
+pixels); and “rotate column x=A by B” (rotate all of the pixels in column A
+down by B pixels.
+• 1st part: Find the number of pixels on after following the instructions.
+• 2nd part: Find the letters formed by the pixels on the screen.
+
+	$ time day08a day08.in
+	116
+	    0m00.22s real     0m00.23s user     0m00.00s system
+
+	$ time day08b day08.in
+	UPOJFLBCEZ
+	    0m00.27s real     0m00.22s user     0m00.02s system
+
+
+§ Day 09: Explosives in Cyberspace
+
+The puzzle requires computing the decompressed size of the input.
+The input contains a compressed sequence of characters.
+• 1st part: To indicate that some sequence should be repeated, a marker is
+            added to the file, like (10x2). To decompress this marker, take
+            the subsequent 10 characters and repeat them 2 times.  Then,
+            continue reading the file after the repeated data. The marker
+            itself is not included in the decompressed output.  If
+            parentheses or other characters appear within the data
+            referenced by a marker, that's okay (treat it like normal
+            data, not a marker, and then resume looking for markers
+            after the decompressed section).  For example (3x3)XYZ
+            becomes XYZXYZXYZ.
+• 2nd part: As in the 1st part, the only difference is that markers within
+            decompressed data are decompressed.  For example, X(8x2)(3x3)ABCY
+            becomes XABCABCABCABCABCABCY, because the decompressed data from
+            the (8x2) marker is then further decompressed, thus triggering the
+            (3x3) marker twice for a total of six ABC sequences.
+
+	$ time day09a day09.in
+	70186
+	    0m00.03s real     0m00.02s user     0m00.01s system
+
+	$ time day09b day09.in
+	10915059201
+	    0m00.05s real     0m00.04s user     0m00.01s system
+
+
+§ Day 10: Balance Bots
+
+The puzzle requires following the destination of numbered microchips
+handed by robots to one another or to a output bin.  Each bot begins
+with a chip and only proceeds when it has two microchips, and once it
+does, it gives oeach one to a different bot or puts it in a marked
+output bin.  The input contains instructions such as “value 5 goes to
+bot 2”, indicating which chip a bot begins with, or “bot 2 gives low to
+bot 1 and high to bot 0”, indicating what a given bot should do with its
+lower-value or higher-value chip.
+• 1st part: Find the number of the bot responsible for comparing
+            value-61 microchips with value-17 microchips?
+• 2nd part: Multiply together the values of one chip in each of
+            outputs 0, 1, and 2?
+
+	$ time day10a day10.in
+	93
+	    0m00.02s real     0m00.00s user     0m00.02s system
+
+	$ time day10b day10.in
+	47101
+	    0m00.02s real     0m00.01s user     0m00.01s system
+
+
+§ Day 11: Radioisotope Thermoelectric Generators
+
+TODO.
+
+
+§ Day 12: Leonardo's Monorail
+
+The puzzle requires to run an assembly-like program.  Each line of the
+input is a instruction, such as “cpy x y” (copy x (either an integer or
+the value of a register) into register y); “inc x” (increment the value
+of a register x by one); “dec x” (decrement the value of a register x by
+one); or “jnz x y” (jumps to an instruction y away only if x (either an
+integer of the value of a register) is not zero).
+• 1st part: Find the value left in register a after running the program.
+• 2nd part: Idem, but initialize register c to 1 before running it.
+
+	$ time day12a day12.in
+	318083
+	    0m31.09s real     0m22.97s user     0m00.04s system
+
+	$ time day12b day12.in
+	9227737
+	   16m06.73s real    11m17.32s user     0m01.99s system
+
+
+§ Day 13: A Maze of Twisty Little Cubicles
+
+TODO.
+
+
+§ Day 14: One-Time Pad
+
+Nope.
+
+	$ time day14a day14.in
+	Nope.
+	    0m00.01s real     0m00.01s user     0m00.01s system
+
+	$ time day14b day14.in
+	Nope.
+	    0m00.01s real     0m00.01s user     0m00.01s system
+
+
+§ Day 15: Timing is Everything
+
+This puzzle requires finding the time, in integer seconds, to drop a
+capsule so that will not bounce on any discs that rotate on a series
+of positions.  When dropped, a capsule reaches position 0 one second
+after; and when the capsule reaches a disc, it bounces and passes to
+the next disc on the next position one second after. So if a capsule
+is dropped at time=100, then it reaches position 0 at time=101, and,
+if there is a disc on that position, it reaches the position 1 at
+time=102, the third one at time=103, and so on.  The input contains the
+number of positions a given disc can have and its position at time=0.
+• 1st part: Find the time to drop a capsule.
+• 2nd part: Find the time to drop a capsule, if a new disc with 11
+            positions and starting at position 0 is added.
+
+	$ time day15a day15.in
+	203660
+	    0m00.01s real     0m00.00s user     0m00.01s system
+
+	$ time day15b day15.in
+	2408135
+	    0m00.02s real     0m00.00s user     0m00.01s system
+
+
+§ Day 16: Dragon Checksum
+
+The puzzle requires filling a disc with bits following a modified dragon
+pattern*, and find the checksum of the data filled.  The input contains
+the initial state of the bits.  Start with an appropriate initial state.
+Then, so long as you don't have enough data yet to fill the disk, repeat
+the following steps:
+(1) Call the data you have at this point "a".
+(2) Make a copy of "a"; call this copy "b".
+(3) Reverse the order of the bits in "b".
+(4) In "b", replace all instances of 0 with 1 and all 1s with 0.
+(5) The resulting data is "a", then a single 0, then "b".
+(6) Repeat these steps until you have enough data to fill the desired disk.
+Once the data has been generated, it's needed to create a checksum of
+that data.  The checksum must be calculated only for the data that fits
+on the disk, even if it is generated more data than that in the previous
+step.  The checksum for some given data is created by considering each
+non-overlapping pair of bits.  If the two bits match (00 or 11), the
+next checksum bit is a 1. If the bits do not match (01 or 10), the next
+checksum bit is a 0.  This should produce a new string which is exactly
+half as long as the original. If the length of the checksum is even,
+repeat the process until you end up with a checksum with an odd length.
+• 1st part: Find the checksum for a filled disc of length 272.
+• 1st part: Find the checksum for a filled disc of length 35651584.
+
+* https://en.wikipedia.org/wiki/Dragon_curve
+
+	$ time day16a day16.in
+	11101010111100010
+	    0m00.02s real     0m00.01s user     0m00.02s system
+
+	$ time day16b day16.in
+	01001101001000101
+	    0m00.13s real     0m00.07s user     0m00.02s system
+
+
+§ Day 17: Two Steps Forward
+
+TODO.
+
+
+§ Day 18: Like a Rogue
+
+The puzzle requires to find the number of safe tiles.  Tiles are arranged
+into rows that are all the same width, and each tile can be either safe
+or contain a trap.  The input contains the safe tiles (.) and traps (^)
+in the first row.  The type of tile (trapped or safe) in each row is
+based on the types of the tiles in the same position, and to either side
+of that position, in the previous row. (If either side is off either end
+of the row, it counts as "safe" because there isn't a trap embedded in
+the wall).   Let's call these three tiles from the previous row the
+left, center, and right tiles, respectively.  Then, a new tile is a trap
+only in one of the following situations:
+Its left and center tiles are traps, but its right tile is not;
+Its center and right tiles are traps, but its left tile is not;
+Only its left tile is a trap;
+Only its right tile is a trap;
+In any other situation, the new tile is safe.
+• 1st part: There is a total of 40 rows (including the starting row).
+• 1st part: There is a total of 400000 rows (including the starting row).
+
+	$ time day18a day18.in
+	1982
+	    0m00.09s real     0m00.09s user     0m00.00s system
+
+	$ time day18b day18.in
+	20005203
+	   16m58.15s real    10m52.55s user     0m02.03s system
+
+
+§ Day 19: An Elephant Named Joseph
+
+The puzzle requires to find the number of the elf that remains in a game
+in which each elf must steal all the presents of another elf.  Each elf
+begins with one present and is removed from the game if have no present.
+The elves are numbered and arranged in a circle.  The first elf to steal
+is the elf number 1.  The input is the number of elves in the game.
+• 1st part: Each elf steal the present from the elf on the left.
+• 2nd part: Each elf steal the present from the elf directly across the
+            circle. If two Elves are across the circle, the one on the
+            left (from the perspective of the stealer) is stolen from.
+
+	$ time day19a day19.in
+	1815603
+	    0m00.01s real     0m00.01s user     0m00.02s system
+
+	$ time day19b day19.in
+	1410630
+	    0m00.01s real     0m00.00s user     0m00.01s system
