@@ -19,7 +19,7 @@ function dtob(d,    b) {
 
 function solve(d,    b) {
 	b = dtob(d)
-	b = substr(b, 2, length(b) - 1) substr(b, 1, 1)
+	b = substr(b, 2, length(b) - 1) "1"
 	return btod(b)
 }
 
