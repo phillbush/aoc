@@ -1,0 +1,36 @@
+#!/usr/bin/awk -f
+
+function swap(a, i, j,   t) {
+	t = a[i]; a[i] = a[j]; a[j] = t
+}
+
+function qsort(a, left, right,   i, last, b, c) {
+	if (left >= right)
+		return
+	swap(a, left, left+int((right-left+1)*rand()))
+	last = left
+	for (i = left+1; i <= right; i++) {
+		split(a[i], b)
+		split(a[left], c)
+		if (b[1] < c[1] || (b[1] == c[1] && b[2] < c[2]))
+			swap(a, ++last, i)
+	}
+	swap(a, left, last)
+	qsort(a, left, last-1)
+	qsort(a, last+1, right)
+}
+
+function getmin(ranges, n,    min, a) {
+	min = 0
+	for (i = 1; i <= n; i++) {
+		split(ranges[i], a)
+		if (a[1] <= min && a[2] >= min) {
+			min = a[2] + 1
+		}
+	}
+	return min
+}
+
+BEGIN { FS = "-" }
+      { ranges[NR] = $0 }
+END   { qsort(ranges, 1, NR); print getmin(ranges, NR) }

@@ -1,0 +1,47 @@
+#!/usr/local/bin/gawk -f
+# check https://github.com/bewuethr/advent-of-code/blob/master/2016/day20/day20b
+
+function min(a, b) {
+	return a < b ? a : b
+}
+
+function max(a, b) {
+	return a > b ? a : b
+}
+
+function merge(    i, a, b, low, up, merged) {
+	do {
+		for (i in ranges) {
+			merged = 0
+			for (j in ranges) {
+				if (j == i)
+				    continue
+				split(ranges[i], a)
+				split(ranges[j], b)
+				if (b[1] >= a[1] && \
+				    b[1] <= a[2] || \
+				    b[2] >= a[1] && \
+				    b[2] <= a[2])
+				{
+					low = min(a[1], b[1])
+					up  = max(a[2], b[2])
+					ranges[i] = low "-" up
+					delete ranges[j]
+					merged = 1
+				}
+			}
+		}
+	} while (merged)
+}
+
+function nallowed(    i, a, blocked) {
+	for (i in ranges) {
+		split(ranges[i], a)
+		blocked += a[2] - a[1] + 1
+	}
+	return 2^32 - blocked
+}
+
+BEGIN { FS = "-" }
+      { ranges[NR] = $0 }
+END   { merge(); print nallowed() }

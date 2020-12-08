@@ -381,3 +381,20 @@ is the elf number 1.  The input is the number of elves in the game.
 	$ time ./day19b day19.in
 	1410630
 	    0m00.01s real     0m00.00s user     0m00.01s system
+
+
+§ Day 20: Firewall Rules
+
+The puzzle requires computing allowed numbers from a list of blocked
+numbers.  The input is a blacklist composed of line-delimited series
+of number ranges.
+• 1st part: Find the lowest number allowed.
+• 2nd part: Find how many numbers are allowed.
+
+	$ time ./day20a day20.in
+	4793564
+	    0m00.72s real     0m00.51s user     0m00.02s system
+
+	$ time ./day20b day20.in
+	146
+	    0m13.24s real     0m10.27s user     0m00.03s system
