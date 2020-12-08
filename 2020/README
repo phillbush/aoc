@@ -154,3 +154,26 @@ white bags, 4 muted yellow bags”.
 	$ time ./day07b day07.in
 	421550
 	    0m00.04s real     0m00.02s user     0m00.03s system
+
+
+§ Day 08: Handheld Halting
+
+The puzzle requires to run an assembly-like program.  Each line of
+the input is a instruction, such as “acc x” (sum the acumulator by x);
+“jmp x” (sum the program counter by x); “nop x” (do nothing).  The
+program runs an infinite loop.  The moment the program tries to run
+any instruction a second time, an infinite loop is known to occur.
+• 1st part: Find the value of the accumulator immediately before an
+            infinite loop occurs
+• 2nd part: Find the value of the accumulator left after running the
+            program, by converting a instruction “jmp” to “nop” or a
+            instruction “nop” to “jmp” so that the program never runs
+            an infinite loop.
+
+	$ time ./day08a day08.in
+	2014
+	    0m00.02s real     0m00.02s user     0m00.00s system
+
+	$ time ./day08b day08.in
+	2251
+	    0m00.18s real     0m00.17s user     0m00.02s system
