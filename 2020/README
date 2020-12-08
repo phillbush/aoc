@@ -12,11 +12,11 @@ by newline.
 • 1st part: Find two entries.
 • 2nd part: Find three entries.
 
-	$ time 2020/day01a 2020/day01.in
+	$ time ./day01a day01.in
 	1019904
 	    0m00.10s real     0m00.09s user     0m00.01s system
 
-	$ time 2020/day01b 2020/day01.in
+	$ time ./day01b day01.in
 	176647680
 	    0m08.30s real     0m06.73s user     0m00.04s system
 
@@ -36,11 +36,11 @@ characters).
             letter; other occurrences of the letter are irrelevant.  For
             example, the entry “1-3 a: abcde” is valid.
 
-	$ time 2020/day02a 2020/day02.in
+	$ time ./day02a day02.in
 	460
 	    0m00.19s real     0m00.14s user     0m00.04s system
 
-	$ time 2020/day02b 2020/day02.in
+	$ time ./day02b day02.in
 	251
 	    0m00.04s real     0m00.03s user     0m00.00s system
 
@@ -60,11 +60,11 @@ the toboggan begins on the first column of the first row.
             right/rows down.  It is required to multiply together the
             number of trees encountered on each of the listed travels.
 
-	$ time 2020/day03a 2020/day03.in
+	$ time ./day03a day03.in
 	240
 	    0m00.03s real     0m00.01s user     0m00.03s system
 
-	$ time 2020/day03b 2020/day03.in
+	$ time ./day03b day03.in
 	2832009600
 	    0m00.03s real     0m00.01s user     0m00.01s system
 
@@ -79,11 +79,11 @@ each field is a name-value pair delimited by colon.
 • 2nd part: Find the number of passports containing all required fields
             with valid values.
 
-	$ time 2020/day04a 2020/day04.in
+	$ time ./day04a day04.in
 	170
 	    0m00.01s real     0m00.01s user     0m00.00s system
 
-	$ time 2020/day04b 2020/day04.in
+	$ time ./day04b day04.in
 	103
 	    0m00.03s real     0m00.02s user     0m00.01s system
 
@@ -109,11 +109,11 @@ In this example, the seat has ID 44 * 8 + 5 = 357.
 • 2nd part: Find the seat ID that is missing, knowing that the seats at
             the very front and back don't exist.
 
-	$ time 2020/day05a 2020/day05.in
+	$ time ./day05a day05.in
 	980
 	    0m00.03s real     0m00.02s user     0m00.02s system
 
-	$ time 2020/day05b 2020/day05.in
+	$ time ./day05b day05.in
 	607
 	    0m00.04s real     0m00.03s user     0m00.02s system
 
@@ -127,11 +127,11 @@ specifies a group; and each line is a string of lowercase characters.
 • 2nd part: Find the sum of the number of different letters that appears
             on every line of each group.
 
-	$ time 2020/day06a 2020/day06.in
+	$ time ./day06a day06.in
 	6273
 	    0m00.15s real     0m00.14s user     0m00.01s system
 
-	$ time 2020/day06b 2020/day06.in
+	$ time ./day06b day06.in
 	3254
 	    0m00.13s real     0m00.13s user     0m00.00s system
 
@@ -147,10 +147,10 @@ white bags, 4 muted yellow bags”.
 • 2nd part: Find the number of individual bags are required inside a
             single shiny gold bag.
 
-	$ time 2020/day07a 2020/day07.in
+	$ time ./day07a day07.in
 	233
 	    0m07.08s real     0m06.09s user     0m00.02s system
 
-	$ time 2020/day07b 2020/day07.in
+	$ time ./day07b day07.in
 	421550
 	    0m00.04s real     0m00.02s user     0m00.03s system

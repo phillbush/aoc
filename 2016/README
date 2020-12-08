@@ -17,11 +17,11 @@ units".
 
 * https://en.wikipedia.org/wiki/Taxicab_geometry
 
-	$ time day01a day01.in
+	$ time ./day01a day01.in
 	287
 	    0m00.02s real     0m00.00s user     0m00.00s system
 
-	$ time day01b day01.in
+	$ time ./day01b day01.in
 	133
 	    0m00.04s real     0m00.02s user     0m00.03s system
 
@@ -46,11 +46,11 @@ U moves up, D moves down, L moves left, and R moves right.
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 
-	$ time day02a day02.in
+	$ time ./day02a day02.in
 	84452
 	    0m00.03s real     0m00.02s user     0m00.01s system
 
-	$ time day02b day02.in
+	$ time ./day02b day02.in
 	D65C3
 	    0m00.03s real     0m00.03s user     0m00.00s system
 
@@ -63,11 +63,11 @@ of a triangle.
 • 1st part: Each line of the input contains the three sides of a triangle.
 • 2nd part: Triangles are specified in groups of three vertically.
 
-	$ time day03a day03.in
+	$ time ./day03a day03.in
 	1050
 	    0m00.03s real     0m00.01s user     0m00.02s system
 
-	$ time day03b day03.in
+	$ time ./day03b day03.in
 	1921
 	    0m00.03s real     0m00.02s user     0m00.01s system
 
@@ -87,11 +87,11 @@ of times equal to the room's sector ID.
 
 * https://en.wikipedia.org/wiki/Caesar_cipher
 
-	$ time day04a day04.in
+	$ time ./day04a day04.in
 	278221
 	    0m00.60s real     0m00.59s user     0m00.01s system
 
-	$ time day04b day04.in
+	$ time ./day04b day04.in
 	267
 	    0m00.95s real     0m00.83s user     0m00.02s system
 
@@ -100,11 +100,11 @@ of times equal to the room's sector ID.
 
 Nope.
 
-	$ time day05a day05.in
+	$ time ./day05a day05.in
 	Nope.
 	    0m00.01s real     0m00.01s user     0m00.01s system
 
-	$ time day05b day05.in
+	$ time ./day05b day05.in
 	Nope.
 	    0m00.01s real     0m00.01s user     0m00.01s system
 
@@ -118,11 +118,11 @@ The input contains a message sent repeatedly but with errors*.
 
 * https://en.wikipedia.org/wiki/Repetition_code
 
-	$ time day06a day06.in
+	$ time ./day06a day06.in
 	nabgqlcw
 	    0m00.03s real     0m00.03s user     0m00.00s system
 
-	$ time day06b day06.in
+	$ time ./day06b day06.in
 	ovtrjcjh
 	    0m00.03s real     0m00.03s user     0m00.01s system
 
@@ -143,11 +143,11 @@ Each input line contains letters, some of them grouped inside square brackets.
             A corresponding BAB is the same characters but in reversed positions:
             yxy and bab, respectively.
 
-	$ time day07a day07.in
+	$ time ./day07a day07.in
 	105
 	    0m02.35s real     0m01.93s user     0m00.01s system
 
-	$ time day07b day07.in
+	$ time ./day07b day07.in
 	258
 	    0m02.08s real     0m01.62s user     0m00.05s system
 
@@ -163,11 +163,11 @@ down by B pixels.
 • 1st part: Find the number of pixels on after following the instructions.
 • 2nd part: Find the letters formed by the pixels on the screen.
 
-	$ time day08a day08.in
+	$ time ./day08a day08.in
 	116
 	    0m00.22s real     0m00.23s user     0m00.00s system
 
-	$ time day08b day08.in
+	$ time ./day08b day08.in
 	UPOJFLBCEZ
 	    0m00.27s real     0m00.22s user     0m00.02s system
 
@@ -192,11 +192,11 @@ The input contains a compressed sequence of characters.
             the (8x2) marker is then further decompressed, thus triggering the
             (3x3) marker twice for a total of six ABC sequences.
 
-	$ time day09a day09.in
+	$ time ./day09a day09.in
 	70186
 	    0m00.03s real     0m00.02s user     0m00.01s system
 
-	$ time day09b day09.in
+	$ time ./day09b day09.in
 	10915059201
 	    0m00.05s real     0m00.04s user     0m00.01s system
 
@@ -216,11 +216,11 @@ lower-value or higher-value chip.
 • 2nd part: Multiply together the values of one chip in each of
             outputs 0, 1, and 2?
 
-	$ time day10a day10.in
+	$ time ./day10a day10.in
 	93
 	    0m00.02s real     0m00.00s user     0m00.02s system
 
-	$ time day10b day10.in
+	$ time ./day10b day10.in
 	47101
 	    0m00.02s real     0m00.01s user     0m00.01s system
 
@@ -241,11 +241,11 @@ integer of the value of a register) is not zero).
 • 1st part: Find the value left in register a after running the program.
 • 2nd part: Idem, but initialize register c to 1 before running it.
 
-	$ time day12a day12.in
+	$ time ./day12a day12.in
 	318083
 	    0m31.09s real     0m22.97s user     0m00.04s system
 
-	$ time day12b day12.in
+	$ time ./day12b day12.in
 	9227737
 	   16m06.73s real    11m17.32s user     0m01.99s system
 
@@ -259,11 +259,11 @@ TODO.
 
 Nope.
 
-	$ time day14a day14.in
+	$ time ./day14a day14.in
 	Nope.
 	    0m00.01s real     0m00.01s user     0m00.01s system
 
-	$ time day14b day14.in
+	$ time ./day14b day14.in
 	Nope.
 	    0m00.01s real     0m00.01s user     0m00.01s system
 
@@ -283,11 +283,11 @@ number of positions a given disc can have and its position at time=0.
 • 2nd part: Find the time to drop a capsule, if a new disc with 11
             positions and starting at position 0 is added.
 
-	$ time day15a day15.in
+	$ time ./day15a day15.in
 	203660
 	    0m00.01s real     0m00.00s user     0m00.01s system
 
-	$ time day15b day15.in
+	$ time ./day15b day15.in
 	2408135
 	    0m00.02s real     0m00.00s user     0m00.01s system
 
@@ -319,11 +319,11 @@ repeat the process until you end up with a checksum with an odd length.
 
 * https://en.wikipedia.org/wiki/Dragon_curve
 
-	$ time day16a day16.in
+	$ time ./day16a day16.in
 	11101010111100010
 	    0m00.02s real     0m00.01s user     0m00.02s system
 
-	$ time day16b day16.in
+	$ time ./day16b day16.in
 	01001101001000101
 	    0m00.13s real     0m00.07s user     0m00.02s system
 
@@ -353,11 +353,11 @@ In any other situation, the new tile is safe.
 • 1st part: There is a total of 40 rows (including the starting row).
 • 1st part: There is a total of 400000 rows (including the starting row).
 
-	$ time day18a day18.in
+	$ time ./day18a day18.in
 	1982
 	    0m00.09s real     0m00.09s user     0m00.00s system
 
-	$ time day18b day18.in
+	$ time ./day18b day18.in
 	20005203
 	   16m58.15s real    10m52.55s user     0m02.03s system
 
@@ -374,10 +374,10 @@ is the elf number 1.  The input is the number of elves in the game.
             circle. If two Elves are across the circle, the one on the
             left (from the perspective of the stealer) is stolen from.
 
-	$ time day19a day19.in
+	$ time ./day19a day19.in
 	1815603
 	    0m00.01s real     0m00.01s user     0m00.02s system
 
-	$ time day19b day19.in
+	$ time ./day19b day19.in
 	1410630
 	    0m00.01s real     0m00.00s user     0m00.01s system
