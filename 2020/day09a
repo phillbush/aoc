@@ -1,0 +1,16 @@
+#!/usr/bin/awk -f
+
+function valid(n,    i, j) {
+	for (i in pre) {
+		for (j in pre) {
+			if (i == j)
+				continue
+			if (n == pre[i] + pre[j])
+				return 1
+		}
+	}
+	return 0
+}
+
+NR > 25 && !valid($0) { print; exit }
+                      { pre[(NR - 1) % 25 + 1] = $0 }

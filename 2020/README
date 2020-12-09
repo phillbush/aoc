@@ -158,7 +158,7 @@ white bags, 4 muted yellow bags”.
 
 § Day 08: Handheld Halting
 
-The puzzle requires to run an assembly-like program.  Each line of
+The puzzle requires running an assembly-like program.  Each line of
 the input is a instruction, such as “acc x” (sum the acumulator by x);
 “jmp x” (sum the program counter by x); “nop x” (do nothing).  The
 program runs an infinite loop.  The moment the program tries to run
@@ -177,3 +177,22 @@ any instruction a second time, an infinite loop is known to occur.
 	$ time ./day08b day08.in
 	2251
 	    0m00.18s real     0m00.17s user     0m00.02s system
+
+
+§ Day 09: Encoding Error
+
+The puzzle requires finding a invalid number.  The input is a
+newline-delimited list of numbers.  A number is valid if it's
+equal to the sum of two of the 25 preceding numbers.
+• 1st part: Find the first invalid number.
+• 2nd part: Find the sum of the smallest and largest numbers in
+            the contiguous set of at least two numbers which sum
+            to the invalid number from step 1.
+
+	$ time ./day09a day09.in
+	26134589
+	    0m00.42s real     0m00.42s user     0m00.01s system
+
+	$ time ./day09b day09.in
+	3535124
+	    0m01.46s real     0m01.25s user     0m00.01s system
