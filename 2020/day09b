@@ -12,7 +12,7 @@ function valid(n,    i, j) {
 	return 0
 }
 
-function weakness(    i, j, k) {
+function weakness(    i, j) {
 	sum = num[i = 1] + num[j = 2]
 	max = (num[i] > num[j] ? num[i] : num[j])
 	while (sum != found) {
