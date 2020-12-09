@@ -12,24 +12,27 @@ function valid(n,    i, j) {
 	return 0
 }
 
-function weakness(n,    i, j) {
-	for (i = 1; i <= NR; i++) {
-		sum = num[i]
-		min = max = num[i]
-		for (j = i + 1; j <= NR; j++) {
-			if (num[j] < min)
-				min = num[j]
-			if (num[j] > max)
+function weakness(    i, j, k) {
+	sum = num[i = 1] + num[j = 2]
+	max = (num[i] > num[j] ? num[i] : num[j])
+	while (sum != found) {
+		if (sum > found) {
+			sum -= num[i++]
+		} else {
+			sum += num[++j]
+			if (num[j] > max) {
 				max = num[j]
-			sum += num[j]
-			if (sum == n)
-				return min + max
+			}
 		}
 	}
+	min = num[i]
+	for (; i < j; i++)
+		if (num[i] < min)
+			min = num[i]
+	return min + max
 }
 
-NR > 25 && !found      { if (!valid($0)) found = $0; nr = NR }
-!found                 { pre[(NR - 1) % 25 + 1] = $0 }
                        { num[NR] = $0 }
-found && NR == nr + 25 { exit }
-END                    { print weakness(found) }
+NR > 25 && !found      { if (!valid($0)) {found = $0; exit} }
+!found                 { pre[(NR - 1) % 25 + 1] = $0 }
+END                    { print weakness() }
