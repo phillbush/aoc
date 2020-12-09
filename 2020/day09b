@@ -32,7 +32,7 @@ function weakness(    i, j, k) {
 	return min + max
 }
 
-                       { num[NR] = $0 }
 NR > 25 && !found      { if (!valid($0)) {found = $0; exit} }
 !found                 { pre[(NR - 1) % 25 + 1] = $0 }
+                       { num[NR] = $0 }
 END                    { print weakness() }
