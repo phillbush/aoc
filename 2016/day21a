@@ -1,0 +1,74 @@
+#!/usr/bin/awk -f
+
+function swapposition(a, b,    m1, m2, beg, mid, end) {
+	if (a == b) {
+		return
+	} else if (a > b) {
+		swapposition(b, a)
+	} else {
+		beg = substr(str, 1, a)
+		m1 = substr(str, (a + 1), 1)
+		mid = substr(str, (a + 2), (b - (a + 1)))
+		m2 = substr(str, (b + 1), 1)
+		end = substr(str, (b + 2))
+		str = beg m2 mid m1 end
+	}
+}
+
+function swapletter(a, b) {
+	a = index(str, a) - 1
+	b = index(str, b) - 1
+	if (a >= 0 && b >= 0)
+		swapposition(a, b)
+}
+
+function rotateleft(n,    beg, end) {
+	if ((n = n % len) > 0) {
+		beg = substr(str, 1, n)
+		end = substr(str, n + 1)
+		str = end beg
+	}
+}
+
+function rotateright(n,    beg, end) {
+	if ((n = n % len) > 0) {
+		beg = substr(str, 1, len - n)
+		end = substr(str, len - n + 1)
+		str = end beg
+	}
+}
+
+function rotatebased(let,    n) {
+	n = index(str, let)
+	if (n >= 5)
+		n++
+	rotateright(n)
+}
+
+function reverse(a, b,    beg, end, mid, n) {
+	beg = substr(str, 1, a)
+	mid = substr(str, a + 1, b - a + 1)
+	end = substr(str, b + 2)
+	while ((n = length(mid)) > 1) {
+		beg = beg substr(mid, n, 1)
+		end = substr(mid, 1, 1) end
+		mid = substr(mid, 2, n - 2)
+	}
+	str = beg mid end
+}
+
+function move(a, b,    let) {
+	let = substr(str, a + 1, 1)
+	str = substr(str, 1, a) substr(str, a + 2)
+	str = substr(str, 1, b) let substr(str, b + 1)
+}
+
+BEGIN                   { len = length(str = "abcdefgh") }
+$1 $2 == "swapposition" { swapposition($3, $6); next }
+$1 $2 == "swapletter"   { swapletter($3, $6);   next }
+$1 $2 == "rotateleft"   { rotateleft($3);       next }
+$1 $2 == "rotateright"  { rotateright($3);      next }
+$1 $2 == "rotatebased"  { rotatebased($7);      next }
+$1 == "reverse"         { reverse($3, $5);      next }
+$1 == "move"            { move($3, $6);         next }
+END                     { print str }

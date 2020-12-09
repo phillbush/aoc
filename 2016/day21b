@@ -1,0 +1,85 @@
+#!/usr/bin/awk -f
+
+function swapposition(a, b,    m1, m2, beg, mid, end) {
+	if (a == b) {
+		return
+	} else if (a > b) {
+		swapposition(b, a)
+	} else {
+		beg = substr(str, 1, a)
+		m1 = substr(str, (a + 1), 1)
+		mid = substr(str, (a + 2), (b - (a + 1)))
+		m2 = substr(str, (b + 1), 1)
+		end = substr(str, (b + 2))
+		str = beg m2 mid m1 end
+	}
+}
+
+function swapletter(a, b) {
+	a = index(str, a) - 1
+	b = index(str, b) - 1
+	if (a >= 0 && b >= 0)
+		swapposition(a, b)
+}
+
+function rotateright(n,    beg, end) {
+	if ((n = n % len) > 0) {
+		beg = substr(str, 1, n)
+		end = substr(str, n + 1)
+		str = end beg
+	}
+}
+
+function rotateleft(n,    beg, end) {
+	if ((n = n % len) > 0) {
+		beg = substr(str, 1, len - n)
+		end = substr(str, len - n + 1)
+		str = end beg
+	}
+}
+
+function rotatebased(let,    n) {
+	n = index(str, let)
+	if (!(n % 2))
+		n = int(n / 2)
+	else if (n > 1)
+		n = int(n / 2) + 5
+	beg = substr(str, 1, n)
+	end = substr(str, n + 1)
+	str = end beg
+}
+
+function reverse(a, b,    beg, end, mid, n) {
+	beg = substr(str, 1, a)
+	mid = substr(str, a + 1, b - a + 1)
+	end = substr(str, b + 2)
+	while ((n = length(mid)) > 1) {
+		beg = beg substr(mid, n, 1)
+		end = substr(mid, 1, 1) end
+		mid = substr(mid, 2, n - 2)
+	}
+	str = beg mid end
+}
+
+function move(a, b,    let) {
+	let = substr(str, b + 1, 1)
+	str = substr(str, 1, b) substr(str, b + 2)
+	str = substr(str, 1, a) let substr(str, a + 1)
+}
+
+function run(    i, a) {
+	for (i = NR; i > 0; i--) {
+		split(cmd[i], a)
+		if      (a[1] a[2] == "swapposition") swapposition(a[3], a[6])
+		else if (a[1] a[2] == "swapletter")   swapletter(a[3], a[6])
+		else if (a[1] a[2] == "rotateleft")   rotateleft(a[3])
+		else if (a[1] a[2] == "rotateright")  rotateright(a[3])
+		else if (a[1] a[2] == "rotatebased")  rotatebased(a[7])
+		else if (a[1] == "reverse")           reverse(a[3], a[5])
+		else if (a[1] == "move")              move(a[3], a[6])
+	}
+}
+
+BEGIN { len = length(str = "fbgdceah") }
+      { cmd[NR] = $0 }
+END   { run(); print str }

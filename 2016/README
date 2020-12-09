@@ -398,3 +398,21 @@ of number ranges.
 	$ time ./day20b day20.in
 	146
 	    0m13.24s real     0m10.27s user     0m00.03s system
+
+
+§ Day 21: Scrambled Letters and Hash
+
+The puzzle requires to run an assembly-like program.   Each
+line of the input is a instruction that operate on strings,
+like “swap position 3 with position 7”; the positions start
+counting from zero.
+• 1st part: Find the value left in register a after running the program.
+• 2nd part: Idem, but initialize register c to 1 before running it.
+
+	$ time ./day21a day21.in
+	gcedfahb
+	    0m00.03s real     0m00.01s user     0m00.01s system
+
+	$ time ./day21b day21.in
+	hegbdcfa
+	    0m00.03s real     0m00.00s user     0m00.01s system
