@@ -196,3 +196,24 @@ equal to the sum of two of the 25 preceding numbers.
 	$ time ./day09b day09.in
 	3535124
 	    0m00.43s real     0m00.39s user     0m00.01s system
+
+
+§ Day 10: Adapter Array
+
+The puzzle requires sorting the input and put a 0 in the beginning of
+the sorted array and a n + 3 in the end, where n is the biggest number
+in the sorted array.  Each line of the input is a different number.
+• 1st part: Find the product between the number of differences of 1
+            and differences of 3 between consecutive entries in the
+            sorted array.
+• 2nd part: Find the number of subarrays of the sorted array containing
+            the first and last entries, such that consecutive entries
+            differ from each other by 1 or by 3.
+
+	$ time ./day10a day10.in
+	2040
+	    0m00.02s real     0m00.01s user     0m00.00s system
+
+	$ time ./day10b day10.in
+	28346956187648
+	    0m00.02s real     0m00.01s user     0m00.01s system

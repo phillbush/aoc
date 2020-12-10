@@ -1,0 +1,39 @@
+#!/usr/bin/awk -f
+
+function swap(a, i, j,   t) {
+	t = a[i]; a[i] = a[j]; a[j] = t
+}
+
+function qsort(a, left, right,   i, last) {
+	if (left >= right)
+		return
+	swap(a, left, left+int((right-left+1)*rand()))
+	last = left
+	for (i = left+1; i <= right; i++) {
+		if (a[i] < a[left])
+			swap(a, ++last, i)
+	}
+	swap(a, left, last)
+	qsort(a, left, last-1)
+	qsort(a, last+1, right)
+}
+
+function ncombs(    i, n, comb, res) {
+	comb[2] = 2
+	comb[3] = 4
+	comb[4] = 7
+	res = 1
+	for (i = 0; i <= NR; i++) {
+		if (a[i + 1] - a[i] == 1) {
+			n++
+		} else {
+			if (n > 1)
+				res *= comb[n]
+			n = 0
+		}
+	}
+	return res
+}
+
+    { a[NR] = $0 }
+END { qsort(a, 1, NR); print ncombs() }
