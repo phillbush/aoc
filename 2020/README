@@ -217,3 +217,36 @@ in the sorted array.  Each line of the input is a different number.
 	$ time ./day10b day10.in
 	28346956187648
 	    0m00.02s real     0m00.01s user     0m00.01s system
+
+
+§ Day 11: Seating System
+
+The puzzle requires running a modified version of the Game of Life
+themed as seats that can be occupied until the game stabilizes and
+then counting the number of seats that are occupied.   Some of the
+cells are floor, they are always unoccupied and never change state;
+other cells are seats, they change between occupied and unoccupied.
+Each line of the input is a row of the grid; each character indicates
+either floor (.), an empty seat (L), or an occupied seat (#).
+• 1st part: If a seat is empty (L) and there are no occupied seats
+            adjacent to it (in one of the eight positions immediately
+            up, down, left, right, or diagonal from the seat), the seat
+            becomes occupied.  If a seat is occupied (#) and four or
+            more seats adjacent to it are also occupied, the seat
+            becomes empty.  Otherwise, the seat's state does not change.
+• 2nd part: Same as part 1, but instead of considering just the eight
+            immediately adjacent seats, consider the first seat in each
+            of those eight directions.  Also it now takes five or more
+            visible occupied seats for an occupied seat to become empty
+            (rather than four or more from the previous rules). The
+            other rules still apply: empty seats that see no occupied
+            seats become occupied, seats matching no rule don't change,
+            and floor never changes.
+
+	$ time ./day11a day11.in
+	2418
+	    0m36.24s real     0m29.36s user     0m00.11s system
+
+	$ time ./day11b day11.in
+	2144
+	    3m35.53s real     2m28.63s user     0m00.62s system

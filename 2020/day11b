@@ -1,0 +1,103 @@
+#!/usr/bin/awk -f
+
+function max(a, b) {
+	return a > b ? a : b
+}
+
+function state(grid, row, col,   i, j, n, dir, found, found8) {
+	for (i = 1; i <= maxi && found8 < 8; i++) {
+		if (!found[1] && (!ingrid[row - i, col - i] || seat[row - i, col - i])) {
+			found8++
+			found[1] = 1
+			n += grid[row - i, col - i]
+		}
+		if (!found[2] && (!ingrid[row - i, col] || seat[row - i, col])) {
+			found8++
+			found[2] = 1
+			n += grid[row - i, col]
+		}
+		if (!found[3] && (!ingrid[row - i, col + i] || seat[row - i, col + i])) {
+			found8++
+			found[3] = 1
+			n += grid[row - i, col + i]
+		}
+		if (!found[4] && (!ingrid[row, col - i] || seat[row, col - i])) {
+			found8++
+			found[4] = 1
+			n += grid[row, col - i]
+		}
+		if (!found[5] && (!ingrid[row, col + i] || seat[row, col + i])) {
+			found8++
+			found[5] = 1
+			n += grid[row, col + i]
+		}
+		if (!found[6] && (!ingrid[row + i, col - i] || seat[row + i, col - i])) {
+			found8++
+			found[6] = 1
+			n += grid[row + i, col - i]
+		}
+		if (!found[7] && (!ingrid[row + i, col] || seat[row + i, col])) {
+			found8++
+			found[7] = 1
+			n += grid[row + i, col]
+		}
+		if (!found[8] && (!ingrid[row + i, col + i] || seat[row + i, col + i])) {
+			found8++
+			found[8] = 1
+			n += grid[row + i, col + i]
+		}
+	}
+	return grid[row, col] ? (n < 5) : (n == 0)
+}
+
+function step(from, to,    occ, change) {
+	change = 0
+	for (row = 1; row <= NR; row++) {
+		for (col = 1; col <= nf; col++) {
+			if (seat[row, col]) {
+				occ = state(from, row, col)
+				if (to[row, col] != occ)
+					change = 1
+				to[row, col] = occ
+			}
+		}
+	}
+	return change
+}
+
+function sum(grid,   n) {
+	for (row = 1; row <= NR; row++)
+		for (col = 1; col <= nf; col++)
+			if (grid[row, col])
+				n++
+	return n
+}
+
+BEGIN {
+	FS = ""
+}
+
+NR == 1 {
+	nf = NF
+}
+
+{
+	for (i = 1; i <= nf; i++) {
+		ingrid[NR, i] = 1
+		seat[NR, i] = ($i == "L" ? 1 : 0)
+		grid0[NR, i] = 0
+	}
+}
+
+END {
+	maxi = max(nf, NR) - 1
+	do {
+		change = step(grid0, grid1)
+		use = 1
+		if (change) {
+			change = step(grid1, grid0)
+			use = 0
+		}
+	} while (change)
+	print sum(use ? grid1 : grid0)
+}

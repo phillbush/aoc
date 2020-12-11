@@ -1,0 +1,63 @@
+#!/usr/bin/awk -f
+
+function state(grid, row, col,   n) {
+	n = grid[row - 1, col - 1] \
+	  + grid[row - 1, col]     \
+	  + grid[row - 1, col + 1] \
+	  + grid[row, col - 1]     \
+	  + grid[row, col + 1]     \
+	  + grid[row + 1, col - 1] \
+	  + grid[row + 1, col]     \
+	  + grid[row + 1, col + 1]
+	return grid[row, col] ? (n < 4) : (n == 0)
+}
+
+function step(from, to,    occ, change) {
+	change = 0
+	for (row = 1; row <= NR; row++) {
+		for (col = 1; col <= nf; col++) {
+			if (seat[row, col]) {
+				occ = state(from, row, col)
+				if (to[row, col] != occ)
+					change = 1
+				to[row, col] = occ
+			}
+		}
+	}
+	return change
+}
+
+function sum(grid,   n) {
+	for (row = 1; row <= NR; row++)
+		for (col = 1; col <= nf; col++)
+			if (grid[row, col])
+				n++
+	return n
+}
+
+BEGIN {
+	FS = ""
+}
+
+NR == 1 {
+	nf = NF
+}
+
+{
+	for (i = 1; i <= nf; i++) {
+		seat[NR, i] = ($i == "L" ? 1 : 0)
+		grid0[NR, i] = 0
+	}
+}
+
+END {
+	do {
+		change = step(grid0, grid1)
+		use = 1
+		if (change) {
+			change = step(grid1, grid0)
+			use = 0
+		}
+	} while (change)
+	print sum(use ? grid1 : grid0)
+}
