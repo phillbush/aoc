@@ -18,9 +18,10 @@ function step(from, to,    occ, change) {
 		for (col = 1; col <= nf; col++) {
 			if (seat[row, col]) {
 				occ = state(from, row, col)
-				if (to[row, col] != occ)
+				if (to[row, col] != occ) {
 					change = 1
-				to[row, col] = occ
+					to[row, col] = occ
+				}
 			}
 		}
 	}
