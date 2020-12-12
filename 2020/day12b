@@ -4,34 +4,26 @@ function abs(n) {
 	return (n < 0) ? -n : n
 }
 
-function step(op, val,    i, n, w, e, s, x, y) {
+function step(op, val,    i, tmp) {
 	if (op == "R") {
 		for (i = (val / 90) % 4; i > 0; i--) {
-			n = wayp["N"]
-			w = wayp["W"]
-			e = wayp["E"]
-			s = wayp["S"]
-			wayp["E"] = n
-			wayp["S"] = e
-			wayp["W"] = s
-			wayp["N"] = w
+			tmp = wayp["E"]
+			wayp["E"] = wayp["N"]
+			wayp["N"] = wayp["W"]
+			wayp["W"] = wayp["S"]
+			wayp["S"] = tmp
 		}
 	} else if (op == "L") {
 		for (i = (val / 90) % 4; i > 0; i--) {
-			n = wayp["N"]
-			w = wayp["W"]
-			e = wayp["E"]
-			s = wayp["S"]
-			wayp["E"] = s
-			wayp["S"] = w
-			wayp["W"] = n
-			wayp["N"] = e
+			tmp = wayp["E"]
+			wayp["E"] = wayp["S"]
+			wayp["S"] = wayp["W"]
+			wayp["W"] = wayp["N"]
+			wayp["N"] = tmp
 		}
 	} else if (op == "F") {
-		x = wayp["E"] - wayp["W"]
-		y = wayp["N"] - wayp["S"]
-		pos["x"] += x * val
-		pos["y"] += y * val
+		pos["x"] += (wayp["E"] - wayp["W"]) * val
+		pos["y"] += (wayp["N"] - wayp["S"]) * val
 	} else {
 		wayp[op] += val
 	}
