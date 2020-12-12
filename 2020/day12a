@@ -1,0 +1,24 @@
+#!/usr/bin/awk -f
+# dir (direction): 0=North, 1=East, 2=South, 3=West
+
+function abs(n) {
+	return (n < 0) ? -n : n
+}
+
+function step(op, n,    i, d) {
+	if (op == "R" || op == "L") {
+		for (i = (n / 90) % 4; i > 0; i--)
+			d++
+		if (op == "L")
+			d = 4 - d
+		dir = (dir + d) % 4
+	} else if (op == "F") {
+		pos[!(dir % 2) ? "y" : "x"] += (dir >= 2 ? -n : n)
+	} else {
+		pos[(op == "N" || op == "S") ? "y" : "x"] += (op == "S" || op == "W") ? -n : n
+	}
+}
+
+BEGIN { dir = 1 }
+      { step(substr($0, 1, 1), substr($0, 2)) }
+END   { print abs(pos["x"]) + abs(pos["y"]) }

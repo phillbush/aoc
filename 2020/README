@@ -250,3 +250,40 @@ either floor (.), an empty seat (L), or an occupied seat (#).
 	$ time ./day11b day11.in
 	2144
 	    3m35.53s real     2m28.63s user     0m00.62s system
+
+
+§ Day 12: Rain Risk
+
+The puzzle requires computing the distance, in taxicab geometry*,
+between the origin of a ship and its end point.  Each line of the input
+is a instructions of the form "AV", where A is a letter indicating an
+action and V is an integer value (for example, "N40" is a valid input
+line).
+• 1st part: An action N means “move the ship North by the given value”;
+            an action S means “move the ship South by the given value”;
+            an action E means “move the ship East by the given value”;
+            an action W means “move the ship West by the given value”;
+            an action L means “turn the ship left by the given number of degrees”;
+            an action R means “turn the ship right by the given number of degrees”;
+            an action F means “move the ship forward the given value in
+            the direction the ship is facing”;
+• 2nd part: An action N means “move the waypoint North by the given value”;
+            an action S means “move the waypoint South by the given value”;
+            an action E means “move the waypoint East by the given value”;
+            an action W means “move the waypoint West by the given value”;
+            an action L means “rotate the waypoint around the ship
+            counterclockwise by the given number of degrees”;
+            an action R means “rotate the waypoint around the ship
+            clockwise by the given number of degrees”;
+            an action F means “move the ship forward to the waypoint a
+            number of times equal to the given value.
+
+* https://en.wikipedia.org/wiki/Taxicab_geometry
+
+	$ time ./day12a day12.in
+	962
+	    0m00.02s real     0m00.01s user     0m00.01s system
+
+	$ time ./day12b day12.in
+	56135
+	    0m00.02s real     0m00.01s user     0m00.01s system
