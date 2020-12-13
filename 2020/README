@@ -287,3 +287,26 @@ line).
 	$ time ./day12b day12.in
 	56135
 	    0m00.02s real     0m00.01s user     0m00.01s system
+
+
+§ Day 13: Shuttle Search
+
+The puzzle requires computing the integer time that a series of bus
+depart.  The first line of input is the the estimate of the earliest
+timestamp it could depart on a bus.  The second line lists the bus IDs
+that are in service according to the shuttle company; entries that show
+x are out of service.  Bus IDs are the modulus of the times it departs
+since the epoch 0.
+• 1st part: Find the ID of the earliest bus you can take multiplied by
+            the number of minutes you'll need to wait for that bus.
+• 2nd part: Find the earliest timestamp such that all of the listed bus
+            IDs depart at offsets matching their positions in the list.
+
+	$ time ./day13a day13.in
+	3215
+	    0m00.01s real     0m00.00s user     0m00.02s system
+
+	$ time ./day13b day13.in
+	$ # The product for the Chinese Remainder Algorithm gets so
+	$ # big it doesn't fit in an AWK variable.  So this program
+	$ # only works for the examples, not for the actual input.

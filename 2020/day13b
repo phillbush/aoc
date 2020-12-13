@@ -1,0 +1,45 @@
+#!/usr/bin/awk -f
+
+function abs(n) {
+	return (n < 0) ? -n : n
+}
+
+function prod(mod,    ret) {
+	ret = 1
+	for (n in mod)
+		ret *= mod[n]
+	return ret
+}
+
+function inv(m, n,    i) {
+	for (i = 1; i <= n; i++)
+		if ((m * i) % n == 1)
+			return i
+}
+
+function crt(mod, res, t,    i, p, m, acc) {
+	p = prod(mod)
+	for (i = 1; i < t; i++) {
+		m = p / mod[i]
+		acc += res[i] * m * inv(m % mod[i], mod[i])
+	}
+	return acc % p
+}
+
+BEGIN {
+	FS = ","
+}
+
+NF > 1 {
+	t = 1
+	delete mod
+	delete res
+	for (i = 1; i <= NF; i++) {
+		if ($i + 0) {
+			mod[t] = $i
+			res[t] = $i - (i - 1)
+			t++
+		}
+	}
+	print abs(crt(mod, res, t))
+}

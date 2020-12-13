@@ -1,0 +1,14 @@
+#!/usr/bin/awk -f
+
+function checkbus(id,    delay) {
+	delay = depart % id
+	if (delay > max) {
+		max = delay
+		result = (id - delay) * id
+	}
+}
+
+BEGIN   { FS = "," }
+NR == 1 { max == 0; depart = $0 }
+NR == 2 { for (i = 1; i <= NF; i++) if ($i != "x") checkbus($i) }
+END     { print result }
