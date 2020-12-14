@@ -1,0 +1,37 @@
+#!/usr/bin/awk -f
+
+function btod(b,    i, n, a, d) {
+	n = split(b, a, "")
+	for (i = 1; i <= n; i++)
+		d = d * 2 + (a[i] == "1" ? "1" : "0")
+	return d
+}
+
+function dtob(d,    b, i) {
+	for (i = 1; i <= 36 || d; i++) {
+		b = (mask[i] == "X" ? (d%2 ? "1" : "0") : mask[i]) b
+		d = int(d/2)
+	}
+	return b
+}
+
+function sum(    addr, acc) {
+	for (addr in mem)
+		acc += btod(mem[addr])
+	return acc
+}
+
+function updatemask(str,    i, a) {
+	split(str, a, "")
+	for (i = 1; i <= 36; i++)
+		mask[i] = a[37 - i]
+}
+
+function updatemem(addr, val) {
+	mem[addr] = dtob(val)
+}
+
+BEGIN        { FS = "[=\\[\\] ]+" }
+$1 == "mask" { updatemask($2) }
+$1 == "mem"  { updatemem($2, $3) }
+END          { print sum() }

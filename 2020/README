@@ -310,3 +310,20 @@ since the epoch 0.
 	$ # The product for the Chinese Remainder Algorithm gets so
 	$ # big it doesn't fit in an AWK variable.  So this program
 	$ # only works for the examples, not for the actual input.
+
+
+§ Day 14: Docking Data
+
+The puzzle requires assigning values to the entries of a memory, based
+on a everchanging bit mask.  Each line of the input specifies either a
+value to be written into a memory address or the bitmask to be updated.
+• 1st part: The bitmask is applied to the values to be written in memory.
+• 2nd part: The bitmask is applied to the memory addresses.
+
+	$ time ./day14a day14.in
+	7817357407588
+	    0m00.36s real     0m00.27s user     0m00.02s system
+
+	$ time ./day14b day14.in
+	4335927555692
+	    0m02.62s real     0m01.74s user     0m00.19s system
