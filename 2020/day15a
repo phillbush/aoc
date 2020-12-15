@@ -1,0 +1,18 @@
+#!/usr/bin/awk -f
+
+function game(    turn, last) {
+	turn = NR
+	for (i = NR; i < 2020; i++) {
+		last = spoken
+		if (arr[spoken] && arr[spoken] < turn)
+			spoken = turn - arr[spoken]
+		else
+			spoken = 0
+		arr[last] = turn++
+	}
+	return spoken
+}
+
+BEGIN { RS = "," }
+      { spoken = $1; arr[$1] = NR }
+END   { print game() }

@@ -327,3 +327,24 @@ value to be written into a memory address or the bitmask to be updated.
 	$ time ./day14b day14.in
 	4335927555692
 	    0m02.62s real     0m01.74s user     0m00.19s system
+
+
+§ Day 15: Rambunctious Recitation
+
+The puzzle requires finding the number spoken at the Nth iteration of a
+game.  The game consists in, considering the last number spoken, if the
+current turn is the first time the number has been spoken, the number 0
+is spoken; otherwise (if the number had been spoken before), the number
+to be spoken is how many turns apart the number was previously spoken.
+The input is a comma-separated list of numbers that are spoken in the
+beginning of the game.
+• 1st part: Find the number spoken at the 2020th iteration.
+• 1st part: Find the number spoken at the 30000000th iteration.
+
+	$ time ./day15a day15.in
+	763
+	    0m00.03s real     0m00.02s user     0m00.01s system
+
+	$ time ./day15b day15.in
+	1876406
+	    6m46.90s real     5m07.33s user     0m05.81s system
