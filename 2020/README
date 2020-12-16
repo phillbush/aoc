@@ -339,7 +339,7 @@ to be spoken is how many turns apart the number was previously spoken.
 The input is a comma-separated list of numbers that are spoken in the
 beginning of the game.
 • 1st part: Find the number spoken at the 2020th iteration.
-• 1st part: Find the number spoken at the 30000000th iteration.
+• 2nd part: Find the number spoken at the 30000000th iteration.
 
 	$ time ./day15a day15.in
 	763
@@ -348,3 +348,27 @@ beginning of the game.
 	$ time ./day15b day15.in
 	1876406
 	    6m46.90s real     5m07.33s user     0m05.81s system
+
+
+§ Day 16: Ticket Translation
+
+The puzzle requires checking a set of fields, each of them specifying
+ranges of valid values, and a set of tickets, each of them containing
+a number of values equal to the number of fields.  One of the tickets
+is the programmer's ticket, the other ones are other people's tickets.
+The input contains the fields, the programmer's ticket and the others
+tickets.
+• 1st part: Find the tickets that are invalid, that is, the ones with a
+            value that does not fit in the ranges of any field.  Then,
+            compute the sum of those values.
+• 2nd part: Considering the valid tickets, check the order of the fields.
+            Then, compute the product of the values matching the fields
+            starting with “departure” in the programmer's ticket.
+
+	$ time ./day16a day16.in
+	19093
+	    0m00.07s real     0m00.06s user     0m00.01s system
+
+	$ time ./day16b day16.in
+	5311123569883
+	    0m01.93s real     0m01.55s user     0m00.03s system

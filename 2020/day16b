@@ -1,0 +1,70 @@
+#!/usr/bin/awk -f
+
+function readfield() {
+	nfield++
+	range[nfield, "name"] = $1
+	range[nfield, 1] = $2
+	range[nfield, 2] = $3
+	range[nfield, 3] = $4
+	range[nfield, 4] = $5
+}
+
+function inrange(n, j) {
+	return (n >= range[j, 1] && n <= range[j, 2]) || (n >= range[j, 3] && n <= range[j, 4])
+}
+
+function checkothers(    i, j, n, a, cnt) {
+	for (i = 1; i <= nfield; i++) {
+		n = 0
+		for (j = 1; j <= nfield; j++) {
+			if (!inrange($i, j)) {
+				if (++n == nfield) {
+					return
+				}
+			} else {
+				a[i, j] = 1
+			}
+		}
+	}
+	for (i = 1; i <= nfield; i++)
+		for (j = 1; j <= nfield; j++)
+			if (!a[i,j])
+				exclude[i, j] = 1
+}
+
+function checkmine(    i) {
+	for (i = 1; i <= NF; i++) {
+		myticket[i] = $i
+	}
+}
+
+function departure(    i, j, k, n, field, pos) {
+	for (k = 1; k <= nfield; k++) {
+		for (i = 1; i <= nfield; i++) {
+			n = 0
+			for (j = 1; j <= nfield; j++) {
+				if (!exclude[i, j]) {
+					n++
+					field = j
+				}
+			}
+			if (n == 1)
+				break
+		}
+		pos[range[field, "name"]] = i
+		for (j = 1; j <= nfield; j++)
+			exclude[j, field] = 1
+	}
+	n = 1
+	for (i in pos)
+		if (i ~ /^departure/)
+			 n *= myticket[pos[i]]
+	return n
+}
+
+BEGIN                { FS = "(-|\n|,|: | or )" }
+$0 == "" || para % 2 { para++ }
+!para                { readfield() }
+para == 2            { checkmine() }
+para == 4            { checkothers() }
+END                  { print departure() }
