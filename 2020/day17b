@@ -1,0 +1,58 @@
+#!/usr/bin/awk -f
+
+function state(grid, x, y, z, w,    dx, dy, dz, dw, n) {
+	for (dx = x - 1; dx <= x + 1; dx++) {
+		for (dy = y - 1; dy <= y + 1; dy++) {
+			for (dz = z - 1; dz <= z + 1; dz++) {
+				for (dw = w - 1; dw <= w + 1; dw++) {
+					if (dx == x && dy == y && dz == z && dw == w)
+						continue
+					n += grid[dx, dy, dz, dw]
+				}
+			}
+		}
+	}
+	return grid[x, y, z, w] ? (n == 2 || n == 3) : (n == 3)
+}
+
+function step(from, to,    x, y, z, w) {
+	minx--; maxx++
+	miny--; maxy++
+	minz--; maxz++
+	minw--; maxw++
+	for (x = minx; x <= maxx; x++)
+		for (y = miny; y <= maxy; y++)
+			for (z = minz; z <= maxz; z++)
+				for (w = minw; w <= maxw; w++)
+					to[x, y, z, w] = state(from, x, y, z, w)
+}
+
+function sum(grid,   x, y, z, w, n) {
+	for (x = minx; x <= maxx; x++)
+		for (y = miny; y <= maxy; y++)
+			for (z = minz; z <= maxz; z++)
+				for (w = minw; w <= maxw; w++)
+					if (grid[x, y, z, w])
+						n++
+	return n
+}
+
+BEGIN {
+	FS = ""
+}
+
+{
+	for (i = 1; i <= NF; i++)
+		grid0[NR, i, 0, 0] = ($i == "#")
+}
+
+END {
+	minz = maxz = minw = maxw = 0
+	minx = miny = 1
+	maxx = maxy = NR
+	for (t = 1; t <= 6; t += 2) {
+		step(grid0, grid1)
+		step(grid1, grid0)
+	}
+	print sum(grid0)
+}

@@ -221,13 +221,13 @@ in the sorted array.  Each line of the input is a different number.
 
 § Day 11: Seating System
 
-The puzzle requires running a modified version of the Game of Life
-themed as seats that can be occupied until the game stabilizes and
-then counting the number of seats that are occupied.   Some of the
-cells are floor, they are always unoccupied and never change state;
-other cells are seats, they change between occupied and unoccupied.
-Each line of the input is a row of the grid; each character indicates
-either floor (.), an empty seat (L), or an occupied seat (#).
+The puzzle requires running a modified version of the Conway's Game of
+Life themed as seats that can be occupied until the game stabilizes and
+then counting the number of seats that are occupied.   Some of the cells
+are floor, they are always unoccupied and never change state; other
+cells are seats, they change between occupied and unoccupied.  Each line
+of the input is a row of the grid; each character indicates either floor
+(.), an empty seat (L), or an occupied seat (#).
 • 1st part: If a seat is empty (L) and there are no occupied seats
             adjacent to it (in one of the eight positions immediately
             up, down, left, right, or diagonal from the seat), the seat
@@ -372,3 +372,22 @@ tickets.
 	$ time ./day16b day16.in
 	5311123569883
 	    0m01.93s real     0m01.55s user     0m00.03s system
+
+
+§ Day 17: Conway Cubes
+
+The puzzle requires running a multi-dimensional Conway's Game of Life
+until the sixth iteration and compute the number of active cells.  The
+input is the initial state of a bi-dimensional slice of the grid; a "#"
+in the input represents an active cell, and a "." represents an inactive
+cell.
+• 1st part: There are 3 dimensions.
+• 2nd part: There are 4 dimensions.
+
+	$ time ./day17a day17.in
+	382
+	    0m02.71s real     0m02.40s user     0m00.02s system
+
+	$ time ./day17b day17.in
+	2552
+	    1m35.55s real     1m17.07s user     0m00.44s system
