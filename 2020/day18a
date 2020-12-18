@@ -1,0 +1,29 @@
+#!/usr/bin/awk -f
+# See The AWK Programming Language, page 145
+
+function format() {
+	f = 1
+	gsub(/\(/, "& ")
+	gsub(/\)/, " &")
+}
+
+function expr(    e) {
+	e = term()
+	while ($f == "+" || $f == "*")
+		e = $(f++) == "+" ? e + term() : e * term()
+	return e
+}
+
+function term(    e) {
+	if ($f ~ /^[0-9]+$/) {
+		return $(f++)
+	} else {
+		f++
+		e = expr()
+		f++
+		return e
+	}
+}
+
+    { format(); sum += expr() }
+END { print sum }

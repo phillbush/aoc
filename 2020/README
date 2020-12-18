@@ -391,3 +391,21 @@ cell.
 	$ time ./day17b day17.in
 	2552
 	    1m35.55s real     1m17.07s user     0m00.44s system
+
+
+§ Day 18: Operation Order
+
+The puzzle requires computing the sum of the results of a set
+of parenthesized infix expressions consisting of addition and
+multiplication operations, which have different precedence than
+the regular math.  Each input line is an expression.
+• 1st part: Addition and multiplication have the same precedence.
+• 2nd part: Addition is evaluated before multiplication.
+
+	$ time ./day18a day18.in
+	30753705453324
+	    0m00.03s real     0m00.02s user     0m00.01s system
+
+	$ time ./day18b day18.in
+	244817530095503
+	    0m00.03s real     0m00.02s user     0m00.01s system
