@@ -1,0 +1,38 @@
+#!/usr/bin/awk -f
+
+function addrule(    i, n, s) {
+	n = $1
+	$1 = ""
+	$0 = $0
+	gsub("\"", "", $0)
+	sub("^ ", "", $0)
+	rule[n] = $0
+}
+
+function genregex(r,    n, i, a, b, c, regex) {
+	if (rule[r] ~ /[ab]/)
+		return rule[r]
+	n = split(rule[r], a, " ")
+	if (r == 8) {
+		regex = "(" genregex(a[1]) ")+"
+	} else if (r == 11) {   # This is probably the worst way to handle r == 11, but works for my input
+		b = genregex(a[1])
+		c = genregex(a[2])
+		for (i = 1; i <= 10; i++)
+			regex = regex (regex ? "|" : "") b "{" i "}" c "{" i "}"
+	} else {
+		for (i = 1; i <= n; i++) {
+			if (a[i] == "|")
+				regex = regex "|"
+			else
+				regex = regex genregex(a[i])
+		}
+	}
+	return "(" regex ")"
+}
+
+BEGIN               { FS = ":? +" }
+!NF && check = 1    { regex = "^" genregex(0) "$" }
+!check              { addrule() }
+check && $0 ~ regex { sum++ }
+END                 { print sum }

@@ -409,3 +409,22 @@ the regular math.  Each input line is an expression.
 	$ time ./day18b day18.in
 	244817530095503
 	    0m00.03s real     0m00.02s user     0m00.01s system
+
+
+§ Day 19: Monster Messages
+
+The puzzle requires computing the number of strings that match the
+rule production 0.  The input is divided into two blocks separated
+by a blank line.  The first one is a series of numbered production
+rules.  The second one is a series of strings.
+• 1st part: The rules are the ones in the input.
+• 2nd part: The rule 8 must be changed to "8: 42 | 42 8" and the
+            rule 11 msut be changed to "11: 42 31 | 42 11 31"
+
+	$ time ./day19a day19.in
+	213
+	    0m00.09s real     0m00.04s user     0m00.01s system
+
+	$ time ./day19b day19.in
+	325
+	    0m05.90s real     0m04.81s user     0m00.16s system
