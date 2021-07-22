@@ -1,0 +1,71 @@
+#!/usr/bin/awk -f
+# based on https://github.com/juntuu/advent_of_code_2020
+
+# reverse string
+function rev(str,    ret, i) {
+	ret = ""
+	for (i = length(str); i > 0; i--)
+		ret = ret substr(str, i, 1)
+	return ret
+}
+
+# get side (LEFT or RIGHT) vertical edge of current tile
+function col(n,    ret, i) {
+	for (i = 1; i <= NF; i++)
+		ret = ret substr($i, n, 1)
+	return ret
+}
+
+# get regular expression matching edges of current tile
+function getregexp(    l, r) {
+	l = col(LEFT)
+	r = col(RIGHT)
+	return $1 "|" rev($1) "|" $NF "|" rev($NF) "|" l "|" rev(l) "|" r "|" rev(r)
+}
+
+# get product of corner IDs
+function getprod (edges,    a, b, m, n, prod) {
+	prod = 1
+	m = 0
+	for (a in edges) {
+		n = 0
+		for (b in edges) {
+			if (a != b && edges[b] ~ edges[a]) {
+				n++
+			}
+			if (n == 4) {
+				break
+			}
+		}
+		if (n == 2) {
+			prod *= a
+			m++
+		}
+		if (m == 4) {
+			break
+		}
+	}
+	return prod
+}
+
+# set constants
+BEGIN {
+	RS = ""
+	FS = "\n"
+	TILESIZE  = 10  # tile edge size
+	LEFT  = 1
+	RIGHT = TILESIZE
+}
+
+# populate the array of edge regexps
+{
+	gsub(/\./, "~")         # dots are special characters, replace them with a harmless char
+	id = substr($1,6,4)
+	sub(/[^\n]*\n/, "")     # remove id line
+	edges[id] = getregexp()
+}
+
+# print product of corner IDs
+END {
+	print getprod(edges)
+}

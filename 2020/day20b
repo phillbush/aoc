@@ -1,0 +1,181 @@
+#!/usr/bin/awk -f
+# copied from https://github.com/juntuu/advent_of_code_2020
+
+function rev(s, _n, _o) {
+	for (_n=length(s); _n;)
+		_o = _o substr(s, _n-- ,1)
+	return _o
+}
+
+function flip(_i) {
+	for (_i = 1; _i <= NF; _i++)
+		$_i = rev($_i)
+}
+
+function rot(_t, _i, _a, _j) {
+	for (_i = 1; _i <= NF; _i++) { _t[_i] = $_i; $_i = "" }
+	for (_i = NF; _i > 0; _i--) {
+		split(_t[_i], _a, "")
+		for (_j in _a) $_j = $_j _a[_j]
+	}
+}
+
+function left(_n, _i, _t) {
+	for(_i = 1; _i <= NF; _i++)
+		_t = _t substr($_i, _n, 1)
+	return _t
+}
+
+function right() { return left(length($1)) }
+
+function remove_opt(x, y, t) {
+	if ((x,y) in image) {
+		gsub(image[x,y], "", O[t])
+		gsub(t, "", O[image[x,y]])
+	}
+}
+
+function common(s, _a, _b) {
+	split(s, _a)
+	for (s in _a) if (++_b[_a[s]] > 1) return _a[s]
+}
+
+function set(x, y, t) {
+	t = t ? 0+t : common(O[image[x-1,y]]" "O[image[x,y-1]])
+	image[x,y] = t
+	remove_opt(x-1, y, t)
+	remove_opt(x, y-1, t)
+}
+
+function build(t, _x, _i, _o) {
+	set(1, 1, t)
+	split(O[t], _o)
+	set(2,1,_o[1])
+	set(1,2,_o[2])
+	set(2, 2)
+	for (_x = 3; _x <= N; _x++) {
+		set(_x, 1, O[image[_x-1,1]])
+		set(1, _x, O[image[1,_x-1]])
+		for (_i = 2; _i < _x; _i++) {
+			set(_x, _i)
+			set(_i, _x)
+		}
+		set(_x, _x)
+	}
+}
+
+function rule(x, y) { return edges[image[x,y]] }
+
+function ok(x, y) {
+	return $1 ~ rule(x, y-1) &&
+		$NF ~ rule(x, y+1) &&
+		left() ~ rule(x-1, y) &&
+		right() ~ rule(x+1, y)
+}
+
+function resolve(x, y, _i) {
+	$0 = tile[image[x,y]]
+	for (; _i++ < 8;) {
+		if (ok(x, y)) return tile[image[x,y]] = $0
+		rot()
+		if (_i == 4) flip()
+	}
+}
+
+function assemble(_s, _i, y, x) {
+	for (y = 1; y <= N; y++) {
+		for (_i = 2; _i <= 9; _i++) {
+			for (x = 1; x <= N; x++) {
+				$0 = tile[image[x,y]]
+				gsub(/ /, "\n")
+				_s = _s substr($_i, 2, 8)
+			}
+			_s = _s "\n"
+		}
+	}
+	return _s
+}
+
+function join(a, _s, _i) {
+	while (++_i in a) _s = _s a[_i]
+	return _s
+}
+
+function mark(a, b, s, _a, _s) {
+	split($a, _a, "")
+	split(s, _s, "")
+	for (s in _s)
+		_s[s]=="#" && _a[b+s-1]="O"
+	$a = join(_a)
+}
+
+function matches(s, r, _i) {
+	delete RSTARTS
+	while (match(s, r)) {
+		RSTARTS[_i + RSTART]
+		_i = RSTART
+		s = substr(s, _i+1)
+	}
+}
+
+function scan(_i, _a, _b, _x, _m) {
+	for (_i = 2; _i < NF; _i++) {
+		matches($_i, monster[2])
+		for (_x in RSTARTS) {
+			_a = substr($(_i-1), _x)
+			_b = substr($(_i+1), _x)
+			if (_a ~ "^"monster[1] && _b ~ "^"monster[3]) {
+				mark(_i-1, _x, monster[1])
+				mark(_i, _x, monster[2])
+				mark(_i+1, _x, monster[3])
+				_m++
+			}
+		}
+	}
+	return _m
+}
+
+BEGIN {
+	monster[1] = "..................#."
+	monster[2] = "#....##....##....###"
+	monster[3] = ".#..#..#..#..#..#..."
+	FS = RS
+	RS = ""
+}
+
+{
+	gsub(/\./, "~")
+	id = substr($1,6,4)
+	sub(/[^\n]*\n/,"")
+	l = left()
+	r = right()
+	edges[id] = $1"|"rev($1)"|"$NF"|"rev($NF)"|"l"|"rev(l)"|"r"|"rev(r)
+	tile[id] = $0
+}
+
+END {
+	FS = " "
+	part1 = 1
+	for (id in edges) {
+		for (k in edges) {
+			if (id != k && edges[k] ~ edges[id])
+				O[id] = O[id]" "k
+		}
+		if (split(O[id], _) == 2) {
+			part1 *= id
+			corner = id
+		}
+	}
+	N = sqrt(NR)
+	build(corner)
+	for (i = 1; i <= N; i++)
+		for (j = 1; j <= N; j++) resolve(i, j)
+
+	$0 = assemble()
+	for (i=0; i++ < 8 && !scan();) {
+		rot()
+		if (i==4) flip()
+	}
+	part2 = gsub(/#/, "")
+	print part2
+}
