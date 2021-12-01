@@ -1,0 +1,18 @@
+                          Advent of Code 2021
+
+Collect starts to save the Christmas whatever.
+
+§ Day 01: Sonar Sweep
+
+The puzzle requires counting the number of times a depth measurement
+increases from the previous measurement.
+• 1st part: Count increase from line to line.
+• 2nd part: Consider sums of a three-measurement sliding window.
+
+	$ time ./day01a day01.in
+	1139
+	    0m00.01s real     0m00.01s user     0m00.01s system
+
+	$ time ./day01b day01.in
+	1103
+	    0m00.05s real     0m00.03s user     0m00.01s system

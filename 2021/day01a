@@ -1,0 +1,5 @@
+#!/usr/bin/awk -f
+
+NR > 1 && $0 > a { n++     }
+                 { a = $0  }
+END              { print n }
