@@ -1,0 +1,41 @@
+#!/usr/bin/awk -f
+
+BEGIN { OFS = FS = "" }
+{
+	for (c = i = 1; i <= 100; i++) {
+		# remove three cups
+		r = ""
+		for (j = 0; j < 3; j++) {
+			c = (c % NF)
+			r = r $(c+1)
+			$(c+1) = ""
+			$0 = $0
+		}
+		if (c == 0) c = NF
+
+		# select destination cup
+		d = $c
+		do {
+			d = (d - 1) % 9
+			if (d == 0) d = 9
+		} while (r ~ d)
+
+		# place removed cups back
+		for (j = 1; j <= NF; j++) {
+			if ($j == d || j % NF == 0) {
+				$0 = substr($0, 1, j) r substr($0, j + 1)
+				break;
+			}
+		}
+
+		# select new current cup
+		if (j < c) {
+			c += 3
+		}
+		c = (++c) % NF
+	}
+	for (i = 1; i <= NF; i++)
+		if ($i == 1)
+			break;
+	print substr($0, i + 1) substr($0, 1, i - 1)
+}

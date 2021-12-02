@@ -476,3 +476,15 @@ the cards so each player has their own deck (the puzzle input).
 	35397
 	    0m00.03s real     0m00.01s user     0m00.01s system
 
+
+§ Day 23: Crab Cups
+
+The puzzle consists in a rather complex game of cups which needs to
+arrange the cups in a circle, remove some of them, find a pivot and
+reinsert the removed ones.
+• 1st part: Using your labeling, simulate 100 moves. What are the labels
+            on the cups after cup 1?
+
+	$ time ./day23a day23.in
+	45798623
+	    0m00.02s real     0m00.02s user     0m00.00s system
