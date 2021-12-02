@@ -1,0 +1,24 @@
+#!/usr/bin/awk -f
+
+function score(    i, a, b, c, n, m) {
+	while ((c = deck[1, "h"] <= deck[1, "t"]) && deck[2, "h"] <= deck[2, "t"]) {
+		for (i = 0; i < 2; i++) {
+			a = (i % 2) + 1
+			b = 2 - a + 1
+			if (deck[a, deck[a, "h"]] > deck[b, deck[b, "h"]]) {
+				deck[a, ++deck[a, "t"]] = deck[a, deck[a, "h"]++]
+				deck[a, ++deck[a, "t"]] = deck[b, deck[b, "h"]++]
+				break;
+			}
+		}
+	}
+	c = (c ? 1 : 2)
+	for (i = deck[c, "t"]; i >= deck[c, "h"]; i--) {
+		n += deck[c, i] * (++m)
+	}
+	print n
+}
+
+NF == 0 || m % 2 == 0 { m++; p = int(m/2)+1; n = 0; deck[p, "h"] = 1; next  }
+                      { deck[p, ++n] = $0; deck[p, "t"] = n }
+END                   { print score() }

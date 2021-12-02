@@ -450,12 +450,29 @@ exactly with its adjacent tiles.
 	    0m01.49s real     0m00.87s user     0m00.08s system
 
 
-§ Day21: Allergen Assessment
+§ Day 21: Allergen Assessment
 
 The puzzle requires identify which ingredients contain which allergens.
 • 1st part: count number of times ingredients without allergen appear.
 • 2nd part: list ingredients by their allergens.
 
-	$ time ./day21a day20.in
+	$ time ./day21a day21.in
 	2573
 	    0m00.12s real     0m00.13s user     0m00.00s system
+
+
+§ Day 22: Crab Combat
+
+The puzzle consists of two card games.  Before each game starts, split
+the cards so each player has their own deck (the puzzle input).
+• 1st part: The game consists of a series of rounds: both players draw
+            their top card, and the player with the higher-valued card
+            wins the round.  The winner keeps both cards, placing them
+            on the bottom of their own deck so that the winner's card
+            is above the other card.  If this causes a player to have
+            all of the cards, they win, and the game ends.
+
+	$ time ./day22a day22.in
+	35397
+	    0m00.03s real     0m00.01s user     0m00.01s system
+
