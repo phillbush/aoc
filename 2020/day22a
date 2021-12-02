@@ -4,7 +4,7 @@ function score(    i, a, b, c, n, m) {
 	while ((c = deck[1, "h"] <= deck[1, "t"]) && deck[2, "h"] <= deck[2, "t"]) {
 		for (i = 0; i < 2; i++) {
 			a = (i % 2) + 1
-			b = 2 - a + 1
+			b = 3 - a
 			if (deck[a, deck[a, "h"]] > deck[b, deck[b, "h"]]) {
 				deck[a, ++deck[a, "t"]] = deck[a, deck[a, "h"]++]
 				deck[a, ++deck[a, "t"]] = deck[b, deck[b, "h"]++]
