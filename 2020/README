@@ -419,7 +419,7 @@ by a blank line.  The first one is a series of numbered production
 rules.  The second one is a series of strings.
 • 1st part: The rules are the ones in the input.
 • 2nd part: The rule 8 must be changed to "8: 42 | 42 8" and the
-            rule 11 msut be changed to "11: 42 31 | 42 11 31"
+            rule 11 must be changed to "11: 42 31 | 42 11 31"
 
 	$ time ./day19a day19.in
 	213
@@ -428,3 +428,23 @@ rules.  The second one is a series of strings.
 	$ time ./day19b day19.in
 	325
 	    0m05.90s real     0m04.81s user     0m00.16s system
+
+
+§ Day 20: Jurassic Jigsaw
+
+The puzzle requires to reassemble a map composed of tiles.  The input
+is a set of 10x10 tiles composed of . or # characters.  Each tile is
+identified by an ID number.  Each tile has been rotated and flipped to
+a random orientation.  Each tile includes a border that should line up
+exactly with its adjacent tiles.
+• 1st part: Find the product of the IDs of the four corner tiles.
+• 2nd part: Find the number of roughnesses (#) in the map that do not
+            match a certain pattern
+
+	$ time ./day20a day20.in
+	5966506063747
+	    0m00.29s real     0m00.25s user     0m00.03s system
+
+	$ time ./day20b day20.in
+	1714
+	    0m01.49s real     0m00.87s user     0m00.08s system
