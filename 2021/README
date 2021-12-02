@@ -16,3 +16,17 @@ increases from the previous measurement.
 	$ time ./day01b day01.in
 	1103
 	    0m00.05s real     0m00.03s user     0m00.01s system
+
+§ Dive!
+
+Taxicab geometry on the yx plane.
+• 1st part: horizontal position and depth.
+• 2nd part: horizontal position, aim and depth.
+
+	$ time ./day02a day02.in
+	1938402
+	    0m00.01s real     0m00.00s user     0m00.01s system
+
+	$ time ./day02b day02.in
+	1947878632
+	    0m00.01s real     0m00.02s user     0m00.00s system
