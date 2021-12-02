@@ -488,3 +488,17 @@ reinsert the removed ones.
 	$ time ./day23a day23.in
 	45798623
 	    0m00.02s real     0m00.02s user     0m00.00s system
+
+§ Day 24
+
+No.
+
+§ Day 25: Combo Breaker
+
+The puzzle consists in find the loop size that transforms 1 into a
+public key and then transform the public key of the other object using
+this loop size.
+
+	$ time ./day25a day25.in
+	4441893
+	    1m32.57s real     1m37.73s user     0m00.03s system

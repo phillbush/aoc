@@ -1,0 +1,30 @@
+#!/usr/bin/awk -f
+
+{ p[NR] = $0 }
+
+END {
+	v[1] = v[2] = 1
+	s = 7
+	d = 20201227
+	while (v[1] != p[1] && v[2] != p[2]) {
+		for (i = 1; i <= 2; i++) {
+			if (v[i] != p[i]) {
+				v[i] *= s
+				v[i] %= d
+				n[i]++
+			}
+		}
+	}
+	for (i = 1; i <= 2; i++) {
+		k = i % 2 + 1
+		if (v[i] != p[i]) {
+			v[1] = v[2] = 1
+			for (j = 1; j <= n[k]; j++) {
+				v[i] *= p[i]
+				v[i] %= d
+			}
+			break
+		}
+	}
+	print v[i]
+}
