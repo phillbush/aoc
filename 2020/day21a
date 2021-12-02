@@ -1,0 +1,50 @@
+#!/usr/bin/awk -f
+
+function set(alrgn, I,    ingr, a, i) {
+	if (!(alrgn in alrgns)) {
+		alrgns[alrgn] = 1
+		for (ingr in I) {
+			alrgntbl[alrgn, ingr] = 1
+		}
+	} else {
+		for (i in alrgntbl) {
+			split(i, a, SUBSEP)
+			if (a[1] == alrgn && !(a[2] in I)) {
+				delete alrgntbl[i]
+			}
+		}
+	}
+}
+
+BEGIN {
+	FS = " .contains |.$"
+}
+
+{
+	delete I
+	m = split($1, J, / /)
+	n = split($2, A, /, /)
+	for (i = 1; i <= m; i++) {
+		I[J[i]] = 1
+		ntimes[J[i]]++
+		if (!(J[i] in ingrs)) {
+			ingrs[J[i]] = 1
+		}
+	}
+	for (i = 1; i <= n; i++) {
+		set(A[i], I)
+	}
+}
+
+END {
+	for (i in alrgntbl) {
+		split(i, a, SUBSEP)
+		ingrisalrgn[a[2]] = 1
+	}
+	for (ingr in ingrs) {
+		if (!(ingr in ingrisalrgn)) {
+			sum += ntimes[ingr]
+		}
+	}
+	print sum
+}

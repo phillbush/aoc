@@ -448,3 +448,14 @@ exactly with its adjacent tiles.
 	$ time ./day20b day20.in
 	1714
 	    0m01.49s real     0m00.87s user     0m00.08s system
+
+
+§ Day21: Allergen Assessment
+
+The puzzle requires identify which ingredients contain which allergens.
+• 1st part: count number of times ingredients without allergen appear.
+• 2nd part: list ingredients by their allergens.
+
+	$ time ./day21a day20.in
+	2573
+	    0m00.12s real     0m00.13s user     0m00.00s system
