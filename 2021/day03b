@@ -22,7 +22,7 @@ function narrow(a, b,    c, d) {
 BEGIN { FS = "" }
       { co2[$0] = oxygen[$0] = 1 }
 END   {
-	for (i = 1; (length(oxygen) * length(co2)) > 1; i++) {
+	for (i = 1; (length(oxygen) + length(co2)) > 2; i++) {
 		narrow(oxygen, 1)
 		narrow(co2, 0)
 	}
