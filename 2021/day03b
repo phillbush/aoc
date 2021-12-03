@@ -1,37 +1,30 @@
 #!/usr/bin/awk -f
 
+function narrow(a, b,    c, d) {
+	if (length(a) > 1) {
+		for (value in a) {
+			$0 = value
+			c[$i]++
+		}
+		if (b)
+			d = c[1] >= length(a) / 2
+		else
+			d = c[0] <= length(a) / 2
+		for (value in a) {
+			$0 = value
+			if ($i == (d ? !b : b)) {
+				delete a[value]
+			}
+		}
+	}
+}
+
 BEGIN { FS = "" }
       { co2[$0] = oxygen[$0] = 1 }
 END   {
 	for (i = 1; (length(oxygen) * length(co2)) > 1; i++) {
-		delete coxygen
-		delete cco2
-		if (length(oxygen) > 1) {
-			for (value in oxygen) {
-				$0 = value
-				coxygen[$i]++
-			}
-			c = coxygen[1] >= length(oxygen) / 2
-			for (value in oxygen) {
-				$0 = value
-				if ($i == (c ? 0 : 1)) {
-					delete oxygen[value]
-				}
-			}
-		}
-		if (length(co2) > 1) {
-			for (value in co2) {
-				$0 = value
-				cco2[$i]++
-			}
-			c = cco2[0] <= length(co2) / 2
-			for (value in co2) {
-				$0 = value
-				if ($i == (c ? 1 : 0)) {
-					delete co2[value]
-				}
-			}
-		}
+		narrow(oxygen, 1)
+		narrow(co2, 0)
 	}
 	for (value in oxygen) split(value, v1, "")
 	for (value in co2)    split(value, v2, "")
