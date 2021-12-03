@@ -1,70 +1,44 @@
 #!/usr/bin/awk -f
-# this solution is not optimal, i'll work on it
 
 BEGIN { FS = "" }
-      { s[$0] = o[$0] = 1 }
+      { co2[$0] = oxygen[$0] = 1 }
 END   {
-	for (i = 1; length(o) > 1; i++) {
-		delete c
-		for (b in o) {
-			$0 = b
-			c[$i]++
-		}
-		if (c[1] >= length(o) / 2) {
-			for (b in o) {
-				$0 = b
-				if ($i == 0) {
-					delete o[b]
-				}
+	for (i = 1; (length(oxygen) * length(co2)) > 1; i++) {
+		delete coxygen
+		delete cco2
+		if (length(oxygen) > 1) {
+			for (value in oxygen) {
+				$0 = value
+				coxygen[$i]++
 			}
-		} else {
-			for (b in o) {
-				$0 = b
-				if ($i == 1) {
-					delete o[b]
+			c = coxygen[1] >= length(oxygen) / 2
+			for (value in oxygen) {
+				$0 = value
+				if ($i == (c ? 0 : 1)) {
+					delete oxygen[value]
 				}
 			}
 		}
-	}
-	for (i = 1; length(s) > 1; i++) {
-		delete c
-		for (b in s) {
-			$0 = b
-			c[$i]++
-		}
-		if (c[0] <= length(s) / 2) {
-			for (b in s) {
-				$0 = b
-				if ($i == 1) {
-					delete s[b]
-				}
+		if (length(co2) > 1) {
+			for (value in co2) {
+				$0 = value
+				cco2[$i]++
 			}
-		} else {
-			for (b in s) {
-				$0 = b
-				if ($i == 0) {
-					delete s[b]
+			c = cco2[0] <= length(co2) / 2
+			for (value in co2) {
+				$0 = value
+				if ($i == (c ? 1 : 0)) {
+					delete co2[value]
 				}
 			}
 		}
 	}
-	for (b in o) {
-		$0 = b
-		for (i = 1; i <= NF; i++) {
-			n *= 2
-			if ($i) {
-				n++
-			}
-		}
-	}
-	for (b in s) {
-		$0 = b
-		for (i = 1; i <= NF; i++) {
-			m *= 2
-			if ($i) {
-				m++
-			}
-		}
+	for (value in oxygen) split(value, v1, "")
+	for (value in co2)    split(value, v2, "")
+	for (i = 1; i <= NF; i++) {
+		m *= 2; n *= 2;
+		if (v1[i]) m++
+		if (v2[i]) n++
 	}
 	print n * m
 }
