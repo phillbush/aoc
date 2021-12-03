@@ -1,0 +1,11 @@
+#!/usr/bin/awk -f
+
+BEGIN { FS = "" }
+      { for (i = 1; i <= NF; i++) if ($i) a[i]++ }
+END   {
+	for (i = 1; i <= NF; i++) {
+		g *= 2; e *= 2
+		a[i] > NR / 2 ? g++ : e++
+	}
+	print g * e
+}

@@ -17,7 +17,7 @@ increases from the previous measurement.
 	1103
 	    0m00.05s real     0m00.03s user     0m00.01s system
 
-§ Dive!
+§ Day 02: Dive!
 
 Taxicab geometry on the yx plane.
 • 1st part: horizontal position and depth.
@@ -30,3 +30,20 @@ Taxicab geometry on the yx plane.
 	$ time ./day02b day02.in
 	1947878632
 	    0m00.01s real     0m00.02s user     0m00.00s system
+
+
+§ Day 03: Binary Diagnostic
+
+The puzzle requires to select a two numbers from a list of binary
+numbers and multiply them.
+• 1st part: Select the most and less common bits on the input.
+• 2nd part: Select the most and less common bits while narrowing down
+            the input.
+
+	$ time ./day03a day03.in
+	4160394
+	    0m00.04s real     0m00.02s user     0m00.02s system
+
+	$ time ./day03b day03.in
+	4125600
+	    0m00.13s real     0m00.09s user     0m00.01s system

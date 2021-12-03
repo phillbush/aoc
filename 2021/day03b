@@ -1,0 +1,70 @@
+#!/usr/bin/awk -f
+# this solution is not optimal, i'll work on it
+
+BEGIN { FS = "" }
+      { s[$0] = o[$0] = 1 }
+END   {
+	for (i = 1; length(o) > 1; i++) {
+		delete c
+		for (b in o) {
+			$0 = b
+			c[$i]++
+		}
+		if (c[1] >= length(o) / 2) {
+			for (b in o) {
+				$0 = b
+				if ($i == 0) {
+					delete o[b]
+				}
+			}
+		} else {
+			for (b in o) {
+				$0 = b
+				if ($i == 1) {
+					delete o[b]
+				}
+			}
+		}
+	}
+	for (i = 1; length(s) > 1; i++) {
+		delete c
+		for (b in s) {
+			$0 = b
+			c[$i]++
+		}
+		if (c[0] <= length(s) / 2) {
+			for (b in s) {
+				$0 = b
+				if ($i == 1) {
+					delete s[b]
+				}
+			}
+		} else {
+			for (b in s) {
+				$0 = b
+				if ($i == 0) {
+					delete s[b]
+				}
+			}
+		}
+	}
+	for (b in o) {
+		$0 = b
+		for (i = 1; i <= NF; i++) {
+			n *= 2
+			if ($i) {
+				n++
+			}
+		}
+	}
+	for (b in s) {
+		$0 = b
+		for (i = 1; i <= NF; i++) {
+			m *= 2
+			if ($i) {
+				m++
+			}
+		}
+	}
+	print n * m
+}
