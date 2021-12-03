@@ -1,19 +1,19 @@
 #!/usr/bin/awk -f
 
-function narrow(a, b, n,    c, d, i) {
-	if (length(a) > 1) {
-		for (i in a) {
+function filter(array, type, bit,    count, cond, i) {
+	if (length(array) > 1) {
+		for (i in array) {
 			$0 = i
-			c[$n]++
+			count[$bit]++
 		}
-		if (b)
-			d = c[1] >= length(a) / 2
+		if (type)
+			cond = count[1] >= length(array) / 2
 		else
-			d = c[0] <= length(a) / 2
-		for (i in a) {
+			cond = count[0] <= length(array) / 2
+		for (i in array) {
 			$0 = i
-			if ($n == (d ? !b : b)) {
-				delete a[i]
+			if ($bit == (cond ? !type : type)) {
+				delete array[i]
 			}
 		}
 	}
@@ -23,8 +23,8 @@ BEGIN { FS = "" }
       { co2[$0] = oxygen[$0] = 1 }
 END   {
 	for (i = 1; (length(oxygen) + length(co2)) > 2; i++) {
-		narrow(oxygen, 1, i)
-		narrow(co2, 0, i)
+		filter(oxygen, 1, i)
+		filter(co2, 0, i)
 	}
 	for (value in oxygen) split(value, v1, "")
 	for (value in co2)    split(value, v2, "")
