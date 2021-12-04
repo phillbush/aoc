@@ -24,9 +24,9 @@ BEGIN {
 }
 
 NR == 1 {
-	nnums = NF
-	for (i = 1; i <= nnums; i++)
-		nums[i] = $i
+	ndraw = NF
+	for (i = 1; i <= ndraw; i++)
+		draw[i] = $i
 	FS = " "
 	next
 }
@@ -46,10 +46,10 @@ NR == 1 {
 }
 
 END {
-	for (i = 1; i <= nnums; i++) {
+	for (i = 1; i <= ndraw; i++) {
 		for (j = 1; j <= nboards; j++) {
-			if ((j, nums[i]) in hasnum) {
-				mark(j, nums[i])
+			if ((j, draw[i]) in hasnum) {
+				mark(j, draw[i])
 			}
 		}
 	}

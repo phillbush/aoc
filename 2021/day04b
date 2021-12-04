@@ -2,11 +2,11 @@
 
 function mark(nboard, num,    a, b, i, j, n) {
 	marked[nboard, num] = 1
-	if (!checked[nboard]) {
+	if (!haswon[nboard]) {
 		a = ++rowcount[nboard, row[nboard, num]]
 		b = ++colcount[nboard, col[nboard, num]]
 		if (a >= SIZE || b >= SIZE) {
-			checked[nboard] = 1
+			haswon[nboard] = 1
 			win++
 		}
 	}
@@ -30,9 +30,9 @@ BEGIN {
 }
 
 NR == 1 {
-	nnums = NF
-	for (i = 1; i <= nnums; i++)
-		nums[i] = $i
+	ndraw = NF
+	for (i = 1; i <= ndraw; i++)
+		draw[i] = $i
 	FS = " "
 	next
 }
@@ -52,10 +52,10 @@ NR == 1 {
 }
 
 END {
-	for (i = 1; i <= nnums; i++) {
+	for (i = 1; i <= ndraw; i++) {
 		for (j = 1; j <= nboards; j++) {
-			if ((j, nums[i]) in hasnum) {
-				mark(j, nums[i])
+			if ((j, draw[i]) in hasnum) {
+				mark(j, draw[i])
 			}
 		}
 	}
