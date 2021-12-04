@@ -1,14 +1,14 @@
 #!/usr/bin/awk -f
 
-function mark(board, nboard, num,    a, b, i, j, n) {
-	board[nboard, num] = 1
-	a = ++board[nboard, "row", board[nboard, num, "row"]]
-	b = ++board[nboard, "col", board[nboard, num, "col"]]
+function mark(nboard, num,    a, b, i, j, n) {
+	marked[nboard, num] = 1
+	a = ++rowcount[nboard, row[nboard, num]]
+	b = ++colcount[nboard, col[nboard, num]]
 	if (a != SIZE && b != SIZE)
 		return;
 	for (i = 1; i <= SIZE; i++) {
 		for (j = 1; j <= SIZE; j++) {
-			if (!board[nboard, board[nboard, i, j]]) {
+			if (!marked[nboard, board[nboard, i, j]]) {
 				n += board[nboard, i, j]
 			}
 		}
@@ -36,9 +36,9 @@ NR == 1 {
 	for (i = 1; i <= SIZE; i++) {
 		for (j = 1; j <= SIZE; j++) {
 			n = (i - 1) * SIZE + j
-			board[nboards, $n, "num" ] = 1
-			board[nboards, $n, "row" ] = j
-			board[nboards, $n, "col" ] = i
+			hasnum[nboards, $n] = 1
+			row[nboards, $n] = j
+			col[nboards, $n] = i
 			board[nboards, i, j ] = $n
 		}
         }
@@ -48,8 +48,8 @@ NR == 1 {
 END {
 	for (i = 1; i <= nnums; i++) {
 		for (j = 1; j <= nboards; j++) {
-			if ((j, nums[i], "num") in board) {
-				mark(board, j, nums[i])
+			if ((j, nums[i]) in hasnum) {
+				mark(j, nums[i])
 			}
 		}
 	}
