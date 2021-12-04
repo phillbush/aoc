@@ -1,0 +1,62 @@
+#!/usr/bin/awk -f
+
+function mark(board, nboard, num,    a, b, i, j, n) {
+	board[nboard, num] = 1
+	if (!checked[nboard]) {
+		a = ++board[nboard, "row", board[nboard, num, "row"]]
+		b = ++board[nboard, "col", board[nboard, num, "col"]]
+		if (a >= SIZE || b >= SIZE) {
+			checked[nboard] = 1
+			win++
+		}
+	}
+	if (win != nboards)
+		return
+	for (i = 1; i <= SIZE; i++) {
+		for (j = 1; j <= SIZE; j++) {
+			if (!board[nboard, board[nboard, i, j]]) {
+				n += board[nboard, i, j]
+			}
+		}
+	}
+	print n * num
+	exit
+}
+
+BEGIN {
+	RS = ""
+	FS = ","
+	SIZE = 5
+}
+
+NR == 1 {
+	nnums = NF
+	for (i = 1; i <= nnums; i++)
+		nums[i] = $i
+	FS = " "
+	next
+}
+
+{
+	nboards++
+	for (i = 1; i <= SIZE; i++) {
+		for (j = 1; j <= SIZE; j++) {
+			n = (i - 1) * 5 + j
+			board[nboards, $(n), "num" ] = 0
+			board[nboards, $(n), "row" ] = j
+			board[nboards, $(n), "col" ] = i
+			board[nboards, i, j ] = $(n)
+		}
+        }
+
+}
+
+END {
+	for (i = 1; i <= nnums; i++) {
+		for (j = 1; j <= nboards; j++) {
+			if ((j, nums[i], "num") in board) {
+				mark(board, j, nums[i])
+			}
+		}
+	}
+}

@@ -47,3 +47,18 @@ numbers and multiply them.
 	$ time ./day03b day03.in
 	4125600
 	    0m00.13s real     0m00.09s user     0m00.01s system
+
+
+§ Day 04: Giant Squid
+
+The puzzle requires computing the score of bingo boards in a bingo game.
+• 1st part: Compute score of the board that wins first once it wins.
+• 2nd part: Compute score of the board that wins last once it wins.
+
+	$ time ./day04a day04.in
+	67716
+	    0m00.09s real     0m00.07s user     0m00.02s system
+
+	$ time ./day04b day04.in
+	1830
+	    0m00.13s real     0m00.12s user     0m00.01s system
