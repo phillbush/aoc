@@ -41,7 +41,7 @@ NR == 1 {
 	nboards++
 	for (i = 1; i <= SIZE; i++) {
 		for (j = 1; j <= SIZE; j++) {
-			n = (i - 1) * 5 + j
+			n = (i - 1) * SIZE + j
 			board[nboards, $(n), "num" ] = 1
 			board[nboards, $(n), "row" ] = j
 			board[nboards, $(n), "col" ] = i
