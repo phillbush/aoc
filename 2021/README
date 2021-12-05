@@ -62,3 +62,18 @@ The puzzle requires computing the score of bingo boards in a bingo game.
 	$ time ./day04b day04.in
 	1830
 	    0m00.13s real     0m00.12s user     0m00.01s system
+
+
+§ Day 05: Hydrothermal Venture
+
+The puzzle requires counting the tiles in which lines cross.
+• 1st part: Consider horizontal and vertical lines.
+• 1st part: Consider horizontal, vertical and diagonal lines.
+
+	$ time ./day05a day05.in
+	6710
+	    0m00.55s real     0m00.54s user     0m00.03s system
+
+	$ time ./day05b day05.in
+	20121
+	    0m02.10s real     0m02.08s user     0m00.06s system
