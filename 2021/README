@@ -68,7 +68,7 @@ The puzzle requires computing the score of bingo boards in a bingo game.
 
 The puzzle requires counting the tiles in which lines cross.
 • 1st part: Consider horizontal and vertical lines.
-• 1st part: Consider horizontal, vertical and diagonal lines.
+• 2nd part: Consider horizontal, vertical and diagonal lines.
 
 	$ time ./day05a day05.in
 	6710
@@ -77,3 +77,19 @@ The puzzle requires counting the tiles in which lines cross.
 	$ time ./day05b day05.in
 	20121
 	    0m02.10s real     0m02.08s user     0m00.06s system
+
+
+§ Day 06: Lanternfish
+
+The puzzle requires computing the number of hermaphroditic fishes, which
+have a 7 day gestation and a 2 day infancy.
+• 1st part: After 80 days.
+• 2nd part: After 256 days.
+
+	$ time ./day06a day06.in
+	352872
+	    0m00.01s real     0m00.00s user     0m00.00s system
+
+	$ time ./day06b day06.in
+	1604361182149
+	    0m00.01s real     0m00.00s user     0m00.00s system
