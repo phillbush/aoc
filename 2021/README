@@ -1,6 +1,6 @@
                           Advent of Code 2021
 
-Collect starts to save the Christmas whatever.
+Collect starts on the seafloor to save the Christmas whatever.
 
 § Day 01: Sonar Sweep
 
@@ -93,3 +93,16 @@ have a 7 day gestation and a 2 day infancy.
 	$ time ./day06b day06.in
 	1604361182149
 	    0m00.01s real     0m00.00s user     0m00.00s system
+
+
+§ Day 07: The Treachery of Whales
+
+Median and mean.
+
+	$ time ./day07a day07.in
+	342641
+	    0m00.01s real     0m00.01s user     0m00.01s system
+
+	$ time ./day07b day07.in
+	93006301
+	    0m00.01s real     0m00.01s user     0m00.01s system

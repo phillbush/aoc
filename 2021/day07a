@@ -1,0 +1,8 @@
+#!/usr/bin/awk -f
+
+function abs(x) { return x < 0 ? -x : x }
+BEGIN { RS = ","; FS = "\n" }
+      { a[($1 > max ? max = $1 : $1)]++ }
+END   { for (med = 0; med <= max; med++) if ((i += a[med]) > NR / 2) break }
+END   { for (i in a) n += a[i] * abs(i - med) }
+END   { print n }

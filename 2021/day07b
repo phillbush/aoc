@@ -1,0 +1,11 @@
+#!/usr/bin/awk -f
+
+function abs(x) { return x < 0 ? -x : x }
+BEGIN { RS = ","; FS = "\n" }
+      { a[$1]++; max += $1 }
+END   { ma = int(max / NR); mb = int(max / NR + 1) }
+END   { for (i in a) {
+	na += a[i] * (1 + (m = abs(i - ma))) * m / 2
+	nb += a[i] * (1 + (m = abs(i - mb))) * m / 2 }
+}
+END   { print (na < nb ? na : nb) }
