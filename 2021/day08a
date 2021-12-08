@@ -1,0 +1,6 @@
+#!/usr/bin/awk -f
+
+function unique(x) { return x == 2 || x == 3 || x == 4 || x == 7 }
+BEGIN     { RS = " \\| |\n" }
+!(NR % 2) { for (i = 1; i <= NF; i++) if (unique(length($i))) n++ }
+END       { print n }

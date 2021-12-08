@@ -106,3 +106,18 @@ Median and mean.
 	$ time ./day07b day07.in
 	93006301
 	    0m00.01s real     0m00.01s user     0m00.01s system
+
+
+§ Day 08: Seven Segment Search
+
+The puzzle requires to decode scrambled seven-segment signals.
+• 1st part: Compute how many times 1, 4, 7 and 8 appear.
+• 2nd part: Sum the 4-digit numbers.
+
+	$ time ./day08a day08.in
+	521
+	    0m00.01s real     0m00.02s user     0m00.00s system
+
+	$ time ./day08b day08.in
+	1016804
+	    0m00.09s real     0m00.08s user     0m00.01s system
