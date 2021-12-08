@@ -120,4 +120,4 @@ The puzzle requires to decode scrambled seven-segment signals.
 
 	$ time ./day08b day08.in
 	1016804
-	    0m00.09s real     0m00.08s user     0m00.01s system
+	    0m00.09s real     0m00.08s user     0m00.00s system
