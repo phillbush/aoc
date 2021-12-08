@@ -23,7 +23,6 @@ BEGIN {
 	delete lens
 	for (i = 1; i <= NF; i++)
 		segs[length($i), ++lens[length($i)]] = encode($i)
-
 	a[segs[2,1]] = 1
 	a[segs[3,1]] = 7
 	a[segs[4,1]] = 4
