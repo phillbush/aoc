@@ -23,28 +23,28 @@ BEGIN {
 	delete lens
 	for (i = 1; i <= NF; i++)
 		segs[length($i), ++lens[length($i)]] = encode($i)
-	a[segs[2,1]] = 1
-	a[segs[3,1]] = 7
-	a[segs[4,1]] = 4
-	a[segs[7,1]] = 8
+	trans[segs[2,1]] = 1
+	trans[segs[3,1]] = 7
+	trans[segs[4,1]] = 4
+	trans[segs[7,1]] = 8
 	for (i = 1; i <= 3; i++) {
-		a[segs[5,i]] = (or(segs[5,i], segs[4,1]) == segs[7,1])                        \
-		             ? 2                                                              \
-		             : (or(segs[5,i], and(segs[7,1], compl(segs[2,1]))) == segs[7,1]) \
-		             ? 3                                                              \
-		             : 5
-		a[segs[6,i]] = (or(segs[6,i], segs[2,1]) == segs[7,1]) \
-		             ? 6                                       \
-		             : (or(segs[6,i], segs[4,1]) == segs[7,1]) \
-		             ? 0                                       \
-		             : 9
+		trans[segs[5,i]] = (or(segs[5,i], segs[4,1]) == segs[7,1])                        \
+		                 ? 2                                                              \
+		                 : (or(segs[5,i], and(segs[7,1], compl(segs[2,1]))) == segs[7,1]) \
+		                 ? 3                                                              \
+		                 : 5
+		trans[segs[6,i]] = (or(segs[6,i], segs[2,1]) == segs[7,1]) \
+		                 ? 6                                       \
+		                 : (or(segs[6,i], segs[4,1]) == segs[7,1]) \
+		                 ? 0                                       \
+		                 : 9
 	}
 }
 
 !(NR % 2) {
 	x = 0
 	for (i = 1; i <= NF; i++)
-		x = 10 * x + a[encode($i)]
+		x = 10 * x + trans[encode($i)]
 	n += x
 }
 
