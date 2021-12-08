@@ -21,6 +21,7 @@ BEGIN {
 (NR % 2) {
 	delete segs
 	delete lens
+	delete trans
 	for (i = 1; i <= NF; i++)
 		segs[length($i), ++lens[length($i)]] = encode($i)
 	trans[segs[2,1]] = 1
