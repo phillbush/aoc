@@ -9,13 +9,13 @@ function encode(s,    i, n, r) {
 
 BEGIN {
 	RS = " \\| |\n"
-	bit["a"] = A = 1
-	bit["b"] = B = 2
-	bit["c"] = C = 4
-	bit["d"] = D = 8
-	bit["e"] = E = 16
-	bit["f"] = F = 32
-	bit["g"] = G = 64
+	bit["a"] = 1
+	bit["b"] = 2
+	bit["c"] = 4
+	bit["d"] = 8
+	bit["e"] = 16
+	bit["f"] = 32
+	bit["g"] = 64
 }
 
 (NR % 2) {
