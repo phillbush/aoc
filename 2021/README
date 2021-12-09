@@ -121,3 +121,18 @@ The puzzle requires to decode scrambled seven-segment signals.
 	$ time ./day08b day08.in
 	1016804
 	    0m00.09s real     0m00.08s user     0m00.00s system
+
+
+§ Day 09: Smoke Basin
+
+The puzzle input is a heatmap of smoke basins.
+• 1st part: Sum up the low points plus 1.
+• 2nd part: Multiply the number of cells in each basin.
+
+	$ time ./day09a day09.in
+	506
+	    0m00.22s real     0m00.21s user     0m00.01s system
+
+	$ time ./day09b day09.in
+	931200
+	    0m00.11s real     0m00.10s user     0m00.01s system
