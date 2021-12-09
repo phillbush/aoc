@@ -1,0 +1,51 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	FS = ""
+}
+
+{
+	curr = (NR - 1) % 2
+	prev = NR % 2
+	for (x = 0; x < NF; ) {
+		basin = 0
+		for (i = x; i < NF && $(i + 1) != 9; i++) {
+			if (a[i, prev]) {
+				if (!basin) {
+					basin = a[i, prev]
+				} else if (basin != a[i, prev]) {
+					sizes[basin] += sizes[a[i, prev]]
+					sizes[a[i, prev]] = 0
+				}
+			}
+		}
+		if (i > x && !basin)
+			basin = ++nbasins
+		for (i = x; i < NF && $(i + 1) != 9; i++) {
+			a[i, curr] = basin
+			sizes[basin]++
+		}
+		x = i
+		for (i = x; i < NF && $(i + 1) == 9; i++) {
+			a[i, curr] = 0
+		}
+		x = i
+	}
+}
+
+END {
+	a[1] = a[2] = a[3] = 0
+	for (i in sizes) {
+		if (sizes[i] > a[3]) {
+			a[1] = a[2]
+			a[2] = a[3]
+			a[3] = sizes[i]
+		} else if (sizes[i] > a[2]) {
+			a[1] = a[2]
+			a[2] = sizes[i]
+		} else if (sizes[i] > a[1]) {
+			a[1] = sizes[i]
+		}
+	}
+	print a[1] * a[2] * a[3]
+}
