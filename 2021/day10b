@@ -1,0 +1,64 @@
+#!/usr/bin/awk -f
+
+function init() {
+	term[")"] = "("
+	term["]"] = "["
+	term["}"] = "{"
+	term[">"] = "<"
+	score["("] = 1
+	score["["] = 2
+	score["{"] = 3
+	score["<"] = 4
+}
+
+function incomplete(    a, i, m, n) {
+	for (i = 1; i <= NF; i++) {
+		if (term[$i]) {
+			if (a[m--] != term[$i]) {
+				return
+			}
+		} else {
+			a[++m] = $i
+		}
+	}
+	for (i = m; i > 0; i--) {
+		n = n * 5 + score[a[i]]
+	}
+	return n
+}
+
+function swap(a, i, j,    t) {
+	t = a[i]
+	a[i] = a[j]
+	a[j] = t
+}
+
+function partition(a, left, right, pivot,    value, i, save) {
+	value = a[pivot]
+	swap(a, pivot, right)
+	save = left
+	for (i = left; i < right; i++)
+		if (a[i] < value)
+			swap(a, save++, i)
+	swap(a, right, save)
+	return save
+}
+
+function select(a, left, right, k,     pivot) {
+	for (;;) {
+		if (left == right)
+			return a[left]
+		pivot = partition(a, left, right, left + int((right - left + 1) * rand()))
+		if (k == pivot) {
+			return a[k]
+		} else if (k < pivot) {
+			right = pivot - 1
+		} else {
+			left = pivot + 1
+		}
+	}
+}
+
+BEGIN            { FS = ""; init() }
+v = incomplete() { a[++nl] = v }
+END              { print select(a, 1, nl, int((nl + 1) / 2)) }

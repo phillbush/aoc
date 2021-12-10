@@ -136,3 +136,19 @@ The puzzle input is a heatmap of smoke basins.
 	$ time ./day09b day09.in
 	931200
 	    0m00.11s real     0m00.10s user     0m00.01s system
+
+
+§ Day 10: Syntax Scoring
+
+The puzzle requires to compute the score of the syntax checking of a
+input of unmatching brackets.
+• 1st part: Compute score of corrupted lines.
+• 2nd part: Compute score of incomplete lines.
+
+	$ time ./day10a day10.in
+	319233
+	    0m00.06s real     0m00.06s user     0m00.00s system
+
+	$ time ./day10b day10.in
+	1118976874
+	    0m00.07s real     0m00.06s user     0m00.01s system

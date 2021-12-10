@@ -1,0 +1,28 @@
+#!/usr/bin/awk -f
+
+function init() {
+	term[")"] = "("
+	term["]"] = "["
+	term["}"] = "{"
+	term[">"] = "<"
+	score[")"] = 3
+	score["]"] = 57
+	score["}"] = 1197
+	score[">"] = 25137
+}
+
+function corrupted(    a, i, m) {
+	for (i = 1; i <= NF; i++) {
+		if (term[$i]) {
+			if (a[m--] != term[$i]) {
+				return $i
+			}
+		} else {
+			a[++m] = $i
+		}
+	}
+}
+
+BEGIN           { FS = ""; init() }
+c = corrupted() { n += score[c] }
+END             { print n }
