@@ -1,0 +1,52 @@
+#!/usr/bin/awk -f
+
+function min(a, b) {
+	return a < b ? a : b
+}
+
+function max(a, b) {
+	return a > b ? a : b
+}
+
+function flash(x, y,    i, j) {
+	if (x < 1 || x > NF || y < 1 || y > NR)
+		return
+	nflashes++
+	for (j = max(y - 1, 1); j <= min(y + 1, NR); j++) {
+		for (i = max(x - 1, 1); i <= min(x + 1, NF); i++) {
+			if ((i == x && j == y) || !energy[i,j])
+				continue
+			if (!(energy[i,j] = ((energy[i,j] + 1) % 10))) {
+				flash(i, j)
+			}
+		}
+	}
+}
+
+function step(    i, j, x, y, n) {
+	for (j = 1; j <= NR; j++) {
+		for (i = 1; i <= NF; i++) {
+			if (!(energy[i,j] = ((energy[i,j] + 1) % 10))) {
+				++n
+				x[n] = i
+				y[n] = j
+			}
+		}
+	}
+	for (n in x) {
+		flash(x[n], y[n])
+	}
+}
+
+BEGIN { FS = "" }
+      { for (i = 1; i <= NF; i++) energy[i, NR] = $i }
+END   {
+	for (i = 1; ; i++) {
+		nflashes = 0
+		step();
+		if (nflashes == NR * NF) {
+			break;
+		}
+	}
+	print i
+}

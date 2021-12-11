@@ -152,3 +152,19 @@ input of unmatching brackets.
 	$ time ./day10b day10.in
 	1118976874
 	    0m00.07s real     0m00.06s user     0m00.01s system
+
+
+§ Day 11: Dumbo Octopus
+
+The puzzle requires running a cellular automaton of flashing energetic
+octopusses.
+• 1st part: Compute how many flashes occur after 100 steps.
+• 2nd part: Compute how many steps occur to the flashes synchronize.
+
+	$ time ./day11a day11.in
+	1603
+	    0m00.18s real     0m00.16s user     0m00.02s system
+
+	$ time ./day11b day11.in
+	222
+	    0m00.36s real     0m00.34s user     0m00.03s system
