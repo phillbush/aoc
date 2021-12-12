@@ -1,7 +1,7 @@
 #!/usr/bin/awk -f
 
 function visit(node,    n, i) {
-	if (!visited[node] && node == "end")
+	if (node == "end")
 		return 1
 	if (visited[node] && node ~ /[a-z]/)
 		return 0
