@@ -1,14 +1,15 @@
 #!/usr/bin/awk -f
 
-function visit(node,    i) {
+function visit(node,    n, i) {
 	if (!visited[node] && node == "end")
-		nways++
+		return 1
 	if (visited[node] && node ~ /[a-z]/)
-		return
+		return 0
 	visited[node] = 1
 	for (i = 1; i <= nsuccs[node]; i++)
-		visit(succs[node, i])
+		n += visit(succs[node, i])
 	visited[node] = 0
+	return n
 }
 
 BEGIN {
@@ -21,6 +22,5 @@ BEGIN {
 }
 
 END {
-	visit("start")
-	print nways
+	print visit("start")
 }
