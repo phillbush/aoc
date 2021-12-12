@@ -5,10 +5,10 @@ function visit(node,    n, i) {
 		return 1
 	if (visited[node] && node ~ /[a-z]/)
 		return 0
-	visited[node] = 1
+	visited[node]++
 	for (i = 1; i <= nsuccs[node]; i++)
 		n += visit(succs[node, i])
-	visited[node] = 0
+	visited[node]--
 	return n
 }
 

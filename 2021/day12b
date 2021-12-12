@@ -1,16 +1,15 @@
 #!/usr/bin/awk -f
 
-function visit(node, cave, cnt,    i) {
-	if (!visited[node] && node == "end")
-		nways++
-	if (visited[node] && node ~ /[a-z]/ && (cave != node || !cnt))
-		return
-	if (cave == node && cnt)
-		cnt--
-	visited[node] = 1
+function visit(node, stop,    n, i) {
+	if (node == "end")
+		return 1
+	if (visited[node] && (node == "start" || (node ~ /[a-z]/ && stop++)))
+		return 0
+	visited[node]++
 	for (i = 1; i <= nsuccs[node]; i++)
-		visit(succs[node, i], cave, cnt)
-	visited[node] = 0
+		n += visit(succs[node, i], stop)
+	visited[node]--
+	return n
 }
 
 BEGIN {
@@ -18,19 +17,10 @@ BEGIN {
 }
 
 {
-	for (i = 1; i <= 2; i++)
-		if ($i != "end" && $i != "start" && $i ~ /[a-z]/)
-			smallcaves[$i] = 1
 	succs[$1, ++nsuccs[$1]] = $2
 	succs[$2, ++nsuccs[$2]] = $1
 }
 
 END {
-	visit("start")
-	initial = nways
-	for (cave in smallcaves) {
-		visit("start", cave, 2)
-		nways -= initial
-	}
-	print nways
+	print visit("start")
 }

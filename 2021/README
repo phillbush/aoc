@@ -183,4 +183,4 @@ big cave or small cave.
 
 	$ time ./day12b day12.in
 	152480
-	    3m31.67s real     3m06.10s user     0m00.22s system
+	    0m16.20s real     0m16.19s user     0m00.01s system
