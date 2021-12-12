@@ -168,3 +168,19 @@ octopusses.
 	$ time ./day11b day11.in
 	222
 	    0m00.36s real     0m00.34s user     0m00.03s system
+
+§ Day 12: Passage Pathing
+
+The puzzle requires counting the number of paths from the start node to
+the end node.  Each middle node (which is not start nor end) can be a
+big cave or small cave.
+• 1st part: Small caves can only be visited once.
+• 2nd part: Only one small cave can be visited at most twice in each path.
+
+	$ time ./day12b day12.in
+	152480
+	    3m31.67s real     3m06.10s user     0m00.22s system
+
+	$ time ./day12a day12.in
+	4775
+	    0m03.65s real     0m03.58s user     0m00.01s system
