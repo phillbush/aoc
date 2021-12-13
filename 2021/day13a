@@ -1,0 +1,65 @@
+#!/usr/bin/awk -f
+
+function fold(dir, pos, size, narr, arr, noth, oth,    x, y, i, j, old, new, t) {
+	for (i in narr) {
+		old = i + 0
+		if (old > pos &&
+		    (!size || old <= size) &&
+		    (new = 2 * pos - old) >= 0 &&
+		    narr[old] > 0) {
+			for (j = 1; j <= narr[old]; j++) {
+				t = arr[old, j]
+				if (dir) {
+					x = t
+					y = new
+				} else {
+					y = t
+					x = new
+				}
+				if (!paper[x, y]) {
+					arr[new, ++narr[new]] = t
+					oth[t, ++noth[t]] = new
+					paper[x, y] = 1
+				}
+			}
+		}
+	}
+}
+
+BEGIN {
+	FS = "[, =]"
+}
+
+NF == 2 {
+	xtoy[$1, ++nxtoy[$1]] = $2 + 0
+	ytox[$2, ++nytox[$2]] = $1 + 0
+	paper[$1, $2] = 1
+}
+
+NF == 4 {
+	nfold++
+	folddir[nfold] = $3
+	foldpos[nfold] = $4 + 0
+}
+
+END {
+	for (i = 1; i <= 1; i++) {
+		if (folddir[i] == "y") {
+			fold(1, foldpos[i], sizey, nytox, ytox, nxtoy, xtoy)
+			sizey = foldpos[i]
+		} else {
+			fold(0, foldpos[i], sizex, nxtoy, xtoy, nytox, ytox)
+			sizex = foldpos[i]
+		}
+	}
+	for (i in nytox) {
+		if (!sizey || i + 0 <= sizey) {
+			for (j = 1; j <= nytox[i]; j++) {
+				if (!sizex || ytox[i, j] <= sizex) {
+					n++
+				}
+			}
+		}
+	}
+	print n
+}
