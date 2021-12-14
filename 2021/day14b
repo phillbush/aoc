@@ -1,0 +1,44 @@
+#!/usr/bin/awk -f
+# based on e36freak92's code
+
+function countpairs(a, b,    s, t, i) {
+	delete a
+	for (i in b) {
+		a[substr(i, 1, 1) rules[i]] += b[i]
+		a[rules[i] substr(i, 2, 1)] += b[i]
+	}
+}
+
+BEGIN {
+	FS = ""
+}
+
+NR == 1 {
+	for (i = 1; i < NF; i++)
+		a[$i $(i + 1)]++
+	c[$NF] = 1
+	FS = " -> ";
+}
+
+NF == 2 {
+	rules[$1] = $2
+}
+
+END {
+	for (i = 1; i <= 40; i++) {
+		if (i % 2) {
+			countpairs(b, a)
+		} else {
+			countpairs(a, b)
+		}
+	}
+	for (i in a) {
+		j = substr(i, 1, 1)
+		c[j] += a[i]
+		max = (c[j] > c[max]) ? j : max;
+	}
+	for (j in c) {
+		min = (!min || c[j] < c[min]) ? j : min;
+	}
+	print c[max] - c[min]
+}

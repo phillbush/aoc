@@ -1,0 +1,37 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	FS = " -> "
+}
+
+NF == 1 {
+	initial = $0
+}
+
+NF == 2 {
+	rule[$1] = $2
+}
+
+END {
+	OFS = FS = ""
+	$0 = initial
+	for (i = 1; i <= NF; i++)
+		count[$i]++
+	for (i = 1; i <= 10; i++) {
+		for (j = 1; j < NF; j++) {
+			insert = rule[$j $(j + 1)]
+			count[insert]++
+			$j = $j insert
+		}
+		$0 = $0
+	}
+	for (i in count) {
+		if (count[i] > max) {
+			max = count[i]
+		}
+		if (!min || count[i] < min) {
+			min = count[i]
+		}
+	}
+	print max - min
+}
