@@ -199,3 +199,24 @@ Fold a transparent paper and find letters.
 	$ time ./day13b day13.in
 	ALREKFKU
 	    0m00.17s real     0m00.14s user     0m00.02s system
+
+§ Day 14: Extended Polymerization
+
+	$ time ./day14a day14.in
+	3587
+	    0m00.20s real     0m00.16s user     0m00.02s system
+
+	$ time ./day14b day14.in
+	3906445077999
+	    0m00.08s real     0m00.04s user     0m00.01s system
+
+
+§ Day 15: Chiton
+
+	$ time ./day15a day15.in
+	537
+	    0m05.60s real     0m05.66s user     0m00.01s system
+
+	$ time ./day15b day15.in
+	2881
+	    8m43.25s real     8m42.01s user     0m01.49s system

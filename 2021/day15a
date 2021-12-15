@@ -1,0 +1,52 @@
+#!/usr/bin/awk -f
+
+function dijkstra(trgt,    dist, u, ux, uy, v, i, a, n) {
+	dist[1, 1] = 0
+	while (length(unvisit)) {
+		min = ""
+		for (u in dist) {
+			if (min == "" || dist[u] < dist[min]) {
+				min = u
+			}
+		}
+		u = min
+
+		if (u == trgt)
+			return dist[u]
+
+		delete unvisit[u]
+
+		split(u, a, SUBSEP)
+		ux = a[1]
+		uy = a[2]
+
+		for (i in DY) {
+			v = (ux + DX[i]) SUBSEP (uy + DY[i])
+			if (v in unvisit) {
+				n = dist[u] + len[v]
+				if (!(v in dist) || n < dist[v]) {
+					dist[v] = n
+				}
+			}
+		}
+
+		delete dist[u]
+	}
+}
+
+BEGIN {
+	FS = ""
+	DX[0] = 0;  DX[1] = -1; DX[2] = 1; DX[3] = 0
+	DY[0] = -1; DY[1] = 0;  DY[2] = 0; DY[3] = 1
+}
+
+{
+	for (i = 1; i <= NF; i++) {
+		unvisit[i, NR] = 1
+		len[i, NR] = $i
+	}
+}
+
+END {
+	print dijkstra(NF SUBSEP NR)
+}
