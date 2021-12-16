@@ -220,3 +220,14 @@ Fold a transparent paper and find letters.
 	$ time ./day15b day15.in
 	2881
 	    8m43.25s real     8m42.01s user     0m01.49s system
+
+
+§ Day 16: Packet Decoder
+
+	$ time ./day16a day16.in
+	854
+	    0m00.03s real     0m00.02s user     0m00.02s system
+
+	$ time ./day16b day16.in
+	186189840660
+	    0m00.03s real     0m00.02s user     0m00.00s system
