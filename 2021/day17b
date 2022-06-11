@@ -1,0 +1,77 @@
+#!/usr/bin/awk -f
+# I do not remember where I copied this from, but this code is not mine
+# (I think it is e36freak's)
+
+function floor(x) {
+	if (x > 0)
+		return int(x)
+	return (x == int(x)) ? x : int(x) - 1
+}
+
+function ceiling(x) {
+	if (x < 0)
+		return int(x)
+	return (x == int(x)) ? x : int(x) + 1
+}
+
+function lefter(v,p) {
+	return ((2*v+1) - sqrt((2*v+1)^2-8*p)) / 2
+}
+
+function righter(v,p) {
+	return ((2*v+1) + sqrt((2*v+1)^2-8*p)) / 2
+}
+
+function dragless(v,n) {
+	return n*(2*v-n+1)/2
+}
+
+function dragged(v,n) {
+	return (n > v) ? v*(v+1)/2 : dragless(v,n)
+}
+
+BEGIN {
+	FS="[=,]"
+	OFS="\t"
+}
+
+{
+	split($2,x,/\.\./);
+	split($4,y,/\.\./);
+}
+
+END {
+	g = 0
+	s = (y[1] < 0) ? -y[1] : y[2]
+	for (v = -s; v < s; v = v+1) {
+		m = floor(lefter(v,y[2]))
+		n = floor(righter(v,y[1]))
+		for (j = 1; j <= x[2]; ++j)
+		{
+			b = 0
+			c = ceiling(lefter(v,y[1]))
+			for (i = (c > 0) ? c : 0;
+			     i <= m && m > 0; ++i)
+			{
+				if (i < 0) { continue; }
+				a = dragged(j,i)
+				if (x[1] > a || a > x[2]) { continue; }
+				g += 1
+				b = 1
+				break
+			}
+			if (b) { continue; }
+			c = ceiling(righter(v,y[2]))
+			for (i = (c > 0) ? c : 0;
+			     i <= n && n > 0; ++i)
+			{
+				if (i < 0) { continue; }
+				a = dragged(j,i)
+				if (x[1] > a || a > x[2]) { continue; }
+				g += 1
+				break
+			}
+		}
+	}
+	print g
+}

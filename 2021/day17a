@@ -1,0 +1,4 @@
+#!/usr/bin/awk -f
+
+BEGIN { FS="[=.,]" }
+      { print (($6^2)+$6)/2 }

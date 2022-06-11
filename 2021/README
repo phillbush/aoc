@@ -231,3 +231,21 @@ Fold a transparent paper and find letters.
 	$ time ./day16b day16.in
 	186189840660
 	    0m00.03s real     0m00.02s user     0m00.00s system
+
+
+§ Day 17: Trick Shot
+
+	$ time ./day17a day17.in
+	4560
+	    0m00.01s real     0m00.00s user     0m00.01s system
+
+	$ time ./day17b day17.in
+	3344
+	    0m01.17s real     0m00.92s user     0m00.01s system
+
+
+§ Day 22:
+
+	$ time ./day22a day22.in
+	533863
+	    0m16.81s real     0m12.67s user     0m00.24s system
